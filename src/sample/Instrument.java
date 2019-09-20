@@ -97,7 +97,7 @@ public class Instrument {
         }
 
         private void printEventInfo() {
-            printEventInfo(, );
+            printEventInfo( );
         }
 
         private void printEventInfo(String key_pressed, KeyEvent e) {
