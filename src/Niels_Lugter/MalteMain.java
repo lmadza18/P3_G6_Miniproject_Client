@@ -23,7 +23,9 @@ public class MalteMain extends Application {
         //  scene.getStylesheets().add("style.css");
 
         PosButton button1 = new PosButton("Position1", bg.getWidth() / 8, bg.getHeight() / 8 * 6, bg);
-
+        PosButton button2 = new PosButton("Position2", bg.getWidth() / 8 * 3, bg.getHeight() / 8 * 5.5, bg);
+        PosButton button3 = new PosButton("Position3", bg.getWidth() / 8 * 5, bg.getHeight() / 8 * 5.5, bg);
+        PosButton button4 = new PosButton("Position4", bg.getWidth() / 8 * 7, bg.getHeight() / 8 * 6, bg);
 
         primaryStage.setTitle("Something");
         primaryStage.setScene(scene);
