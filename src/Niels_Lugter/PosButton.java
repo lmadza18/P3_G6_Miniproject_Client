@@ -3,30 +3,34 @@ package Niels_Lugter;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
-public class PosButton {
+public class PosButton extends Button {
     double x;
     double y;
     String title;
 
-    PosButton(String title, double x, double y, Pane pane){
+
+    PosButton(String title, double x, double y) {
         this.x = x;
         this.y = y;
+        this.title = title;
 
-        Button button1 = new Button(title);
         //  ImageView imgButton = new ImageView("images/drummer1.png");
         //  ImageView imgButton2 = new ImageView("images/drummer2.png");
         //  imgButton.setFitWidth(150);
         //  imgButton.setFitHeight(150);
         //  button.setGraphic(imgButton);
         //  button1.setStyle("-fx-background-color: transparent");
-        button1.setTranslateX(x);
-        button1.setTranslateY(y);
-        pane.getChildren().add(button1);
+        this.setTranslateX(x);
+        this.setTranslateY(y);
+        buttonPress();
+    }
 
-        /*button1.setOnAction(actionEvent -> {
-            FlowPane menu = new FlowPane();
-            menu.getChildren().add(new Button("Hello"));
-            bg.getChildren().addAll(menu);
-        });*/
+    void buttonPress() {
+        this.setOnAction(actionEvent -> {
+            InstrumentPickerWindow instrumentPickerWindow = new InstrumentPickerWindow();
+            Main.root.getChildren().add(instrumentPickerWindow);
+            System.out.println(title);
+
+        });
     }
 }
