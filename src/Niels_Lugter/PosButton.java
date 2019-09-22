@@ -1,12 +1,12 @@
 package Niels_Lugter;
 
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
 
 public class PosButton extends Button {
     double x;
     double y;
     String title;
+    InstrumentPickerWindow instrumentPickerWindow;
 
 
     PosButton(String title, double x, double y) {
@@ -23,11 +23,12 @@ public class PosButton extends Button {
         this.setTranslateX(x);
         this.setTranslateY(y);
         buttonPress();
+
     }
 
     void buttonPress() {
         this.setOnAction(actionEvent -> {
-            InstrumentPickerWindow instrumentPickerWindow = new InstrumentPickerWindow();
+            instrumentPickerWindow = new InstrumentPickerWindow();
             Main.root.getChildren().add(instrumentPickerWindow);
             System.out.println(title);
 
