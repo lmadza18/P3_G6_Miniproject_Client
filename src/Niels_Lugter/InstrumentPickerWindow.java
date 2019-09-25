@@ -8,6 +8,7 @@ import javafx.scene.shape.Rectangle;
 public class InstrumentPickerWindow extends Pane {
 
     Button closeButton;
+    Button chooseButton;
 
     public InstrumentPickerWindow(){
 
@@ -15,6 +16,7 @@ public class InstrumentPickerWindow extends Pane {
         r.setFill(Color.BLUE);
 
         closeButton = new Button("close");
+        chooseButton = new Button("choose");
 
         this.getChildren().addAll(r, closeButton);
         buttonPress();
@@ -25,9 +27,10 @@ public class InstrumentPickerWindow extends Pane {
     void buttonPress() {
         closeButton.setOnAction(actionEvent -> {
             Main.root.getChildren().remove(this);
-            closeButton.setManaged(false);
-            closeButton.setVisible(false);
 
+        });
+        chooseButton.setOnAction(actionEvent -> {
+            Main.root.getChildren().remove(this);
 
         });
     }
