@@ -19,9 +19,6 @@ public class Main extends Application {
         root.start();
     }
 
-
-
-
     public static void main(String[] args) {
         launch(args);
     }

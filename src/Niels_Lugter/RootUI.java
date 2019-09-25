@@ -2,6 +2,7 @@ package Niels_Lugter;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 public class RootUI extends Pane {
 

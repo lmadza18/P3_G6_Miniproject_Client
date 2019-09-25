@@ -32,6 +32,7 @@ public class PosButton extends Button {
     void buttonPress() {
         this.setOnAction(actionEvent -> {
             instrumentPickerWindow = new InstrumentPickerWindow();
+
             Main.root.getChildren().add(instrumentPickerWindow);
             System.out.println(title);
 //            playThatBassNote("out/production/P3_G6_Miniproject_Client/audio_files/Bass/0CBass.wav");

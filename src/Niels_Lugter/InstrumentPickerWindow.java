@@ -1,22 +1,26 @@
 package Niels_Lugter;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.TextAlignment;
 
-public class InstrumentPickerWindow extends Pane {
+public class InstrumentPickerWindow extends VBox {
 
     Button closeButton;
     Button chooseButton;
 
-    double x = getHeight()/2;
-    double y= getWidth()/2;
-    double size = this.getHeight()/2;
+
+    double size = 200;
+    double x = 0;
+    double y= 0;
 
 
     public InstrumentPickerWindow(){
-        Rectangle r = new Rectangle(x-size/2, y-size/2, size, size);
+        this.setAlignment(Pos.CENTER);
+        Rectangle r = new Rectangle(x ,y, size, size);
         r.setFill(Color.BLUE);
 
         closeButton = new Button("close");
