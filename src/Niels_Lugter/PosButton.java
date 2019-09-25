@@ -2,8 +2,8 @@ package Niels_Lugter;
 
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
+//import sun.audio.AudioPlayer;
+//import sun.audio.AudioStream;
 
 import javax.sound.sampled.AudioSystem;
 import javax.swing.*;
@@ -35,12 +35,13 @@ public class PosButton extends Button {
 
     void buttonPress() {
         this.setOnAction(actionEvent -> {
-            InstrumentPickerWindow instrumentPickerWindow = new InstrumentPickerWindow();
+            InstrumentPickerWindow instrumentPickerWindow = new InstrumentPickerWindow(x,y);
             Main.root.getChildren().add(instrumentPickerWindow);
             System.out.println(title);
-            playThatBassNote("out/production/P3_G6_Miniproject_Client/audio_files/Bass/0CBass.wav");
+           // playThatBassNote("out/production/P3_G6_Miniproject_Client/audio_files/Bass/0CBass.wav");
         });
     }
+    /*
 
     public static void playThatBassNote(String filepath) {
         InputStream music;
@@ -52,5 +53,5 @@ public class PosButton extends Button {
         catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error");
         }
-    }
+    }*/
 }
