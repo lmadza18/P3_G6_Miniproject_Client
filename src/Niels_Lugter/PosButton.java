@@ -1,15 +1,9 @@
 package Niels_Lugter;
 
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
 
-import javax.sound.sampled.AudioSystem;
-import javax.swing.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
+//import sun.audio.AudioPlayer;
+//import sun.audio.AudioStream;
 
 public class PosButton extends Button {
     double x;
@@ -40,19 +34,19 @@ public class PosButton extends Button {
             instrumentPickerWindow = new InstrumentPickerWindow();
             Main.root.getChildren().add(instrumentPickerWindow);
             System.out.println(title);
-            playThatBassNote("out/production/P3_G6_Miniproject_Client/audio_files/Bass/0CBass.wav");
+//            playThatBassNote("out/production/P3_G6_Miniproject_Client/audio_files/Bass/0CBass.wav");
         });
     }
 
-    public static void playThatBassNote(String filepath) {
-        InputStream music;
-        try {
-            music = new FileInputStream(new File(filepath));
-            AudioStream audios = new AudioStream(music);
-            AudioPlayer.player.start(audios);
-        }
-        catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Error");
-        }
-    }
+//    public static void playThatBassNote(String filepath) {
+//        InputStream music;
+//        try {
+//            music = new FileInputStream(new File(filepath));
+//            AudioStream audios = new AudioStream(music);
+//            AudioPlayer.player.start(audios);
+//        }
+//        catch (Exception e) {
+//            JOptionPane.showMessageDialog(null,"Error");
+//        }
+//    }
 }
