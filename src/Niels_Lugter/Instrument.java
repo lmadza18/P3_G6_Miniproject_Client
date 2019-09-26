@@ -1,3 +1,4 @@
+/*
 package Niels_Lugter;
 
 import java.awt.event.KeyEvent;
@@ -6,173 +7,169 @@ import java.awt.event.KeyListener;
 public class Instrument {
 
 
-
-
-        public static void main(String[] args) {
-
-        }
-
-        KeyListener k = new KeyListner();
-
+    public static void main(String[] args) {
 
     }
 
-
-    class KeyListner implements KeyListener {
-
+    KeyListener k = new KeyListner();
 
 
-        @Override
-        public void keyTyped(KeyEvent e) {
+}
 
-            switch (e.getKeyCode()){
 
-                case KeyEvent.VK_A:
-                    break;
+class KeyListner implements KeyListener {
 
-                case KeyEvent.VK_S:
-                    break;
 
-                case KeyEvent.VK_D:
-                    break;
+    @Override
+    public void keyTyped(KeyEvent e) {
 
-                case KeyEvent.VK_F:
-                    break;
+        switch (e.getKeyCode()) {
 
+            case KeyEvent.VK_A:
                 break;
 
-                case KeyEvent.VK_F:
-                    break;
+            case KeyEvent.VK_S:
+                break;
+
+            case KeyEvent.VK_D:
+                break;
+
+            case KeyEvent.VK_F:
+                break;
+
+            break;
+
+            case KeyEvent.VK_F:
+                break;
 
 
-            }
-
-        }
-
-
-
-        @Override
-        public void keyPressed(KeyEvent e) {
-
-            printEventInfo("key pressed", e);
-
-
-            switch (e.getKeyCode()){
-
-                case KeyEvent.VK_A:
-                    break;
-
-                case KeyEvent.VK_S:
-                    break;
-
-                case KeyEvent.VK_D:
-                    break;
-
-                case KeyEvent.VK_F:
-                    break;
-
-            }
-
-
-        }
-
-        @Override
-        public void keyReleased(KeyEvent e) {
-            printEventInfo("key realesed", e);
-
-
-            switch (e.getKeyCode()){
-
-                case KeyEvent.VK_A:
-                    break;
-
-                case KeyEvent.VK_S:
-                    break;
-
-                case KeyEvent.VK_D:
-                    break;
-
-                case KeyEvent.VK_F:
-                    break;
-
-
-            }
-
-
-        }
-
-        private void printEventInfo() {
-            printEventInfo( );
-        }
-
-        private void printEventInfo(String key_pressed, KeyEvent e) {
         }
 
     }
 
 
-            }
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+        printEventInfo("key pressed", e);
+
+
+        switch (e.getKeyCode()) {
+
+            case KeyEvent.VK_A:
+                break;
+
+            case KeyEvent.VK_S:
+                break;
+
+            case KeyEvent.VK_D:
+                break;
+
+            case KeyEvent.VK_F:
+                break;
 
         }
 
-
-
-        @Override
-        public void keyPressed(KeyEvent e) {
-
-            printEventInfo("key pressed", e);
-
-
-            switch (e.getKeyCode()){
-
-                case KeyEvent.VK_A:
-                    break;
-
-                case KeyEvent.VK_S:
-                    break;
-
-                case KeyEvent.VK_D:
-                    break;
-
-                case KeyEvent.VK_F:
-                    break;
-
-            }
-
-
-        }
-
-        @Override
-        public void keyReleased(KeyEvent e) {
-            printEventInfo("key realesed", e);
-
-
-            switch (e.getKeyCode()){
-
-                case KeyEvent.VK_A:
-                    break;
-
-                case KeyEvent.VK_S:
-                    break;
-
-                case KeyEvent.VK_D:
-                    break;
-
-                case KeyEvent.VK_F:
-                    break;
-
-
-            }
-
-
-        }
-
-        private void printEventInfo() {
-            printEventInfo( );
-        }
-
-        private void printEventInfo(String key_pressed, KeyEvent e) {
-        }
 
     }
 
+    @Override
+    public void keyReleased(KeyEvent e) {
+        printEventInfo("key realesed", e);
+
+
+        switch (e.getKeyCode()) {
+
+            case KeyEvent.VK_A:
+                break;
+
+            case KeyEvent.VK_S:
+                break;
+
+            case KeyEvent.VK_D:
+                break;
+
+            case KeyEvent.VK_F:
+                break;
+
+
+        }
+
+
+    }
+
+    private void printEventInfo() {
+        printEventInfo();
+    }
+
+    private void printEventInfo(String key_pressed, KeyEvent e) {
+    }
+
+}
+
+
+            }
+
+                    }
+
+
+@Override
+public void keyPressed(KeyEvent e){
+
+        printEventInfo("key pressed",e);
+
+
+        switch(e.getKeyCode()){
+
+        case KeyEvent.VK_A:
+        break;
+
+        case KeyEvent.VK_S:
+        break;
+
+        case KeyEvent.VK_D:
+        break;
+
+        case KeyEvent.VK_F:
+        break;
+
+        }
+
+
+        }
+
+@Override
+public void keyReleased(KeyEvent e){
+        printEventInfo("key realesed",e);
+
+
+        switch(e.getKeyCode()){
+
+        case KeyEvent.VK_A:
+        break;
+
+        case KeyEvent.VK_S:
+        break;
+
+        case KeyEvent.VK_D:
+        break;
+
+        case KeyEvent.VK_F:
+        break;
+
+
+        }
+
+
+        }
+
+private void printEventInfo(){
+        printEventInfo();
+        }
+
+private void printEventInfo(String key_pressed,KeyEvent e){
+        }
+
+        }
+
+*/

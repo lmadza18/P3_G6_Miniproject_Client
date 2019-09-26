@@ -2,8 +2,8 @@ package Niels_Lugter;
 
 import javafx.scene.control.Button;
 
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
+//import sun.audio.AudioPlayer;
+//import sun.audio.AudioStream;
 
 public class PosButton extends Button {
     double x;

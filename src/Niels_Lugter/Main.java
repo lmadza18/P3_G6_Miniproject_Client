@@ -11,12 +11,16 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-
-        primaryStage.setTitle("Band Room");
-        primaryStage.setFullScreen(true);
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
-        root.start();
+        try {
+            primaryStage.setTitle("Band Room");
+            primaryStage.setFullScreen(true);
+            primaryStage.setScene(new Scene(root));
+            primaryStage.show();
+            root.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("FUCK");
+        }
     }
 
     public static void main(String[] args) {
