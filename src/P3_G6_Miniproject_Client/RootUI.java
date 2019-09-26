@@ -10,7 +10,7 @@ public class RootUI extends Pane {
     }
 
     public void start() {
-        ImageView imageView = new ImageView("/images/stage.jpg");
+        ImageView imageView = new ImageView("images/stage.jpg");
         imageView.setFitWidth(this.getWidth());
         imageView.setFitHeight(this.getHeight());
 
