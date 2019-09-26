@@ -15,13 +15,15 @@ public class InstrumentPickerWindow extends BorderPane {
     Button leftButton;
     Button rightButton;
 
-
-    double size = 200;
-    double x = Main.root.getWidth()/2;
-    double y= 0;
-
-
     public InstrumentPickerWindow(){
+        this.setTranslateX(Main.root.getWidth() / 8);
+        this.setTranslateY(Main.root.getHeight() / 8);
+        this.setStyle("-fx-background-color: #blue");
+
+
+        Rectangle r = new Rectangle(0, 0, Main.root.getWidth() / 8 * 6, Main.root.getHeight() / 8 * 6);
+        this.setStyle("-fx-border-color:red;");
+        //r.setFill(Color.BLUE);
      //   Rectangle r = new Rectangle(size, size);
      //   r.setFill(Color.BLUE);
 
