@@ -14,6 +14,7 @@ public class InstrumentPickerWindow extends BorderPane {
     Button chooseButton;
     Button leftButton;
     Button rightButton;
+    ImageView img;
 
     public InstrumentPickerWindow(){
         this.setTranslateX(Main.root.getWidth() / 8);
@@ -27,14 +28,14 @@ public class InstrumentPickerWindow extends BorderPane {
      //   Rectangle r = new Rectangle(size, size);
      //   r.setFill(Color.BLUE);
 
-        ImageView img = new ImageView("images/drummer1.png");
+        img = new ImageView("images/drummer1.png");
 
         closeButton = new Button("close");
         chooseButton = new Button("choose");
         leftButton = new Button("left");
         rightButton = new Button("right");
 
-        this.setCenter(img);
+        this.setCenter(r);
         this.setTop(closeButton);
         this.setBottom(chooseButton);
         this.setLeft(leftButton);
@@ -56,6 +57,9 @@ public class InstrumentPickerWindow extends BorderPane {
         chooseButton.setOnAction(actionEvent -> {
             Main.root.getChildren().remove(this);
 
+        });
+        rightButton.setOnAction(actionEvent -> {
+            this.setCenter(img);
         });
     }
 }
