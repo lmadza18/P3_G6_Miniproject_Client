@@ -4,9 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.BorderPane;
 
 public class InstrumentPickerWindow extends BorderPane {
 
@@ -18,14 +16,9 @@ public class InstrumentPickerWindow extends BorderPane {
     public InstrumentPickerWindow(){
         this.setTranslateX(Main.root.getWidth() / 8);
         this.setTranslateY(Main.root.getHeight() / 8);
-        this.setStyle("-fx-background-color: #blue");
+        this.setMinSize(Main.root.getWidth() / 8 * 6, Main.root.getHeight() / 8 * 6);
 
-
-        Rectangle r = new Rectangle(0, 0, Main.root.getWidth() / 8 * 6, Main.root.getHeight() / 8 * 6);
-        this.setStyle("-fx-border-color:red;");
-        //r.setFill(Color.BLUE);
-     //   Rectangle r = new Rectangle(size, size);
-     //   r.setFill(Color.BLUE);
+        this.setStyle("-fx-background-color: #4a4a4a;");
 
         ImageView img = new ImageView("images/drummer1.png");
 
