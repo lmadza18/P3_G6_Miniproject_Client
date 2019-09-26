@@ -1,4 +1,4 @@
-package Niels_Lugter;
+package P3_G6_Miniproject_Client;
 
 import javafx.scene.control.Button;
 

@@ -1,8 +1,7 @@
-package Niels_Lugter;
+package P3_G6_Miniproject_Client;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 
 public class RootUI extends Pane {
 
@@ -11,7 +10,7 @@ public class RootUI extends Pane {
     }
 
     public void start() {
-        ImageView imageView = new ImageView("images/stage.jpg");
+        ImageView imageView = new ImageView("/images/stage.jpg");
         imageView.setFitWidth(this.getWidth());
         imageView.setFitHeight(this.getHeight());
 
