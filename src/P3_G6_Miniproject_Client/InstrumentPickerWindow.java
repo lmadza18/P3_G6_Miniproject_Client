@@ -1,11 +1,10 @@
-package Niels_Lugter;
+package P3_G6_Miniproject_Client;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.TextAlignment;
 
 public class InstrumentPickerWindow extends VBox {
 
