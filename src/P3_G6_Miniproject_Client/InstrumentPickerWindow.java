@@ -28,7 +28,7 @@ public class InstrumentPickerWindow extends BorderPane {
         leftButton = new Button("left");
         rightButton = new Button("right");
 
-        this.setCenter(r);
+        this.setCenter(img);
         this.setTop(closeButton);
         this.setBottom(chooseButton);
         this.setLeft(leftButton);
@@ -50,9 +50,6 @@ public class InstrumentPickerWindow extends BorderPane {
         chooseButton.setOnAction(actionEvent -> {
             Main.root.getChildren().remove(this);
 
-        });
-        rightButton.setOnAction(actionEvent -> {
-            this.setCenter(img);
         });
     }
 }
