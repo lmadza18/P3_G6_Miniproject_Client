@@ -37,16 +37,19 @@ public class InstrumentPickerWindow extends BorderPane {
         setAlignment(leftButton, Pos.CENTER);
         setAlignment(rightButton, Pos.CENTER);
         setAlignment(chooseButton,Pos.BOTTOM_RIGHT);
-        buttonPress();
+        thisSpotKillsMyMojo();
+        chooseSpot();
 
 
     }
 
-    void buttonPress() {
+    void thisSpotKillsMyMojo() {
         closeButton.setOnAction(actionEvent -> {
             Main.root.getChildren().remove(this);
-
         });
+    }
+
+    void chooseSpot() {
         chooseButton.setOnAction(actionEvent -> {
             Main.root.getChildren().remove(this);
 
