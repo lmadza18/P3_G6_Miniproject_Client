@@ -14,7 +14,7 @@ public class instrument2 {
 
     Map<String,String> map = Map.of(
         "A","src/audio_files/Bass/0CBass.wav",
-                "b","src/audio_files/Bass/0DBass.wav"
+                "S","src/audio_files/Bass/0DBass.wav"
     );
 
     void pickInstrument(String instrumentName){
