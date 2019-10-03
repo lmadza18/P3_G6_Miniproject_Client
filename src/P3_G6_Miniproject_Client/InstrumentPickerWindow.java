@@ -5,8 +5,11 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 
-public class InstrumentPickerWindow extends BorderPane {
+public class InstrumentPickerWindow extends Pane {
+    Pane background = new Pane();
+    BorderPane window = new BorderPane();
 
     double width = Main.root.getWidth() / 8 * 4;
     double height = Main.root.getHeight() / 8 * 4;
@@ -27,11 +30,20 @@ public class InstrumentPickerWindow extends BorderPane {
     };
 
     public InstrumentPickerWindow() {
-        this.setTranslateX(x);
-        this.setTranslateY(y);
-        this.setMinSize(width, height);
 
-        this.setStyle("-fx-background-color: #4a4a4a;");
+        background.setMinSize(Main.root.getWidth(), Main.root.getHeight());
+        background.setStyle("-fx-background-color: #111111; -fx-opacity: 0.7;");
+
+
+
+        this.getChildren().addAll(background, window);
+
+
+        window.setTranslateX(x);
+        window.setTranslateY(y);
+        window.setMinSize(width, height);
+
+        window.setStyle("-fx-background-color: #4a4a4a;");
 
         // Resizing all images
         for (int i = 0; i < images.length; i++) {
@@ -44,15 +56,15 @@ public class InstrumentPickerWindow extends BorderPane {
         leftButton = new Button("left");
         rightButton = new Button("right");
 
-        this.setCenter(images[switchIndex]);
-        this.setTop(closeButton);
-        this.setBottom(chooseButton);
-        this.setLeft(leftButton);
-        this.setRight(rightButton);
-        setMargin(images[switchIndex], new Insets(10));
-        setAlignment(leftButton, Pos.CENTER);
-        setAlignment(rightButton, Pos.CENTER);
-        setAlignment(chooseButton, Pos.BOTTOM_RIGHT);
+        window.setCenter(images[switchIndex]);
+        window.setTop(closeButton);
+        window.setBottom(chooseButton);
+        window.setLeft(leftButton);
+        window.setRight(rightButton);
+        BorderPane.setMargin(images[switchIndex], new Insets(10));
+        BorderPane.setAlignment(leftButton, Pos.CENTER);
+        BorderPane.setAlignment(rightButton, Pos.CENTER);
+        BorderPane.setAlignment(chooseButton, Pos.BOTTOM_RIGHT);
         thisSpotKillsMyMojo();
         chooseSpot();
         switchRight();
@@ -72,7 +84,7 @@ public class InstrumentPickerWindow extends BorderPane {
             } else {
                 switchIndex++;
             }
-            this.setCenter(images[switchIndex]);
+            window.setCenter(images[switchIndex]);
         });
     }
 
@@ -83,7 +95,7 @@ public class InstrumentPickerWindow extends BorderPane {
             } else {
                 switchIndex--;
             }
-            this.setCenter(images[switchIndex]);
+            window.setCenter(images[switchIndex]);
         });
     }
 
@@ -91,6 +103,7 @@ public class InstrumentPickerWindow extends BorderPane {
     void chooseSpot() {
         chooseButton.setOnAction(actionEvent -> {
             Main.root.getChildren().remove(this);
+
         });
     }
 }
