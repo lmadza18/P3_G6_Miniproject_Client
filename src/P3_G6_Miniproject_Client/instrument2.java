@@ -20,7 +20,9 @@ public class instrument2 {
     void pickInstrument(String instrumentName){
 
     }
+
     void playSound(String fileName){
+        // FIXME y new media??
         Media media = new Media(new File(fileName).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setAutoPlay(true);
