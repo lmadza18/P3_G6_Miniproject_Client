@@ -1,11 +1,8 @@
 package P3_G6_Miniproject_Client;
 
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-import org.w3c.dom.Text;
 
 
 public class RootUI extends Pane {
@@ -80,6 +77,5 @@ public class RootUI extends Pane {
 
 
     }
-
 
 }
