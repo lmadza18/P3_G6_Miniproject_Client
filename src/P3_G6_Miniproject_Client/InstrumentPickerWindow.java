@@ -8,19 +8,26 @@ import javafx.scene.layout.BorderPane;
 
 public class InstrumentPickerWindow extends BorderPane {
 
+    double x = Main.root.getWidth() / 8;
+    double y = Main.root.getHeight() / 8;
+    double width = Main.root.getWidth() / 8 * 6;
+    double height = Main.root.getHeight() / 8 * 6;
     Button closeButton;
     Button chooseButton;
     Button leftButton;
     Button rightButton;
+    ImageView img;
 
     public InstrumentPickerWindow(){
-        this.setTranslateX(Main.root.getWidth() / 8);
-        this.setTranslateY(Main.root.getHeight() / 8);
-        this.setMinSize(Main.root.getWidth() / 8 * 6, Main.root.getHeight() / 8 * 6);
+        this.setTranslateX(x);
+        this.setTranslateY(y);
+        this.setMinSize(width, height);
 
         this.setStyle("-fx-background-color: #4a4a4a;");
 
-        ImageView img = new ImageView("images/drummer1.png");
+        img = new ImageView("images/drummer1.png");
+        img.setFitWidth(width/2);
+        img.setFitHeight(width/2);
 
         closeButton = new Button("close");
         chooseButton = new Button("choose");
@@ -32,7 +39,7 @@ public class InstrumentPickerWindow extends BorderPane {
         this.setBottom(chooseButton);
         this.setLeft(leftButton);
         this.setRight(rightButton);
-        setMargin(img, new Insets(50));
+        setMargin(img, new Insets(10));
         setAlignment(leftButton, Pos.CENTER);
         setAlignment(rightButton, Pos.CENTER);
         setAlignment(chooseButton,Pos.BOTTOM_RIGHT);
