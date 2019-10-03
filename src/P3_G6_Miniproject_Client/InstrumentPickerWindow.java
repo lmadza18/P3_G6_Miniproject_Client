@@ -5,8 +5,13 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 
-public class InstrumentPickerWindow extends BorderPane {
+public class InstrumentPickerWindow extends Pane {
+
+    Pane background = new Pane();
+    BorderPane window = new BorderPane();
+
 
     double x = Main.root.getWidth() / 8;
     double y = Main.root.getHeight() / 8;
@@ -19,11 +24,19 @@ public class InstrumentPickerWindow extends BorderPane {
     ImageView img;
 
     public InstrumentPickerWindow(){
-        this.setTranslateX(x);
-        this.setTranslateY(y);
-        this.setMinSize(width, height);
 
-        this.setStyle("-fx-background-color: #4a4a4a;");
+        background.setMinSize(Main.root.getWidth(), Main.root.getHeight());
+        background.setStyle("-fx-background-color: #111111; -fx-opacity: 0.7;");
+
+
+        this.getChildren().addAll(background, window);
+
+
+        window.setTranslateX(x);
+        window.setTranslateY(y);
+        window.setMinSize(width, height);
+
+        window.setStyle("-fx-background-color: #4a4a4a;");
 
         img = new ImageView("images/drummer1.png");
         img.setFitWidth(width/2);
@@ -34,15 +47,15 @@ public class InstrumentPickerWindow extends BorderPane {
         leftButton = new Button("left");
         rightButton = new Button("right");
 
-        this.setCenter(img);
-        this.setTop(closeButton);
-        this.setBottom(chooseButton);
-        this.setLeft(leftButton);
-        this.setRight(rightButton);
-        setMargin(img, new Insets(10));
-        setAlignment(leftButton, Pos.CENTER);
-        setAlignment(rightButton, Pos.CENTER);
-        setAlignment(chooseButton,Pos.BOTTOM_RIGHT);
+        window.setCenter(img);
+        window.setTop(closeButton);
+        window.setBottom(chooseButton);
+        window.setLeft(leftButton);
+        window.setRight(rightButton);
+        BorderPane.setMargin(img, new Insets(10));
+        BorderPane.setAlignment(leftButton, Pos.CENTER);
+        BorderPane.setAlignment(rightButton, Pos.CENTER);
+        BorderPane.setAlignment(chooseButton, Pos.BOTTOM_RIGHT);
         thisSpotKillsMyMojo();
         chooseSpot();
 

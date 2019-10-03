@@ -35,7 +35,6 @@ public class StageSpot extends Pane {
             taken = true;
             Main.root.getChildren().add(instrumentPickerWindow);
 
-
             thisSpotKillsMyMojo();
             chooseSpot();
 
