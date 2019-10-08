@@ -12,20 +12,13 @@ import java.io.File;
 public class Controller {
 
 
-     void  playSound(String fileName){
+    void playSound(String fileName) {
 
-         Media media = new Media(new File(fileName).toURI().toString());
-         MediaPlayer mediaPlayer = new MediaPlayer(media);
+        Media media = new Media(new File(fileName).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setAutoPlay(true);
 
-
-
-
     }
-
-
-
-
 
 
 }
