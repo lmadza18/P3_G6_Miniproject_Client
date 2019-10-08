@@ -1,11 +1,8 @@
 package P3_G6_Miniproject_Client;
 
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-import org.w3c.dom.Text;
 
 
 public class RootUI extends Pane {
@@ -40,35 +37,38 @@ public class RootUI extends Pane {
 //        PosButton button4 = new PosButton("Position4", this.getWidth() / 8 * 7, this.getHeight() / 8 * 6);
 
         this.getChildren().addAll(imageView, spot1, spot2, spot3, spot4);
+        instrument2 ins = new instrument2();
+        ins.setUpListener(this);
 
-// Adding setOnKeyPressed to "this"
-        this.setOnKeyPressed(e ->{
-            Controller controller = new Controller();
-
-            switch (e.getCode()){
-                case A:
-                    controller.playSound("src/audio_files/Bass/0CBass.wav");
-                    break;
-
-                case S:
-                    controller.playSound("src/audio_files/Bass/0DBass.wav");
-                    break;
-                case D:
-                    controller.playSound("src/audio_files/Bass/0EBass.wav");
-                    break;
-
-                case F:
-                    controller.playSound("src/audio_files/Bass/0FBass.wav");
-                    break;
-
-                case G:
-                    controller.playSound("src/audio_files/Bass/0GBass.wav");
-                    break;
+        // Adding setOnKeyPressed to "this"
+//        this.setOnKeyPressed(e ->{
+//            Controller controller = new Controller();
+//            Controller controller2 = new Controller();
+//
+//            switch (e.getCode()){
+//                case A:
+//                    controller.playSound("src/audio_files/Bass/0CBass.wav");
+//                    break;
+//
+//                case S:
+//                    controller2.playSound("src/audio_files/Bass/0DBass.wav");
+//                    break;
+//                case D:
+//                    controller.playSound("src/audio_files/Bass/0EBass.wav");
+//                    break;
+//
+//                case F:
+//                    controller.playSound("src/audio_files/Bass/0FBass.wav");
+//                    break;
+//
+//                case G:
+//                    controller.playSound("src/audio_files/Bass/0GBass.wav");
+//                    break;
                     
 
-            }
+            //}
 
-        });
+   //     });
 
 
 
@@ -77,6 +77,5 @@ public class RootUI extends Pane {
 
 
     }
-
 
 }
