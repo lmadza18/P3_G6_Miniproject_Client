@@ -37,7 +37,7 @@ public class RootUI extends Pane {
 //        PosButton button4 = new PosButton("Position4", this.getWidth() / 8 * 7, this.getHeight() / 8 * 6);
 
         this.getChildren().addAll(imageView, spot1, spot2, spot3, spot4);
-        instrument2 ins = new instrument2();
+        instrument2 ins = new instrument2(spot1);
         ins.setUpListener(this);
 
         // Adding setOnKeyPressed to "this"
