@@ -20,9 +20,9 @@ public class RootUI extends Pane {
     }
 
     public void start() {
-        ImageView imageView = new ImageView("images/stage.jpg");
-        imageView.setFitWidth(this.getWidth());
-        imageView.setFitHeight(this.getHeight());
+        ImageView bgImg = new ImageView("images/stage.jpg");
+        bgImg.setFitWidth(this.getWidth());
+        bgImg.setFitHeight(this.getHeight());
 
         spot1 = new StageSpot(this.getWidth() / 8, this.getHeight() / 8 * 6);
         spot2 = new StageSpot(this.getWidth() / 8 * 3, this.getHeight() / 8 * 5.5);
@@ -36,7 +36,7 @@ public class RootUI extends Pane {
 //        PosButton button3 = new PosButton("Position3", this.getWidth() / 8 * 5, this.getHeight() / 8 * 5.5);
 //        PosButton button4 = new PosButton("Position4", this.getWidth() / 8 * 7, this.getHeight() / 8 * 6);
 
-        this.getChildren().addAll(imageView, spot1, spot2, spot3, spot4);
+        this.getChildren().addAll(bgImg, spot1, spot2, spot3, spot4);
         instrument2 ins = new instrument2(spot1);
         ins.setUpListener(this);
 

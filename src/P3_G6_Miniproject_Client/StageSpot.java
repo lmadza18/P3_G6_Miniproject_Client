@@ -33,7 +33,7 @@ public class StageSpot extends Pane {
         buttonHoverImg.setFitHeight(imageSize);
 
         button = new Button(null);
-        button.setStyle("-fx-base: tranparent;");
+        button.setStyle("-fx-background-color: transparent");
         button.setMinSize(buttonSize, buttonSize);
         button.setTranslateX(buttonTransform);
         button.setTranslateY(buttonTransform);
