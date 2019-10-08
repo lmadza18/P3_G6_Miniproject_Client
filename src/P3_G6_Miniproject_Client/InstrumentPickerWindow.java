@@ -22,7 +22,7 @@ public class InstrumentPickerWindow extends Pane {
 
     int switchIndex = 0;
 
-    // Add all images to an array
+    // Add all character images to an array
     ImageView[] images = new ImageView[]{
             new ImageView("images/drummer1.png"),
             new ImageView("images/guitarist.png"),
@@ -45,16 +45,40 @@ public class InstrumentPickerWindow extends Pane {
 
         window.setStyle("-fx-background-color: #4a4a4a;");
 
-        // Resizing all images
+        // Resizing all character images
         for (int i = 0; i < images.length; i++) {
             images[i].setFitWidth(width / 2);
             images[i].setFitHeight(width / 2);
         }
 
-        closeButton = new Button("close");
+        int buttonSize = (int) Math.round(Main.root.getWidth() / 30);
+
+        // UI button images
+        ImageView closeImg = new ImageView("images/close.png");
+        ImageView leftImg = new ImageView("images/left.png");
+        ImageView rightImg = new ImageView("images/right.png");
+
+        // Resize UI button images
+        closeImg.setFitWidth(buttonSize);
+        closeImg.setFitHeight(buttonSize);
+        leftImg.setFitWidth(buttonSize);
+        leftImg.setFitHeight(buttonSize*2);
+        rightImg.setFitWidth(buttonSize);
+        rightImg.setFitHeight(buttonSize*2);
+
+        // UI buttons
         chooseButton = new Button("choose");
-        leftButton = new Button("left");
-        rightButton = new Button("right");
+        closeButton = new Button();
+        leftButton = new Button();
+        rightButton = new Button();
+        // Add graphics to UI buttons
+        closeButton.setGraphic(closeImg);
+        leftButton.setGraphic(leftImg);
+        rightButton.setGraphic(rightImg);
+
+        closeButton.setStyle("-fx-base: tranparent;");
+        leftButton.setStyle("-fx-base: tranparent;");
+        rightButton.setStyle("-fx-base: tranparent;");
 
         window.setCenter(images[switchIndex]);
         window.setTop(closeButton);
