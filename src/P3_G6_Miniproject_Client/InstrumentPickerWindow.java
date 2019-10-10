@@ -76,9 +76,9 @@ public class InstrumentPickerWindow extends Pane {
         leftButton.setGraphic(leftImg);
         rightButton.setGraphic(rightImg);
 
-        closeButton.setStyle("-fx-base: tranparent;");
-        leftButton.setStyle("-fx-base: tranparent;");
-        rightButton.setStyle("-fx-base: tranparent;");
+        closeButton.setStyle("-fx-background-color: transparent");
+        leftButton.setStyle("-fx-background-color: transparent");
+        rightButton.setStyle("-fx-background-color: transparent");
 
         window.setCenter(images[switchIndex]);
         window.setTop(closeButton);

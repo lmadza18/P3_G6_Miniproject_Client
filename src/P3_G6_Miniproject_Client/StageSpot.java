@@ -17,6 +17,7 @@ public class StageSpot extends Pane {
     Button button;
     ImageView buttonImg;
     ImageView buttonHoverImg;
+    BandPlayer bandPlayer;
 
 
 
@@ -33,7 +34,7 @@ public class StageSpot extends Pane {
         buttonHoverImg.setFitHeight(imageSize);
 
         button = new Button(null);
-        button.setStyle("-fx-base: tranparent;");
+        button.setStyle("-fx-background-color: transparent");
         button.setMinSize(buttonSize, buttonSize);
         button.setTranslateX(buttonTransform);
         button.setTranslateY(buttonTransform);
@@ -95,12 +96,14 @@ public class StageSpot extends Pane {
 
     void chooseSpot() {
         instrumentPickerWindow.chooseButton.setOnAction(actionEvent -> {
-            Main.root.spot1.setVisible(false);
+            //Main.root.spot1.setVisible(false);
             Main.root.spot2.setVisible(false);
             Main.root.spot3.setVisible(false);
             Main.root.spot4.setVisible(false);
             Main.root.getChildren().remove(instrumentPickerWindow);
             Main.root.getChildren().add(Main.root.getMyAssOuttaHere);
+            bandPlayer = new BandPlayer();
+            this.getChildren().add(bandPlayer);
             getMyAssOuttaHere();
 
 
