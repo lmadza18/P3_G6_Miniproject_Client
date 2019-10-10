@@ -17,8 +17,26 @@ public class StageSpot extends Pane {
     Button button;
     ImageView buttonImg;
     ImageView buttonHoverImg;
-    BandPlayer bandPlayer;
 
+
+    static BandPlayer guitarist;
+    static BandPlayer drummer;
+    static BandPlayer bassist;
+    static BandPlayer keyboard;
+
+    private int spotId;
+
+    static BandPlayer[] bandPlayers = {
+            guitarist = new BandPlayer(new ImageView("images/guitarist.png"), 0),
+            drummer = new BandPlayer(new ImageView("images/drummer1.png"), 1),
+            bassist = new BandPlayer(new ImageView("images/bassist.jpg"), 2),
+            keyboard = new BandPlayer(new ImageView("images/sprite.png"), 3),
+    };
+
+   /* static final int GUITARIST_ID = 0;
+    static final int DRUMMER_ID = 1;
+    static final int BASSIST_ID = 2;
+    static final int KEYBOARD_ID = 3;*/
 
 
     public StageSpot(double x, double y) {
@@ -61,7 +79,6 @@ public class StageSpot extends Pane {
         this.setTranslateY(this.y);
 
 
-
         takeIt();
 
 
@@ -70,6 +87,7 @@ public class StageSpot extends Pane {
     public void takeIt() {
         button.setOnAction(actionEvent -> {
             taken = true;
+            instrumentPickerWindow = new InstrumentPickerWindow();
             Main.root.getChildren().add(instrumentPickerWindow);
 
             thisSpotKillsMyMojo();
@@ -96,16 +114,16 @@ public class StageSpot extends Pane {
 
     void chooseSpot() {
         instrumentPickerWindow.chooseButton.setOnAction(actionEvent -> {
-            //Main.root.spot1.setVisible(false);
+            Main.root.spot1.setVisible(false);
             Main.root.spot2.setVisible(false);
             Main.root.spot3.setVisible(false);
             Main.root.spot4.setVisible(false);
-            Main.root.getChildren().remove(instrumentPickerWindow);
-            Main.root.getChildren().add(Main.root.getMyAssOuttaHere);
-            bandPlayer = new BandPlayer();
-            this.getChildren().add(bandPlayer);
-            getMyAssOuttaHere();
 
+            this.spotId = instrumentPickerWindow.switchIndex;
+            Main.root.getChildren().remove(instrumentPickerWindow);
+            Main.root.getChildren().addAll(Main.root.getMyAssOuttaHere, bandPlayers[spotId], bandPlayers[spotId].img);
+            bandPlayers[spotId].taken = true;
+            getMyAssOuttaHere();
 
         });
     }
@@ -117,7 +135,8 @@ public class StageSpot extends Pane {
             Main.root.spot2.setVisible(true);
             Main.root.spot3.setVisible(true);
             Main.root.spot4.setVisible(true);
-            Main.root.getChildren().remove(Main.root.getMyAssOuttaHere);
+            Main.root.getChildren().removeAll(Main.root.getMyAssOuttaHere, bandPlayers[spotId], bandPlayers[spotId].img);
+            bandPlayers[spotId].taken = false;
         });
 
     }
