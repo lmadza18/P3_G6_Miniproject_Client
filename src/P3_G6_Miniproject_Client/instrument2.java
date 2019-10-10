@@ -15,20 +15,13 @@ public class instrument2 {
     String[] keys = {
             "A", "S", "D", "F", "G", "H", "J", "k"};
 
-
-
-
-instrument2(StageSpot button){
+    instrument2(StageSpot button){
         if(button.getId()=="spot1"){
             String name = "Guitar";
             instrument2.playSound(name);
         }
+    }
 
-
-
-
-
-}
     Map<String, String> map = Map.of(
             "A", "src/audio_files/Bass/0CBass.wav",
             "S", "src/audio_files/Bass/0DBass.wav",
@@ -38,8 +31,6 @@ instrument2(StageSpot button){
             "H", "src/audio_files/Bass/1ABass.wav",
             "J", "src/audio_files/Bass/1BBass.wav",
             "K", "src/audio_files/Bass/1CBass.wav"
-
-
     );
 
     void pickInstrument(String instrumentName) {
