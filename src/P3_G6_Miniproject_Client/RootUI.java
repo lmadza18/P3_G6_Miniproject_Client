@@ -13,7 +13,6 @@ public class RootUI extends Pane {
     Button getMyAssOuttaHere;
 
 
-
     RootUI() {
 
 
@@ -27,8 +26,14 @@ public class RootUI extends Pane {
         spot1 = new StageSpot(this.getWidth() / 8, this.getHeight() / 8 * 6);
         spot1.setId("spot1");
         spot2 = new StageSpot(this.getWidth() / 8 * 3, this.getHeight() / 8 * 5.5);
+        spot2.setId("spot2");
+
         spot3 = new StageSpot(this.getWidth() / 8 * 5, this.getHeight() / 8 * 5.5);
+        spot3.setId("spot3");
+
         spot4 = new StageSpot(this.getWidth() / 8 * 7, this.getHeight() / 8 * 6);
+        spot4.setId("spot4");
+
 
         getMyAssOuttaHere = new Button("get my ass outta here!");
 
@@ -39,6 +44,11 @@ public class RootUI extends Pane {
 
         this.getChildren().addAll(bgImg, spot1, spot2, spot3, spot4);
         instrument2 ins = new instrument2(spot1, this);
+        instrument2 ins1 = new instrument2(spot2, this);
+        instrument2 ins2 = new instrument2(spot3, this);
+        instrument2 ins3 = new instrument2(spot4, this);
+
+
 
         // Adding setOnKeyPressed to "this"
 //        this.setOnKeyPressed(e ->{
@@ -64,16 +74,11 @@ public class RootUI extends Pane {
 //                case G:
 //                    controller.playSound("src/audio_files/Bass/0GBass.wav");
 //                    break;
-                    
-
-            //}
-
-   //     });
 
 
+        //}
 
-
-
+        //     });
 
 
     }

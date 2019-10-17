@@ -37,8 +37,23 @@ public class instrument2 {
         System.out.println("button:" + button);
         System.out.println("id" + id);
 
-        if (id == "spot1") {
+        if(id == "spot2") {
+            this.changeInstrument("Piano");
+            map = Map.of(
+                    "A", media[0],
+                    "S", media[1],
+                    "D", media[2],
+                    "F", media[3],
+                    "G", media[4],
+                    "H", media[5],
+                    "J", media[6],
+                    "K", media[7]
+            );
 
+
+        }
+        else if (id == "spot1") {
+            this.changeInstrument("Guitar");
             System.out.println("Button pressed");
 
             String name = "Guitar";
@@ -56,16 +71,16 @@ public class instrument2 {
                     new Media(new File("src/audio_files/" + name + "/+1C" + name + ".wav").toURI().toString())
             };*/
 
-    map = Map.of(
-            "A", media[0],
-            "S", media[1],
-            "D", media[2],
-            "F", media[3],
-            "G", media[4],
-            "H", media[5],
-            "J", media[6],
-            "K", media[7]
-    );
+            map = Map.of(
+                    "A", media[0],
+                    "S", media[1],
+                    "D", media[2],
+                    "F", media[3],
+                    "G", media[4],
+                    "H", media[5],
+                    "J", media[6],
+                    "K", media[7]
+            );
 
             rootUI.setOnKeyPressed(e -> {
                 for (Map.Entry<String, Media> entry : map.entrySet()) {
@@ -74,9 +89,6 @@ public class instrument2 {
                     if (entry.getKey() == e.getCode().getName()) {
                         this.playSound(entry.getValue());
                     }
-                }
-                if (e.getCode().getName() == "Z") {
-                    this.changeInstrumentToGuitar("Guitar");
                 }
             });
         }
@@ -136,4 +148,5 @@ public class instrument2 {
                 "K", media[7]
         );
     }
+    void setUpL
 }
