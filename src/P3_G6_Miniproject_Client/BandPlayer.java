@@ -17,8 +17,8 @@ public class BandPlayer extends ImageView {
         this.setStyle("-fx-border-color: RED;");
         this.id = id;
 
-        this.setFitHeight(Main.root.getHeight() / 2);
-        this.setFitWidth(Main.root.getWidth() / 2);
+        this.setFitHeight(50);
+        this.setFitWidth(50);
 
 
 
