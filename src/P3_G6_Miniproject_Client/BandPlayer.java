@@ -17,7 +17,7 @@ public class BandPlayer extends Pane {
 
         this.img = img;
         this.id = id;
-
+        this.getChildren().add(img);
     }
 
     ImageView getImg(){

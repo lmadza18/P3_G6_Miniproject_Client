@@ -43,10 +43,10 @@ public class InstrumentPickerWindow extends Pane {
 
 
         // Resizing all character images
-        for (int i=0; i < StageSpot.bandPlayers.length; i++) {
-            if (!StageSpot.bandPlayers[i].taken) {
-                images.add(StageSpot.bandPlayers[i].getImg());
-                id.add(StageSpot.bandPlayers[i].getPlayerId());
+        for (int i=0; i < Main.root.bandPlayers.length; i++) {
+            if (!Main.root.bandPlayers[i].taken) {
+                images.add(Main.root.bandPlayers[i].getImg());
+                id.add(Main.root.bandPlayers[i].getPlayerId());
             }
         }
 

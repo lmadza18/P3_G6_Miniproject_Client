@@ -19,19 +19,11 @@ public class StageSpot extends Pane {
     ImageView buttonHoverImg;
 
 
-    static BandPlayer guitarist;
-    static BandPlayer drummer;
-    static BandPlayer bassist;
-    static BandPlayer keyboard;
+
 
     private int spotId;
 
-    static BandPlayer[] bandPlayers = {
-            guitarist = new BandPlayer(new ImageView("images/guitarist.png"), 0),
-            drummer = new BandPlayer(new ImageView("images/drummer1.png"), 1),
-            bassist = new BandPlayer(new ImageView("images/bassist.jpg"), 2),
-            keyboard = new BandPlayer(new ImageView("images/sprite.png"), 3),
-    };
+
 
    /* static final int GUITARIST_ID = 0;
     static final int DRUMMER_ID = 1;
@@ -121,8 +113,8 @@ public class StageSpot extends Pane {
 
             this.spotId = instrumentPickerWindow.switchIndex;
             Main.root.getChildren().remove(instrumentPickerWindow);
-            Main.root.getChildren().addAll(Main.root.getMyAssOuttaHere, bandPlayers[spotId], bandPlayers[spotId].img);
-            bandPlayers[spotId].taken = true;
+            Main.root.getChildren().addAll(Main.root.getMyAssOuttaHere, Main.root.bandPlayers[spotId]);
+            Main.root.bandPlayers[spotId].taken = true;
             getMyAssOuttaHere();
 
         });
@@ -135,8 +127,8 @@ public class StageSpot extends Pane {
             Main.root.spot2.setVisible(true);
             Main.root.spot3.setVisible(true);
             Main.root.spot4.setVisible(true);
-            Main.root.getChildren().removeAll(Main.root.getMyAssOuttaHere, bandPlayers[spotId], bandPlayers[spotId].img);
-            bandPlayers[spotId].taken = false;
+            Main.root.getChildren().removeAll(Main.root.getMyAssOuttaHere, Main.root.bandPlayers[spotId]);
+            Main.root.bandPlayers[spotId].taken = false;
         });
 
     }

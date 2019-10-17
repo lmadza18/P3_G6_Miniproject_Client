@@ -10,8 +10,14 @@ public class RootUI extends Pane {
     StageSpot spot2;
     StageSpot spot3;
     StageSpot spot4;
-    Button getMyAssOuttaHere;
 
+    static BandPlayer guitarist;
+    static BandPlayer drummer;
+    static BandPlayer bassist;
+    static BandPlayer keyboard;
+    BandPlayer[] bandPlayers = new BandPlayer[4];
+
+    Button getMyAssOuttaHere;
 
 
     RootUI() {
@@ -24,19 +30,34 @@ public class RootUI extends Pane {
         bgImg.setFitWidth(this.getWidth());
         bgImg.setFitHeight(this.getHeight());
 
+        bandPlayers[0] = new BandPlayer(new ImageView("images/guitarist.png"), 0);
+        bandPlayers[1] = new BandPlayer(new ImageView("images/drummer1.png"), 1);
+        bandPlayers[2] = new BandPlayer(new ImageView("images/bassist.jpg"), 2);
+        bandPlayers[3] = new BandPlayer(new ImageView("images/sprite.png"), 3);
+
         spot1 = new StageSpot(this.getWidth() / 8, this.getHeight() / 8 * 6);
         spot2 = new StageSpot(this.getWidth() / 8 * 3, this.getHeight() / 8 * 5.5);
         spot3 = new StageSpot(this.getWidth() / 8 * 5, this.getHeight() / 8 * 5.5);
         spot4 = new StageSpot(this.getWidth() / 8 * 7, this.getHeight() / 8 * 6);
 
-        getMyAssOuttaHere = new Button("get my ass outta here!");
+
+
+
+        getMyAssOuttaHere = new
+
+                Button("get my ass outta here!");
 
 //        PosButton button1 = new PosButton("Position1", this.getWidth() / 8, this.getHeight() / 8 * 6);
 //        PosButton button2 = new PosButton("Position2", this.getWidth() / 8 * 3, this.getHeight() / 8 * 5.5);
 //        PosButton button3 = new PosButton("Position3", this.getWidth() / 8 * 5, this.getHeight() / 8 * 5.5);
 //        PosButton button4 = new PosButton("Position4", this.getWidth() / 8 * 7, this.getHeight() / 8 * 6);
 
-        this.getChildren().addAll(bgImg, spot1, spot2, spot3, spot4);
+        this.
+
+                getChildren().
+
+                addAll(bgImg, spot1, spot2, spot3, spot4);
+
         instrument2 ins = new instrument2(spot1);
         ins.setUpListener(this);
 
@@ -64,16 +85,11 @@ public class RootUI extends Pane {
 //                case G:
 //                    controller.playSound("src/audio_files/Bass/0GBass.wav");
 //                    break;
-                    
-
-            //}
-
-   //     });
 
 
+        //}
 
-
-
+        //     });
 
 
     }
