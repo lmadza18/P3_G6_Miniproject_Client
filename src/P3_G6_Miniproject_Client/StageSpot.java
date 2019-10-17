@@ -33,13 +33,16 @@ public class StageSpot extends Pane {
             keyboard = new BandPlayer(new ImageView("images/sprite.png"), 3),
     };
 
+    instrument2 instrument;
+
    /* static final int GUITARIST_ID = 0;
     static final int DRUMMER_ID = 1;
     static final int BASSIST_ID = 2;
     static final int KEYBOARD_ID = 3;*/
 
 
-    public StageSpot(double x, double y) {
+    public StageSpot(double x, double y, String id) {
+        setId(id);
         int imageSize = (int) Math.round(Main.root.getWidth() / 10);
         int buttonSize = Math.round(imageSize / 6 * 4);
         int buttonTransform = Math.round(imageSize / 6);
@@ -78,6 +81,8 @@ public class StageSpot extends Pane {
         this.setTranslateX(this.x);
         this.setTranslateY(this.y);
 
+        this.instrument = new instrument2(this, Main.root);
+
 
         takeIt();
 
@@ -85,6 +90,8 @@ public class StageSpot extends Pane {
     }
 
     public void takeIt() {
+        //TODO add a isPlayable method for instrument and set it to true or false here
+        instrument.setPlayable(true);
         button.setOnAction(actionEvent -> {
             taken = true;
             instrumentPickerWindow = new InstrumentPickerWindow();
@@ -98,6 +105,8 @@ public class StageSpot extends Pane {
     }
 
     public void leaveIt() {
+        System.out.println("spot left mothafokka");
+        this.instrument.setPlayable(false);
         taken = false;
         Main.root.spot1.setVisible(true);
         Main.root.spot2.setVisible(true);
@@ -113,6 +122,8 @@ public class StageSpot extends Pane {
     }
 
     void chooseSpot() {
+        instrument2 instrument = new instrument2(this, Main.root);
+        instrument.setPlayable(true);
         instrumentPickerWindow.chooseButton.setOnAction(actionEvent -> {
             Main.root.spot1.setVisible(false);
             Main.root.spot2.setVisible(false);
