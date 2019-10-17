@@ -17,6 +17,9 @@ public class instrument2 {
             new Media(new File("src/audio_files/Bass/1BBass.wav").toURI().toString()),
             new Media(new File("src/audio_files/Bass/1CBass.wav").toURI().toString())
     };
+
+    private boolean noteOn = false;
+
     private boolean isPlayable = false;
     private Map<String, Media> map;
 
@@ -49,7 +52,7 @@ public class instrument2 {
 
         rootUI.setOnKeyPressed(e -> {
             for (Map.Entry<String, Media> entry : map.entrySet()) {
-                if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable) {
+                if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable && noteOn == false) {
                     this.playSound(entry.getValue());
                 }
             }
@@ -57,8 +60,14 @@ public class instrument2 {
     }
 
     private void playSound(Media media) {
+        this.noteOn = true;
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setAutoPlay(true);
+        Main.root.setOnKeyReleased(e -> {
+            System.out.println(e.getCode());
+            mediaPlayer.setVolume(0);
+            this.noteOn = false;
+        });
     }
 
     private void setInstrument(String name) {
