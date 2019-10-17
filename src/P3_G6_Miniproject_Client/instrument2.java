@@ -76,7 +76,7 @@ public class instrument2 {
                     }
                 }
                 if (e.getCode().getName() == "Z") {
-                    this.changeInstrumentToGuitar();
+                    this.changeInstrumentToGuitar("Guitar");
                 }
             });
         }
@@ -114,18 +114,16 @@ public class instrument2 {
 
         });
     }*/
-    public void changeInstrumentToGuitar() {
-        System.out.println(media[0].toString());
-        media[0] = new Media(new File("src/audio_files/Guitar/0CGuitar.wav").toURI().toString());
+    public void changeInstrument(String name) {
         this.media = new Media[]{
-                new Media(new File("src/audio_files/Guitar/0CGuitar.wav").toURI().toString()),
-                new Media(new File("src/audio_files/Guitar/0DGuitar.wav").toURI().toString()),
-                new Media(new File("src/audio_files/Guitar/0EGuitar.wav").toURI().toString()),
-                new Media(new File("src/audio_files/Guitar/0FGuitar.wav").toURI().toString()),
-                new Media(new File("src/audio_files/Guitar/0GGuitar.wav").toURI().toString()),
-                new Media(new File("src/audio_files/Guitar/1AGuitar.wav").toURI().toString()),
-                new Media(new File("src/audio_files/Guitar/1BGuitar.wav").toURI().toString()),
-                new Media(new File("src/audio_files/Guitar/1CGuitar.wav").toURI().toString())
+                new Media(new File("src/audio_files/" + name + "/0C" + name + ".wav").toURI().toString()),
+                new Media(new File("src/audio_files/" + name + "/0D" + name + ".wav").toURI().toString()),
+                new Media(new File("src/audio_files/" + name + "/0E" + name + ".wav").toURI().toString()),
+                new Media(new File("src/audio_files/" + name + "/0F" + name + ".wav").toURI().toString()),
+                new Media(new File("src/audio_files/" + name + "/0G" + name + ".wav").toURI().toString()),
+                new Media(new File("src/audio_files/" + name + "/1A" + name + ".wav").toURI().toString()),
+                new Media(new File("src/audio_files/" + name + "/1B" + name + ".wav").toURI().toString()),
+                new Media(new File("src/audio_files/" + name + "/1C" + name + ".wav").toURI().toString())
         };
         map = Map.of(
                 "A", media[0],
