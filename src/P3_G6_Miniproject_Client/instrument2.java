@@ -32,7 +32,7 @@ public class instrument2 {
             setName("Bass");
             setInstrument(name);
         } else if (id == 3) {
-            setName("Bass");
+            setName("Piano");
             setInstrument(name);
         }
 
