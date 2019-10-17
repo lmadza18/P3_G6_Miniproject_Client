@@ -11,6 +11,7 @@ public class BandPlayer extends Pane {
     boolean taken = false;
     double x;
     double y;
+    instrument2 instrument;
 
     BandPlayer(ImageView img, int id) {
         this.setStyle("-fx-background-color: red");
@@ -28,7 +29,14 @@ public class BandPlayer extends Pane {
         return this.id;
     }
 
+    public void pickUpInstrument() {
+        this.instrument = new instrument2(this.id, Main.root);
+        this.instrument.setPlayable(true);
+    }
 
+    public void putDownInstrument() {
+        this.instrument.setPlayable(false);
+    }
 
 
 
