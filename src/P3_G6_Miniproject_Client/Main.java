@@ -4,7 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-// DOCUMENTATION: https://www.sciss.de/netutil/doc/api/index.html
+    // DOCUMENTATION: https://www.sciss.de/netutil/doc/api/index.html
 import de.sciss.net.*;
 
 import java.io.IOException;
@@ -37,7 +37,7 @@ public class Main extends Application {
         OSCMessage msg = new OSCMessage("/test", args);
 
         try {
-            c.send(new OSCMessage("/test", new Object[]{msg}));
+            c.send(new OSCMessage("/hello", new Object[]{msg}));
         } catch (IOException e) {
             e.printStackTrace();
         }
