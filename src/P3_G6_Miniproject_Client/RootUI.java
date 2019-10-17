@@ -32,10 +32,10 @@ public class RootUI extends Pane {
         bgImg.setFitWidth(this.getWidth());
         bgImg.setFitHeight(this.getHeight());
 
-        bandPlayers[0] = new BandPlayer(new ImageView("images/guitarist.png"), 0);
-        bandPlayers[1] = new BandPlayer(new ImageView("images/drummer1.png"), 1);
-        bandPlayers[2] = new BandPlayer(new ImageView("images/bassist.jpg"), 2);
-        bandPlayers[3] = new BandPlayer(new ImageView("images/sprite.png"), 3);
+        bandPlayers[0] = new BandPlayer("images/guitarist.png", 0);
+        bandPlayers[1] = new BandPlayer("images/drummer1.png", 1);
+        bandPlayers[2] = new BandPlayer("images/bassist.jpg", 2);
+        bandPlayers[3] = new BandPlayer("images/sprite.png", 3);
 
         spot1 = new StageSpot(this.getWidth() / 8, this.getHeight() / 8 * 6);
         spot2 = new StageSpot(this.getWidth() / 8 * 3, this.getHeight() / 8 * 5.5);

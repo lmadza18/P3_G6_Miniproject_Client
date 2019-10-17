@@ -1,83 +1,36 @@
 package P3_G6_Miniproject_Client;
 
-import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 
 public class StageSpot extends Pane {
+
+    StageSpotButton stageSpotButton;
+    InstrumentPickerWindow instrumentPickerWindow = new InstrumentPickerWindow();
 
     boolean taken = false;
 
     double x;
     double y;
 
-    InstrumentPickerWindow instrumentPickerWindow = new InstrumentPickerWindow();
-
-    Button button;
-    ImageView buttonImg;
-    ImageView buttonHoverImg;
-
-
-
-
     private int spotId;
 
-
-
-   /* static final int GUITARIST_ID = 0;
-    static final int DRUMMER_ID = 1;
-    static final int BASSIST_ID = 2;
-    static final int KEYBOARD_ID = 3;*/
-
-
     public StageSpot(double x, double y) {
-        int imageSize = (int) Math.round(Main.root.getWidth() / 10);
-        int buttonSize = Math.round(imageSize / 6 * 4);
-        int buttonTransform = Math.round(imageSize / 6);
-        buttonImg = new ImageView("Takespot_button.png");
-        buttonHoverImg = new ImageView("Takespot_button_hover.png");
+//
+        stageSpotButton = new StageSpotButton();
+        this.getChildren().add(stageSpotButton);
 
-        buttonImg.setFitWidth(imageSize);
-        buttonImg.setFitHeight(imageSize);
-        buttonHoverImg.setFitWidth(imageSize);
-        buttonHoverImg.setFitHeight(imageSize);
-
-        button = new Button(null);
-        button.setStyle("-fx-background-color: transparent");
-        button.setMinSize(buttonSize, buttonSize);
-        button.setTranslateX(buttonTransform);
-        button.setTranslateY(buttonTransform);
-
-        getChildren().addAll(buttonImg, buttonHoverImg, button);
-
-        //button.setPickOnBounds(true);
-        buttonHoverImg.setVisible(false);
-
-        button.setOnMouseEntered(t -> {
-            buttonImg.setVisible(false);
-            buttonHoverImg.setVisible(true);
-        });
-
-        button.setOnMouseExited(t -> {
-            buttonImg.setVisible(true);
-            buttonHoverImg.setVisible(false);
-        });
-
-
-        this.x = x - (imageSize / 2);
-        this.y = y - (imageSize / 2);
+        this.x = x - (stageSpotButton.imageSize / 2);
+        this.y = y - (stageSpotButton.imageSize / 2);
         this.setTranslateX(this.x);
         this.setTranslateY(this.y);
 
-
         takeIt();
-
 
     }
 
     public void takeIt() {
-        button.setOnAction(actionEvent -> {
+        stageSpotButton.button.setOnAction(actionEvent -> {
             taken = true;
             instrumentPickerWindow = new InstrumentPickerWindow();
             Main.root.getChildren().add(instrumentPickerWindow);
@@ -91,10 +44,10 @@ public class StageSpot extends Pane {
 
     public void leaveIt() {
         taken = false;
-        Main.root.spot1.setVisible(true);
-        Main.root.spot2.setVisible(true);
-        Main.root.spot3.setVisible(true);
-        Main.root.spot4.setVisible(true);
+        Main.root.spot1.stageSpotButton.setVisible(true);
+        Main.root.spot2.stageSpotButton.setVisible(true);
+        Main.root.spot3.stageSpotButton.setVisible(true);
+        Main.root.spot4.stageSpotButton.setVisible(true);
     }
 
     void thisSpotKillsMyMojo() {
@@ -106,14 +59,15 @@ public class StageSpot extends Pane {
 
     void chooseSpot() {
         instrumentPickerWindow.chooseButton.setOnAction(actionEvent -> {
-            Main.root.spot1.setVisible(false);
-            Main.root.spot2.setVisible(false);
-            Main.root.spot3.setVisible(false);
-            Main.root.spot4.setVisible(false);
+            Main.root.spot1.stageSpotButton.setVisible(false);
+            Main.root.spot2.stageSpotButton.setVisible(false);
+            Main.root.spot3.stageSpotButton.setVisible(false);
+            Main.root.spot4.stageSpotButton.setVisible(false);
 
             this.spotId = instrumentPickerWindow.switchIndex;
             Main.root.getChildren().remove(instrumentPickerWindow);
-            Main.root.getChildren().addAll(Main.root.getMyAssOuttaHere, Main.root.bandPlayers[spotId]);
+            Main.root.getChildren().addAll(Main.root.getMyAssOuttaHere);
+            this.getChildren().add(Main.root.bandPlayers[spotId]);
             Main.root.bandPlayers[spotId].taken = true;
             getMyAssOuttaHere();
 
@@ -123,10 +77,10 @@ public class StageSpot extends Pane {
     void getMyAssOuttaHere() {
         Main.root.getMyAssOuttaHere.setOnAction(actionEvent -> {
             taken = false;
-            Main.root.spot1.setVisible(true);
-            Main.root.spot2.setVisible(true);
-            Main.root.spot3.setVisible(true);
-            Main.root.spot4.setVisible(true);
+            Main.root.spot1.stageSpotButton.setVisible(true);
+            Main.root.spot2.stageSpotButton.setVisible(true);
+            Main.root.spot3.stageSpotButton.setVisible(true);
+            Main.root.spot4.stageSpotButton.setVisible(true);
             Main.root.getChildren().removeAll(Main.root.getMyAssOuttaHere, Main.root.bandPlayers[spotId]);
             Main.root.bandPlayers[spotId].taken = false;
         });
