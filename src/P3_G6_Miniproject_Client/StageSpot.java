@@ -29,7 +29,6 @@ public class StageSpot extends StackPane {
 
         this.movePos(-stageSpotButton.imageSize / 2, -stageSpotButton.imageSize / 2);
 
-        this.setStyle("-fx-border-color: RED;");
 
         takeIt();
 
@@ -82,7 +81,10 @@ public class StageSpot extends StackPane {
             Main.root.getChildren().addAll(Main.root.getMyAssOuttaHere);
 
             this.getChildren().add(Main.root.bandPlayers[spotId]);
-            movePos(-this.getWidth(), -this.getHeight() * 2);
+
+            Main.root.bandPlayers[spotId].setFitWidth(Main.root.getWidth() / 5);
+            Main.root.bandPlayers[spotId].setFitHeight(Main.root.getWidth() / 5);
+            movePos(-Main.root.bandPlayers[spotId].getFitWidth() / 2, -this.getHeight() * 1.5);
 
             Main.root.bandPlayers[spotId].taken = true;
             getMyAssOuttaHere();
