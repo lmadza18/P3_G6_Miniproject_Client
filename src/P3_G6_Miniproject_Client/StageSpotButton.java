@@ -2,13 +2,15 @@ package P3_G6_Miniproject_Client;
 
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
-public class StageSpotButton extends Pane {
+public class StageSpotButton extends StackPane {
 
     Button button;
     ImageView buttonImg;
     ImageView buttonHoverImg;
+    int buttonSize;
+
     int imageSize;
 
     double x;
@@ -16,9 +18,10 @@ public class StageSpotButton extends Pane {
 
     //Put button in here
     StageSpotButton() {
+        this.setStyle("-fx-border-color: RED;");
 
         imageSize = (int) Math.round(Main.root.getWidth() / 10);
-        int buttonSize = Math.round(imageSize / 6 * 4);
+        buttonSize = Math.round(imageSize / 6 * 4);
         int buttonTransform = Math.round(imageSize / 6);
         buttonImg = new ImageView("Takespot_button.png");
         buttonHoverImg = new ImageView("Takespot_button_hover.png");

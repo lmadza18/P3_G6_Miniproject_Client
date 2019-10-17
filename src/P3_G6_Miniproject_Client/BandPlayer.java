@@ -14,11 +14,14 @@ public class BandPlayer extends ImageView {
     BandPlayer(String url, int id) {
         Image image = new Image(url);
         this.setImage(image);
-        this.setStyle("-fx-background-color: red");
+        this.setStyle("-fx-border-color: RED;");
         this.id = id;
 
-//        this.img.setFitHeight(100);
-//        this.img.setFitWidth(100);
+        this.setFitHeight(Main.root.getHeight() / 2);
+        this.setFitWidth(Main.root.getWidth() / 2);
+
+
+
 
     }
 
