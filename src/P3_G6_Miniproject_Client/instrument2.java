@@ -1,13 +1,8 @@
 package P3_G6_Miniproject_Client;
 
-import javafx.scene.control.Button;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-
-import javax.swing.plaf.basic.BasicOptionPaneUI;
-import java.awt.event.KeyEvent;
 import java.io.File;
-import java.util.EventListener;
 import java.util.Map;
 
 public class instrument2 {
@@ -31,14 +26,15 @@ public class instrument2 {
             setName("Guitar");
             setInstrument(name);
         } else if (id == 1) {
-            setName("Piano");
+            setName("Drums");
             setInstrument(name);
         } else if (id == 2) {
             setName("Bass");
             setInstrument(name);
-        } /*else if (id == 3) {
-            this.name = "Drums";
-        }*/
+        } else if (id == 3) {
+            setName("Bass");
+            setInstrument(name);
+        }
 
         map = Map.of(
                 "A", media[0],
@@ -53,9 +49,6 @@ public class instrument2 {
 
         rootUI.setOnKeyPressed(e -> {
             for (Map.Entry<String, Media> entry : map.entrySet()) {
-                //System.out.println("e.getCode()", e.getCode(), "e.getCode().type", e.getCode().getClass());
-                //if (entry.getKey().equals(e.getCode())) {
-                System.out.println(this.isPlayable);
                 if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable) {
                     this.playSound(entry.getValue());
                 }
