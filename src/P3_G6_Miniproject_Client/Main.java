@@ -24,7 +24,7 @@ public class Main extends Application {
 
         try {
             c = OSCClient.newUsing(OSCClient.UDP);    // create UDP client with any free port number
-            c.setTarget(new InetSocketAddress("127.0.0.1", 8000));  // talk to scsynth on the same machine
+            c.setTarget(new InetSocketAddress("127.0.0.1", 8000));
             c.start();  // open channel and (in the case of TCP) connect, then start listening for replies
         } catch (IOException e1) {
             e1.printStackTrace();
@@ -34,10 +34,11 @@ public class Main extends Application {
         Object args[] = new Object[2];
         args[0] = 3;
         args[1] = "hello";
-        OSCMessage msg = new OSCMessage("/test", args);
+        OSCMessage msg = new OSCMessage("/done", args);
 
         try {
-            c.send(new OSCMessage("/test", new Object[]{msg}));
+            c.send(new OSCMessage("/sent", args));
+            System.out.println("message sent");
         } catch (IOException e) {
             e.printStackTrace();
         }
