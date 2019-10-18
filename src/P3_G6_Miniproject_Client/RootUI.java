@@ -1,6 +1,5 @@
 package P3_G6_Miniproject_Client;
 
-import de.sciss.net.OSCMessage;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -34,7 +33,7 @@ public class RootUI extends Pane {
 
         bandPlayers[0] = new BandPlayer("images/guitarist.png", 0);
         bandPlayers[1] = new BandPlayer("images/drummer1.png", 1);
-        bandPlayers[2] = new BandPlayer("images/bassist.jpg", 2);
+        bandPlayers[2] = new BandPlayer("images/bassist.png", 2);
         bandPlayers[3] = new BandPlayer("images/sprite.png", 3);
 
         spot1 = new StageSpot(this.getWidth() / 8, this.getHeight() / 8 * 6);

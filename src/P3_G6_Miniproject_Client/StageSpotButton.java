@@ -18,7 +18,6 @@ public class StageSpotButton extends StackPane {
 
     //Put button in here
     StageSpotButton() {
-        this.setStyle("-fx-border-color: RED;");
 
         imageSize = (int) Math.round(Main.root.getWidth() / 10);
         buttonSize = Math.round(imageSize / 6 * 4);
