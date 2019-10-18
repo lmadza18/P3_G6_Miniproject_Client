@@ -37,42 +37,8 @@ public class RootUI extends Pane {
 //        PosButton button4 = new PosButton("Position4", this.getWidth() / 8 * 7, this.getHeight() / 8 * 6);
 
         this.getChildren().addAll(bgImg, spot1, spot2, spot3, spot4);
-//        instrument2 ins = new instrument2(spot1, this);
-  //      instrument2 ins1 = new instrument2(spot2, this);
-    //    instrument2 ins2 = new instrument2(spot3, this);
-      //  instrument2 ins3 = new instrument2(spot4, this);
 
 
-
-        // Adding setOnKeyPressed to "this"
-//        this.setOnKeyPressed(e ->{
-//            Controller controller = new Controller();
-//            Controller controller2 = new Controller();
-//
-//            switch (e.getCode()){
-//                case A:
-//                    controller.playSound("src/audio_files/Bass/0CBass.wav");
-//                    break;
-//
-//                case S:
-//                    controller2.playSound("src/audio_files/Bass/0DBass.wav");
-//                    break;
-//                case D:
-//                    controller.playSound("src/audio_files/Bass/0EBass.wav");
-//                    break;
-//
-//                case F:
-//                    controller.playSound("src/audio_files/Bass/0FBass.wav");
-//                    break;
-//
-//                case G:
-//                    controller.playSound("src/audio_files/Bass/0GBass.wav");
-//                    break;
-
-
-        //}
-
-        //     });
 
 
     }
