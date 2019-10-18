@@ -4,7 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-// DOCUMENTATION: https://www.sciss.de/netutil/doc/api/index.html
+    // DOCUMENTATION: https://www.sciss.de/netutil/doc/api/index.html
 import de.sciss.net.*;
 
 import java.io.IOException;
@@ -19,12 +19,14 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+
+
         // ------------------------------------------- OSC TEST
         final OSCClient c;
 
         try {
             c = OSCClient.newUsing(OSCClient.UDP);    // create UDP client with any free port number
-            c.setTarget(new InetSocketAddress("127.0.0.1", 8000));
+            c.setTarget(new InetSocketAddress("127.0.0.1", 8000));  // talk to scsynth on the same machine
             c.start();  // open channel and (in the case of TCP) connect, then start listening for replies
         } catch (IOException e1) {
             e1.printStackTrace();
@@ -34,7 +36,6 @@ public class Main extends Application {
         Object args[] = new Object[2];
         args[0] = 3;
         args[1] = "hello";
-        OSCMessage msg = new OSCMessage("/done", args);
 
         try {
             c.send(new OSCMessage("/sent", args));
