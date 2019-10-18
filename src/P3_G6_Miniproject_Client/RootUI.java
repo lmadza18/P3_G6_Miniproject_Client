@@ -12,7 +12,7 @@ public class RootUI extends Pane {
     StageSpot spot4;
     Button getMyAssOuttaHere;
 
-
+    BandPlayer[] bandPlayers = new BandPlayer[4];
 
     RootUI() {
 

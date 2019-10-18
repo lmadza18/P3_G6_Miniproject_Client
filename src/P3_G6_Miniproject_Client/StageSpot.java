@@ -87,8 +87,8 @@ public class StageSpot extends StackPane {
             movePos(-Main.root.bandPlayers[spotId].getFitWidth() / 2, -this.getHeight() * 1.5);
 
             Main.root.bandPlayers[spotId].taken = true;
-            bandPlayers[spotId].taken = true;
-            bandPlayers[spotId].pickUpInstrument();
+            Main.root.bandPlayers[spotId].taken = true;
+            Main.root.bandPlayers[spotId].pickUpInstrument();
             getMyAssOuttaHere();
 
         });
@@ -104,7 +104,7 @@ public class StageSpot extends StackPane {
             Main.root.spot4.stageSpotButton.setVisible(true);
             this.movePos(-stageSpotButton.imageSize / 2, -stageSpotButton.imageSize / 2);
             Main.root.getChildren().removeAll(Main.root.getMyAssOuttaHere);
-            bandPlayers[spotId].putDownInstrument();
+            Main.root.bandPlayers[spotId].putDownInstrument();
             this.getChildren().removeAll(Main.root.bandPlayers[spotId]);
         });
 
