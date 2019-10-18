@@ -7,20 +7,9 @@ import java.util.Map;
 
 public class instrument2 {
     private String name;
-    private Media[] media = {
-            new Media(new File("src/audio_files/Bass/0CBass.wav").toURI().toString()),
-            new Media(new File("src/audio_files/Bass/0DBass.wav").toURI().toString()),
-            new Media(new File("src/audio_files/Bass/0EBass.wav").toURI().toString()),
-            new Media(new File("src/audio_files/Bass/0FBass.wav").toURI().toString()),
-            new Media(new File("src/audio_files/Bass/0GBass.wav").toURI().toString()),
-            new Media(new File("src/audio_files/Bass/1ABass.wav").toURI().toString()),
-            new Media(new File("src/audio_files/Bass/1BBass.wav").toURI().toString()),
-            new Media(new File("src/audio_files/Bass/1CBass.wav").toURI().toString())
-    };
-
-    private boolean noteOn = false;
-
+    private Media[] media = {};
     private boolean isPlayable = false;
+    private boolean noteOn = false;
     private Map<String, Media> map;
 
     public instrument2(int id, RootUI rootUI) {
