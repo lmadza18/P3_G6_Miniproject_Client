@@ -36,10 +36,10 @@ public class Main extends Application {
         Object args[] = new Object[2];
         args[0] = 3;
         args[1] = "hello";
-        OSCMessage msg = new OSCMessage("/test", args);
 
         try {
-            c.send(new OSCMessage("/hello", new Object[]{msg}));
+            c.send(new OSCMessage("/sent", args));
+            System.out.println("message sent");
         } catch (IOException e) {
             e.printStackTrace();
         }
