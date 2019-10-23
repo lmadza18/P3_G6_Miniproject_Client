@@ -11,8 +11,8 @@ public class StageSpot extends StackPane {
 
     double x;
     double y;
-    Double xInit;
-    Double yInit;
+    double xInit;
+    double yInit;
 
     private int spotId;
 
@@ -42,8 +42,9 @@ public class StageSpot extends StackPane {
 
     public void stageSpotButtonListener() {
         stageSpotButton.button.setOnAction(actionEvent -> {
-            taken = true;
+
             Main.root.getChildren().add(Main.root.instrumentPickerWindow);
+            taken = true;
 
             instrumentPickerWindowExtListener();
             instrumentPickerWindowChooseButtonListener();
@@ -52,7 +53,7 @@ public class StageSpot extends StackPane {
         });
     }
 
-    void instrumentPickerWindowChooseButtonListener() {
+    public void instrumentPickerWindowChooseButtonListener() {
         Main.root.instrumentPickerWindow.chooseButton.setOnAction(actionEvent -> {
 
             this.spotId = Main.root.instrumentPickerWindow.switchIndex;
