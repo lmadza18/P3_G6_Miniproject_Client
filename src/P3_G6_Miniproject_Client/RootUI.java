@@ -7,9 +7,11 @@ import javafx.scene.layout.Pane;
 
 public class RootUI extends Pane {
 
-    Button leaveStageSpot;
+
     StageSpot[] stageSpots = new StageSpot[4];
     BandPlayer[] bandPlayers = new BandPlayer[4];
+    InstrumentPickerWindow instrumentPickerWindow;
+    Button leaveStageSpotButton;
 
     RootUI() {
 
@@ -31,7 +33,9 @@ public class RootUI extends Pane {
         stageSpots[2] = new StageSpot(this.getWidth() / 8 * 5, this.getHeight() / 8 * 5.5);
         stageSpots[3] = new StageSpot(this.getWidth() / 8 * 7, this.getHeight() / 8 * 6);
 
-        leaveStageSpot = new Button("get my ass outta here!");
+        instrumentPickerWindow = new InstrumentPickerWindow();
+
+        leaveStageSpotButton = new Button("get my ass outta here!");
 
         this.getChildren().addAll(bgImg, stageSpots[0], stageSpots[1], stageSpots[2], stageSpots[3]);
     }

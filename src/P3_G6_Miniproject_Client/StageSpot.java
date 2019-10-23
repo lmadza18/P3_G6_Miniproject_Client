@@ -6,7 +6,6 @@ import javafx.scene.layout.StackPane;
 public class StageSpot extends StackPane {
 
     StageSpotButton stageSpotButton;
-    InstrumentPickerWindow instrumentPickerWindow = new InstrumentPickerWindow();
 
     boolean taken = false;
 
@@ -30,7 +29,7 @@ public class StageSpot extends StackPane {
         this.movePos(-stageSpotButton.imageSize / 2, -stageSpotButton.imageSize / 2);
 
 
-        takeIt();
+        stageSpotButtonListener();
 
     }
 
@@ -41,69 +40,72 @@ public class StageSpot extends StackPane {
         this.setTranslateY(this.y);
     }
 
-    public void takeIt() {
+    public void stageSpotButtonListener() {
         stageSpotButton.button.setOnAction(actionEvent -> {
             taken = true;
-            instrumentPickerWindow = new InstrumentPickerWindow();
-            Main.root.getChildren().add(instrumentPickerWindow);
+            Main.root.getChildren().add(Main.root.instrumentPickerWindow);
 
-            thisSpotKillsMyMojo();
-            chooseSpot();
+            instrumentPickerWindowExtListener();
+            instrumentPickerWindowChooseButtonListener();
 
 //            playThatBassNote("out/production/P3_G6_Miniproject_Client/audio_files/Bass/0CBass.wav");
         });
     }
 
-    public void leaveIt() {
-        taken = false;
-        for (int i = 0; i < 4; i++)
-            Main.root.stageSpots[i].stageSpotButton.setVisible(true);
-    }
+    void instrumentPickerWindowChooseButtonListener() {
+        Main.root.instrumentPickerWindow.chooseButton.setOnAction(actionEvent -> {
 
-    void thisSpotKillsMyMojo() {
-        instrumentPickerWindow.closeButton.setOnAction(actionEvent -> {
-            Main.root.getChildren().remove(instrumentPickerWindow);
-            leaveIt();
-        });
-    }
-
-    void chooseSpot() {
-        instrumentPickerWindow.chooseButton.setOnAction(actionEvent -> {
-            taken = false;
-            for (int i = 0; i < 4; i++)
-                Main.root.stageSpots[i].stageSpotButton.setVisible(false);
-
-            this.spotId = instrumentPickerWindow.switchIndex;
-            Main.root.getChildren().remove(instrumentPickerWindow);
-            Main.root.getChildren().addAll(Main.root.leaveStageSpot);
-
-            this.getChildren().add(Main.root.bandPlayers[spotId]);
+            this.spotId = Main.root.instrumentPickerWindow.switchIndex;
+            Main.root.getChildren().remove(Main.root.instrumentPickerWindow);
+            Main.root.getChildren().add(Main.root.leaveStageSpotButton);
 
             Main.root.bandPlayers[spotId].setFitWidth(Main.root.getWidth() / 5);
             Main.root.bandPlayers[spotId].setFitHeight(Main.root.getWidth() / 5);
             movePos(-Main.root.bandPlayers[spotId].getFitWidth() / 2, -this.getHeight() * 1.5);
 
-            Main.root.bandPlayers[spotId].taken = true;
-            Main.root.bandPlayers[spotId].taken = true;
-            Main.root.bandPlayers[spotId].pickUpInstrument();
-            leaveStageSpot();
+            takeIt();
+
+            leaveStageSpotButtonListener();
 
         });
     }
 
-    void leaveStageSpot() {
-        Main.root.leaveStageSpot.setOnAction(actionEvent -> {
-            taken = false;
-            Main.root.bandPlayers[spotId].taken = false;
-            taken = false;
-            for (int i = 0; i < 4; i++)
-                Main.root.stageSpots[i].stageSpotButton.setVisible(true);
-            this.movePos(-stageSpotButton.imageSize / 2, -stageSpotButton.imageSize / 2);
-            Main.root.getChildren().removeAll(Main.root.leaveStageSpot);
-            Main.root.bandPlayers[spotId].putDownInstrument();
-            this.getChildren().removeAll(Main.root.bandPlayers[spotId]);
-        });
+    public void leaveIt() {
+        Main.root.bandPlayers[spotId].taken = false;
+        this.taken = false;
+        Main.root.bandPlayers[spotId].putDownInstrument();
+        this.getChildren().remove(Main.root.bandPlayers[spotId]);
+        for (int i = 0; i < 4; i++)
+            Main.root.stageSpots[i].stageSpotButton.setVisible(true);
 
+    }
+
+    public void takeIt() {
+        Main.root.bandPlayers[spotId].taken = true;
+        taken = true;
+
+        Main.root.bandPlayers[spotId].pickUpInstrument();
+        this.getChildren().add(Main.root.bandPlayers[spotId]);
+
+        for (int i = 0; i < 4; i++)
+            Main.root.stageSpots[i].stageSpotButton.setVisible(false);
+
+    }
+
+    void instrumentPickerWindowExtListener() {
+        Main.root.instrumentPickerWindow.closeButton.setOnAction(actionEvent -> {
+            Main.root.getChildren().remove(Main.root.instrumentPickerWindow);
+            leaveIt();
+        });
+    }
+
+    void leaveStageSpotButtonListener() {
+        Main.root.leaveStageSpotButton.setOnAction(actionEvent -> {
+            leaveIt();
+            this.movePos(-stageSpotButton.imageSize / 2, -stageSpotButton.imageSize / 2);
+            Main.root.getChildren().removeAll(Main.root.leaveStageSpotButton);
+            this.getChildren().remove(Main.root.bandPlayers[spotId]);
+        });
     }
 
 
