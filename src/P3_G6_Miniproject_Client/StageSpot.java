@@ -56,10 +56,8 @@ public class StageSpot extends StackPane {
 
     public void leaveIt() {
         taken = false;
-        Main.root.spot1.stageSpotButton.setVisible(true);
-        Main.root.spot2.stageSpotButton.setVisible(true);
-        Main.root.spot3.stageSpotButton.setVisible(true);
-        Main.root.spot4.stageSpotButton.setVisible(true);
+        for (int i = 0; i < 4; i++)
+            Main.root.stageSpots[i].stageSpotButton.setVisible(true);
     }
 
     void thisSpotKillsMyMojo() {
@@ -71,14 +69,13 @@ public class StageSpot extends StackPane {
 
     void chooseSpot() {
         instrumentPickerWindow.chooseButton.setOnAction(actionEvent -> {
-            Main.root.spot1.stageSpotButton.setVisible(false);
-            Main.root.spot2.stageSpotButton.setVisible(false);
-            Main.root.spot3.stageSpotButton.setVisible(false);
-            Main.root.spot4.stageSpotButton.setVisible(false);
+            taken = false;
+            for (int i = 0; i < 4; i++)
+                Main.root.stageSpots[i].stageSpotButton.setVisible(false);
 
             this.spotId = instrumentPickerWindow.switchIndex;
             Main.root.getChildren().remove(instrumentPickerWindow);
-            Main.root.getChildren().addAll(Main.root.getMyAssOuttaHere);
+            Main.root.getChildren().addAll(Main.root.leaveStageSpot);
 
             this.getChildren().add(Main.root.bandPlayers[spotId]);
 
@@ -89,21 +86,20 @@ public class StageSpot extends StackPane {
             Main.root.bandPlayers[spotId].taken = true;
             Main.root.bandPlayers[spotId].taken = true;
             Main.root.bandPlayers[spotId].pickUpInstrument();
-            getMyAssOuttaHere();
+            leaveStageSpot();
 
         });
     }
 
-    void getMyAssOuttaHere() {
-        Main.root.getMyAssOuttaHere.setOnAction(actionEvent -> {
+    void leaveStageSpot() {
+        Main.root.leaveStageSpot.setOnAction(actionEvent -> {
             taken = false;
             Main.root.bandPlayers[spotId].taken = false;
-            Main.root.spot1.stageSpotButton.setVisible(true);
-            Main.root.spot2.stageSpotButton.setVisible(true);
-            Main.root.spot3.stageSpotButton.setVisible(true);
-            Main.root.spot4.stageSpotButton.setVisible(true);
+            taken = false;
+            for (int i = 0; i < 4; i++)
+                Main.root.stageSpots[i].stageSpotButton.setVisible(true);
             this.movePos(-stageSpotButton.imageSize / 2, -stageSpotButton.imageSize / 2);
-            Main.root.getChildren().removeAll(Main.root.getMyAssOuttaHere);
+            Main.root.getChildren().removeAll(Main.root.leaveStageSpot);
             Main.root.bandPlayers[spotId].putDownInstrument();
             this.getChildren().removeAll(Main.root.bandPlayers[spotId]);
         });

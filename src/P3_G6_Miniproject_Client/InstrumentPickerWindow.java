@@ -94,17 +94,11 @@ public class InstrumentPickerWindow extends Pane {
         BorderPane.setAlignment(leftButton, Pos.CENTER);
         BorderPane.setAlignment(rightButton, Pos.CENTER);
         BorderPane.setAlignment(chooseButton, Pos.BOTTOM_RIGHT);
-        thisSpotKillsMyMojo();
         //chooseSpot();
         switchRight();
         switchLeft();
     }
 
-    void thisSpotKillsMyMojo() {
-        closeButton.setOnAction(actionEvent -> {
-            Main.root.getChildren().remove(this);
-        });
-    }
 
     void switchRight() {
         rightButton.setOnAction(actionEvent -> {
@@ -128,14 +122,4 @@ public class InstrumentPickerWindow extends Pane {
             window.setCenter(images.get(switchIndex));
         });
     }
-
-
-    /*void chooseSpot() {
-        chooseButton.setOnAction(actionEvent -> {
-            System.out.println("Working!");
-            //Main.root.getChildren().addAll(StageSpot.bandPlayers[switchIndex], StageSpot.bandPlayers[switchIndex].img);
-            Main.root.getChildren().remove(this);
-
-        });
-    }*/
 }
