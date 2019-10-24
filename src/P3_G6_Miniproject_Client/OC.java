@@ -14,6 +14,7 @@ public class OC {
 
     static public void sendMessage(String string){
         try{
+            System.out.println("Client sending: " + string);
             client.send(new OSCMessage("/" + string, new Object[]{new Integer(0)}));
         } catch (IOException /* | InterruptedException */ e11) {
             e11.printStackTrace();
