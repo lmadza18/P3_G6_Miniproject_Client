@@ -48,7 +48,7 @@ public class StageSpot extends StackPane {
             Main.root.getChildren().add(Main.root.instrumentPickerWindow);
             taken = true;
 
-            instrumentPickerWindowExtListener();
+            instrumentPickerWindowExitListener();
             instrumentPickerWindowChooseButtonListener();
 
 //            playThatBassNote("out/production/P3_G6_Miniproject_Client/audio_files/Bass/0CBass.wav");
@@ -94,7 +94,7 @@ public class StageSpot extends StackPane {
 
     }
 
-    void instrumentPickerWindowExtListener() {
+    void instrumentPickerWindowExitListener() {
         Main.root.instrumentPickerWindow.closeButton.setOnAction(actionEvent -> {
             Main.root.getChildren().remove(Main.root.instrumentPickerWindow);
             leaveIt();

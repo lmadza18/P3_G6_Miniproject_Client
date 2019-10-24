@@ -10,7 +10,7 @@ public class BandPlayer extends ImageView {
     //boolean taken = false;
     double x;
     double y;
-    instrument2 instrument;
+    Instrument instrument;
 
 
 
@@ -34,7 +34,7 @@ public class BandPlayer extends ImageView {
     }
 
     public void pickUpInstrument() {
-        this.instrument = new instrument2(this.id, Main.root);
+        this.instrument = new Instrument(this.id, Main.root);
         this.instrument.setPlayable(true);
     }
 
