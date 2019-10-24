@@ -35,11 +35,11 @@ public class BandPlayer extends ImageView {
     }
 
     public void pickUpInstrument() {
-        this.instrument.setPlayable(true);
+        this.instrument.isPlayable = true;
     }
 
     public void putDownInstrument() {
-        this.instrument.setPlayable(false);
+        this.instrument.isPlayable = false;
     }
 
 

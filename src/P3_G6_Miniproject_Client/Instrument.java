@@ -9,7 +9,7 @@ import java.util.Map;
 public class Instrument {
     private String type;
     private Media[] media = {};
-    private boolean isPlayable = false;
+    public boolean isPlayable = false;
     private boolean isRythmic = false;
     private boolean noteOn = false;
     private Map<String, Media> map;
@@ -74,32 +74,5 @@ public class Instrument {
             }
             this.noteOn = false;
         });
-    }
-
-    private void setInstrument(String name) {
-        this.media = new Media[]{
-                new Media(new File("src/audio_files/" + name + "/0C" + name + ".wav").toURI().toString()),
-                new Media(new File("src/audio_files/" + name + "/0D" + name + ".wav").toURI().toString()),
-                new Media(new File("src/audio_files/" + name + "/0E" + name + ".wav").toURI().toString()),
-                new Media(new File("src/audio_files/" + name + "/0F" + name + ".wav").toURI().toString()),
-                new Media(new File("src/audio_files/" + name + "/0G" + name + ".wav").toURI().toString()),
-                new Media(new File("src/audio_files/" + name + "/1A" + name + ".wav").toURI().toString()),
-                new Media(new File("src/audio_files/" + name + "/1B" + name + ".wav").toURI().toString()),
-                new Media(new File("src/audio_files/" + name + "/1C" + name + ".wav").toURI().toString())
-        };
-        map = Map.of(
-                "A", media[0],
-                "S", media[1],
-                "D", media[2],
-                "F", media[3],
-                "G", media[4],
-                "H", media[5],
-                "J", media[6],
-                "K", media[7]
-        );
-    }
-
-    public void setPlayable(boolean isPlayable) {
-        this.isPlayable = isPlayable;
     }
 }
