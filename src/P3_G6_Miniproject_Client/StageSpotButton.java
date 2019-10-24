@@ -51,11 +51,5 @@ public class StageSpotButton extends StackPane {
             buttonHoverImg.setVisible(false);
         });
 
-//        this.x = x - (imageSize / 2);
-//        this.y = y - (imageSize / 2);
-//        this.setTranslateX(this.x);
-//        this.setTranslateY(this.y);
-
-
     }
 }

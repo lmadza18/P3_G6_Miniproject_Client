@@ -6,13 +6,12 @@ import javafx.scene.layout.Pane;
 
 
 public class RootUI extends Pane {
-    StageSpot spot1;
-    StageSpot spot2;
-    StageSpot spot3;
-    StageSpot spot4;
-    Button getMyAssOuttaHere;
 
+
+    StageSpot[] stageSpots = new StageSpot[4];
     BandPlayer[] bandPlayers = new BandPlayer[4];
+    InstrumentPickerWindow instrumentPickerWindow;
+    Button leaveStageSpotButton;
 
     RootUI() {
 
@@ -29,23 +28,16 @@ public class RootUI extends Pane {
         bandPlayers[2] = new BandPlayer("images/bassist.png", 2);
         bandPlayers[3] = new BandPlayer("images/sprite.png", 3);
 
-        spot1 = new StageSpot(this.getWidth() / 8, this.getHeight() / 8 * 6);
-        spot2 = new StageSpot(this.getWidth() / 8 * 3, this.getHeight() / 8 * 5.5);
-        spot3 = new StageSpot(this.getWidth() / 8 * 5, this.getHeight() / 8 * 5.5);
-        spot4 = new StageSpot(this.getWidth() / 8 * 7, this.getHeight() / 8 * 6);
+        stageSpots[0] = new StageSpot(this.getWidth() / 8, this.getHeight() / 8 * 6);
+        stageSpots[1] = new StageSpot(this.getWidth() / 8 * 3, this.getHeight() / 8 * 5.5);
+        stageSpots[2] = new StageSpot(this.getWidth() / 8 * 5, this.getHeight() / 8 * 5.5);
+        stageSpots[3] = new StageSpot(this.getWidth() / 8 * 7, this.getHeight() / 8 * 6);
 
-        getMyAssOuttaHere = new Button("get my ass outta here!");
+        instrumentPickerWindow = new InstrumentPickerWindow();
 
-//        PosButton button1 = new PosButton("Position1", this.getWidth() / 8, this.getHeight() / 8 * 6);
-//        PosButton button2 = new PosButton("Position2", this.getWidth() / 8 * 3, this.getHeight() / 8 * 5.5);
-//        PosButton button3 = new PosButton("Position3", this.getWidth() / 8 * 5, this.getHeight() / 8 * 5.5);
-//        PosButton button4 = new PosButton("Position4", this.getWidth() / 8 * 7, this.getHeight() / 8 * 6);
+        leaveStageSpotButton = new Button("get my ass outta here!");
 
-        this.getChildren().addAll(bgImg, spot1, spot2, spot3, spot4);
-
-
-
-
+        this.getChildren().addAll(bgImg, stageSpots[0], stageSpots[1], stageSpots[2], stageSpots[3]);
     }
 
 }
