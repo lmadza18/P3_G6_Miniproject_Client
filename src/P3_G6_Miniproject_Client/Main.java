@@ -16,11 +16,18 @@ public class Main extends Application {
     public static RootUI root = new RootUI();
 
 
+
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
 
 
+
+
+
+
+        /*
         // ------------------------------------------- OSC TEST
         final OSCClient c;
 
@@ -55,6 +62,8 @@ public class Main extends Application {
 
         // ------------------------------------------- OSC TEST
 
+
+         */
         primaryStage.setTitle("Band Room");
         primaryStage.setFullScreen(true);
         primaryStage.setScene(new Scene(root));
@@ -67,6 +76,9 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+
+
 }
 
 

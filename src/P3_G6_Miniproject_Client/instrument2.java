@@ -43,6 +43,7 @@ public class instrument2 {
             for (Map.Entry<String, Media> entry : map.entrySet()) {
                 if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable && noteOn == false) {
                     this.playSound(entry.getValue());
+
                 }
             }
         });
