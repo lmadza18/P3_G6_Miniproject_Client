@@ -21,7 +21,6 @@ public class OC {
     }
 
     OC(){
-        client = null;
         try {
             client = OSCClient.newUsing(OSCClient.UDP);    // create UDP client with any free port number
             client.setTarget(new InetSocketAddress("localhost", 8000));  // talk to scsynth on the same machine
@@ -39,8 +38,6 @@ public class OC {
         try {
             // ok, unsubscribe getting info messages
             client.send(new OSCMessage("/hello", new Object[]{new Integer(0)}));
-
-            client.send(new OSCMessage("/test", new Object[]{new Integer(0)}));
 
             // ok, stop the client
             // ; this isn't really necessary as we call dispose soon
