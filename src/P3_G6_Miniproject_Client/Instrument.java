@@ -7,7 +7,7 @@ import java.io.File;
 import java.util.Map;
 
 public class Instrument {
-    private String name;
+    private String type;
     private Media[] media = {};
     private boolean isPlayable = false;
     private boolean noteOn = false;
@@ -15,19 +15,31 @@ public class Instrument {
 
     public Instrument(int id, RootUI rootUI) {
 
-        if (id == 0) {
-            setName("Guitar");
-            setInstrument(name);
-        } else if (id == 1) {
-            setName("Drums");
-            setInstrument(name);
-        } else if (id == 2) {
-            setName("Bass");
-            setInstrument(name);
-        } else if (id == 3) {
-            setName("Piano");
-            setInstrument(name);
+        switch (id) {
+            case 0:
+                this.type = "Guitar";
+                break;
+            case 1:
+                this.type = "Drums";
+                break;
+            case 2:
+                this.type = "Bass";
+                break;
+            case 3:
+                this.type = "Piano";
+                break;
         }
+
+        this.media = new Media[]{
+                new Media(new File("src/audio_files/" + type + "/0C" + type + ".wav").toURI().toString()),
+                new Media(new File("src/audio_files/" + type + "/0D" + type + ".wav").toURI().toString()),
+                new Media(new File("src/audio_files/" + type + "/0E" + type + ".wav").toURI().toString()),
+                new Media(new File("src/audio_files/" + type + "/0F" + type + ".wav").toURI().toString()),
+                new Media(new File("src/audio_files/" + type + "/0G" + type + ".wav").toURI().toString()),
+                new Media(new File("src/audio_files/" + type + "/1A" + type + ".wav").toURI().toString()),
+                new Media(new File("src/audio_files/" + type + "/1B" + type + ".wav").toURI().toString()),
+                new Media(new File("src/audio_files/" + type + "/1C" + type + ".wav").toURI().toString())
+        };
 
         map = Map.of(
                 "A", media[0],
@@ -85,9 +97,5 @@ public class Instrument {
 
     public void setPlayable(boolean isPlayable) {
         this.isPlayable = isPlayable;
-    }
-
-    private void setName(String name) {
-        this.name = name;
     }
 }
