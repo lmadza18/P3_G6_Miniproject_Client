@@ -10,6 +10,7 @@ public class Instrument {
     private String type;
     private Media[] media = {};
     private boolean isPlayable = false;
+    private boolean isRythmic = false;
     private boolean noteOn = false;
     private Map<String, Media> map;
 
@@ -21,6 +22,7 @@ public class Instrument {
                 break;
             case 1:
                 this.type = "Drums";
+                this.isRythmic = true;
                 break;
             case 2:
                 this.type = "Bass";
@@ -67,7 +69,9 @@ public class Instrument {
         mediaPlayer.setAutoPlay(true);
         Main.root.setOnKeyReleased(e -> {
             System.out.println(e.getCode());
-            mediaPlayer.setVolume(0);
+            if(!this.isRythmic) {
+                mediaPlayer.setVolume(0);
+            }
             this.noteOn = false;
         });
     }
