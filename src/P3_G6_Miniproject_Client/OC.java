@@ -40,8 +40,6 @@ public class OC {
             // ok, unsubscribe getting info messages
             client.send(new OSCMessage("/hello", new Object[]{new Integer(0)}));
 
-            client.send(new OSCMessage("/test", new Object[]{new Integer(0)}));
-
             // ok, stop the client
             // ; this isn't really necessary as we call dispose soon
         } catch (IOException /* | InterruptedException */ e11) {
