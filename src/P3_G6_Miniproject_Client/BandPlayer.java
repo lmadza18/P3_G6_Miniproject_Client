@@ -7,7 +7,7 @@ import javafx.scene.image.ImageView;
 public class BandPlayer extends ImageView {
 
     int id;
-    boolean taken = false;
+    //boolean taken = false;
     double x;
     double y;
     instrument2 instrument;

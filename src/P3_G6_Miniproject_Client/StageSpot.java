@@ -75,7 +75,7 @@ public class StageSpot extends StackPane {
     }
 
     public void leaveIt() {
-        bandPlayer.taken = false;
+        Main.root.bandPlayersTaken[spotId] = false;
         this.taken = false;
         this.getChildren().remove(bandPlayer);
         for (int i = 0; i < 4; i++)
@@ -83,7 +83,7 @@ public class StageSpot extends StackPane {
     }
 
     public void takeIt() {
-        bandPlayer.taken = true;
+        Main.root.bandPlayersTaken[spotId] = true;
         taken = true;
 
         bandPlayer.pickUpInstrument();
