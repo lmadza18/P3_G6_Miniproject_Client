@@ -1,5 +1,6 @@
 package P3_G6_Miniproject_Client;
 
+import de.sciss.net.OSCMessage;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,6 +28,9 @@ public class RootUI extends Pane {
 
     }
 
+    void setMess(OSCMessage mess) {
+
+    }
     public void start() {
         ImageView bgImg = new ImageView("images/stage.jpg");
         bgImg.setFitWidth(this.getWidth());
