@@ -2,17 +2,18 @@ package P3_G6_Miniproject_Client;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+
 import java.io.File;
 import java.util.Map;
 
-public class instrument2 {
+public class Instrument {
     private String name;
     private Media[] media = {};
     private boolean isPlayable = false;
     private boolean noteOn = false;
     private Map<String, Media> map;
 
-    public instrument2(int id, RootUI rootUI) {
+    public Instrument(int id, RootUI rootUI) {
 
         if (id == 0) {
             setName("Guitar");
