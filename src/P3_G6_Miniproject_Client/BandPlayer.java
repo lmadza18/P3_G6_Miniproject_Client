@@ -12,16 +12,15 @@ public class BandPlayer extends ImageView {
     double y;
     instrument2 instrument;
 
-    BandPlayer(String url, int id) {
-        Image image = new Image(url);
-        this.setImage(image);
 
+
+    BandPlayer(int id) {
         this.id = id;
+
+        this.setImage(Main.root.images[id]);
 
         this.setFitHeight(-50);
         this.setFitWidth(-50);
-
-
 
 
     }

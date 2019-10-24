@@ -1,6 +1,7 @@
 package P3_G6_Miniproject_Client;
 
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
@@ -9,9 +10,17 @@ public class RootUI extends Pane {
 
 
     StageSpot[] stageSpots = new StageSpot[4];
-    BandPlayer[] bandPlayers = new BandPlayer[4];
     InstrumentPickerWindow instrumentPickerWindow;
     Button leaveStageSpotButton;
+
+    boolean[] bandPlayersTaken = {false, false, false, false};
+
+    Image[] images = {
+            new Image("images/guitarist.png"),
+            new Image("images/drummer1.png"),
+            new Image("images/bassist.png"),
+            new Image("images/sprite.png")
+    };
 
     RootUI() {
 
@@ -22,11 +31,6 @@ public class RootUI extends Pane {
         ImageView bgImg = new ImageView("images/stage.jpg");
         bgImg.setFitWidth(this.getWidth());
         bgImg.setFitHeight(this.getHeight());
-
-        bandPlayers[0] = new BandPlayer("images/guitarist.png", 0);
-        bandPlayers[1] = new BandPlayer("images/drummer1.png", 1);
-        bandPlayers[2] = new BandPlayer("images/bassist.png", 2);
-        bandPlayers[3] = new BandPlayer("images/sprite.png", 3);
 
         stageSpots[0] = new StageSpot(this.getWidth() / 8, this.getHeight() / 8 * 6);
         stageSpots[1] = new StageSpot(this.getWidth() / 8 * 3, this.getHeight() / 8 * 5.5);

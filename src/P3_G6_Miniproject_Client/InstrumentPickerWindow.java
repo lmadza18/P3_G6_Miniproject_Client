@@ -7,7 +7,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
-import java.util.ArrayList;
 
 public class InstrumentPickerWindow extends Pane {
     Pane background = new Pane();
@@ -22,11 +21,10 @@ public class InstrumentPickerWindow extends Pane {
     Button leftButton;
     Button rightButton;
 
-    int switchIndex = 0;
+    int switchIndex;
 
     // Add all character images to an array
-    ArrayList<ImageView> images = new ArrayList<>();
-    ArrayList<Integer> id = new ArrayList<>();
+    ImageView[] imageViews = new ImageView[4];
 
     public InstrumentPickerWindow() {
 
@@ -41,18 +39,23 @@ public class InstrumentPickerWindow extends Pane {
 
         window.setStyle("-fx-background-color: #4a4a4a;");
 
-
-        // Resizing all character images
-        for (int i=0; i < Main.root.bandPlayers.length; i++) {
-            if (!Main.root.bandPlayers[i].taken) {
-                images.add(Main.root.bandPlayers[i].getImg());
-                id.add(Main.root.bandPlayers[i].getPlayerId());
-            }
+        // Add images to the Imageviews
+        for (int i = 0; i < Main.root.images.length; i++) {
+            imageViews[i] = new ImageView(Main.root.images[i]);
         }
 
-        for (ImageView img: images){
+        // Resizing all character images
+        for (ImageView img : imageViews) {
             img.setFitWidth(width / 2);
             img.setFitHeight(width / 2);
+        }
+
+        // set starting switchIndex value
+        for (int i = 0; i < Main.root.bandPlayersTaken.length; i++) {
+            if (!Main.root.bandPlayersTaken[i]) {
+                switchIndex = i;
+                break;
+            }
         }
 
 
@@ -67,9 +70,9 @@ public class InstrumentPickerWindow extends Pane {
         closeImg.setFitWidth(buttonSize);
         closeImg.setFitHeight(buttonSize);
         leftImg.setFitWidth(buttonSize);
-        leftImg.setFitHeight(buttonSize*2);
+        leftImg.setFitHeight(buttonSize * 2);
         rightImg.setFitWidth(buttonSize);
-        rightImg.setFitHeight(buttonSize*2);
+        rightImg.setFitHeight(buttonSize * 2);
 
         // UI buttons
         chooseButton = new Button("choose");
@@ -85,41 +88,52 @@ public class InstrumentPickerWindow extends Pane {
         leftButton.setStyle("-fx-background-color: transparent");
         rightButton.setStyle("-fx-background-color: transparent");
 
-        window.setCenter(images.get(switchIndex));
+        window.setCenter(imageViews[switchIndex]);
         window.setTop(closeButton);
         window.setBottom(chooseButton);
         window.setLeft(leftButton);
         window.setRight(rightButton);
-        BorderPane.setMargin(images.get(switchIndex), new Insets(10));
+        BorderPane.setMargin(imageViews[switchIndex], new Insets(10));
         BorderPane.setAlignment(leftButton, Pos.CENTER);
         BorderPane.setAlignment(rightButton, Pos.CENTER);
         BorderPane.setAlignment(chooseButton, Pos.BOTTOM_RIGHT);
         //chooseSpot();
         switchRight();
         switchLeft();
+        rightButton.setOnAction(actionEvent -> {
+            switchRight();
+        });
+        leftButton.setOnAction(actionEvent -> {
+            switchLeft();
+        });
     }
 
 
     void switchRight() {
-        rightButton.setOnAction(actionEvent -> {
-            if (switchIndex == images.size() - 1) {
-                switchIndex = 0;
-            } else {
+        if (switchIndex+1 < imageViews.length) {
+            if (!Main.root.bandPlayersTaken[switchIndex+1]) {
                 switchIndex++;
+                window.setCenter(imageViews[switchIndex]);
+            } else {
+                switchRight();
             }
-            window.setCenter(images.get(switchIndex));
-
-        });
+        } else {
+            switchIndex = 0;
+            switchRight();
+        }
     }
 
     void switchLeft() {
-        leftButton.setOnAction(actionEvent -> {
-            if (switchIndex == 0) {
-                switchIndex = images.size() - 1;
-            } else {
+        if (switchIndex-1 >= 0) {
+            if (!Main.root.bandPlayersTaken[switchIndex-1]) {
                 switchIndex--;
+                window.setCenter(imageViews[switchIndex]);
+            } else {
+                switchLeft();
             }
-            window.setCenter(images.get(switchIndex));
-        });
+        } else {
+            switchIndex = imageViews.length-1;
+            switchLeft();
+        }
     }
 }

@@ -6,6 +6,7 @@ import javafx.scene.layout.StackPane;
 public class StageSpot extends StackPane {
 
     StageSpotButton stageSpotButton;
+    BandPlayer bandPlayer;
 
     boolean taken = false;
 
@@ -22,6 +23,7 @@ public class StageSpot extends StackPane {
         this.xInit = x;
         this.yInit = y;
 //
+        //bandPlayer = new BandPlayer();
         stageSpotButton = new StageSpotButton();
         this.getChildren().add(stageSpotButton);
 
@@ -60,9 +62,10 @@ public class StageSpot extends StackPane {
             Main.root.getChildren().remove(Main.root.instrumentPickerWindow);
             Main.root.getChildren().add(Main.root.leaveStageSpotButton);
 
-            Main.root.bandPlayers[spotId].setFitWidth(Main.root.getWidth() / 5);
-            Main.root.bandPlayers[spotId].setFitHeight(Main.root.getWidth() / 5);
-            movePos(-Main.root.bandPlayers[spotId].getFitWidth() / 2, -this.getHeight() * 1.5);
+            bandPlayer = new BandPlayer(spotId);
+            bandPlayer.setFitWidth(Main.root.getWidth() / 5);
+            bandPlayer.setFitHeight(Main.root.getWidth() / 5);
+            movePos(-bandPlayer.getFitWidth() / 2, -this.getHeight() * 1.5);
 
             takeIt();
 
@@ -72,21 +75,19 @@ public class StageSpot extends StackPane {
     }
 
     public void leaveIt() {
-        Main.root.bandPlayers[spotId].taken = false;
+        bandPlayer.taken = false;
         this.taken = false;
-        Main.root.bandPlayers[spotId].putDownInstrument();
-        this.getChildren().remove(Main.root.bandPlayers[spotId]);
+        this.getChildren().remove(bandPlayer);
         for (int i = 0; i < 4; i++)
             Main.root.stageSpots[i].stageSpotButton.setVisible(true);
-
     }
 
     public void takeIt() {
-        Main.root.bandPlayers[spotId].taken = true;
+        bandPlayer.taken = true;
         taken = true;
 
-        Main.root.bandPlayers[spotId].pickUpInstrument();
-        this.getChildren().add(Main.root.bandPlayers[spotId]);
+        bandPlayer.pickUpInstrument();
+        this.getChildren().add(bandPlayer);
 
         for (int i = 0; i < 4; i++)
             Main.root.stageSpots[i].stageSpotButton.setVisible(false);
@@ -103,9 +104,10 @@ public class StageSpot extends StackPane {
     void leaveStageSpotButtonListener() {
         Main.root.leaveStageSpotButton.setOnAction(actionEvent -> {
             leaveIt();
+            bandPlayer.putDownInstrument();
             this.movePos(-stageSpotButton.imageSize / 2, -stageSpotButton.imageSize / 2);
             Main.root.getChildren().removeAll(Main.root.leaveStageSpotButton);
-            this.getChildren().remove(Main.root.bandPlayers[spotId]);
+            this.getChildren().remove(bandPlayer);
         });
     }
 
