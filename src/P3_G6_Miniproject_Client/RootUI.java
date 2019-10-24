@@ -14,13 +14,12 @@ import java.net.SocketAddress;
 
 public class RootUI extends Pane {
 
-
+    OC oc = new OC();
     StageSpot[] stageSpots = new StageSpot[4];
     BandPlayer[] bandPlayers = new BandPlayer[4];
     InstrumentPickerWindow instrumentPickerWindow;
     Button leaveStageSpotButton;
 
-    OSCClient client;
     RootUI() {
 
 
@@ -32,31 +31,6 @@ public class RootUI extends Pane {
         bgImg.setFitWidth(this.getWidth());
         bgImg.setFitHeight(this.getHeight());
 
-        try {
-            client = OSCClient.newUsing(OSCClient.UDP);    // create UDP client with any free port number
-            client.setTarget(new InetSocketAddress("localhost", 8000));  // talk to scsynth on the same machine
-            client.start();  // open channel and (in the case of TCP) connect, then start listening for replies
-        } catch (IOException e1) {
-            e1.printStackTrace();
-            return;
-        }
-
-        // register a listener for incoming osc messages
-        client.addOSCListener(new OSCListener() {
-            public void messageReceived(OSCMessage message, SocketAddress address, long time) {
-            }
-        });
-        try {
-            // ok, unsubscribe getting info messages
-            client.send(new OSCMessage("/hello", new Object[]{new Integer(0)}));
-
-            client.send(new OSCMessage("/test", new Object[]{new Integer(0)}));
-
-            // ok, stop the client
-            // ; this isn't really necessary as we call dispose soon
-        } catch (IOException /* | InterruptedException */ e11) {
-            e11.printStackTrace();
-        }
 
         //client.send(new OSCMessage("/" + string, new Object[]{new Integer(0)}));
 
@@ -77,11 +51,4 @@ public class RootUI extends Pane {
         this.getChildren().addAll(bgImg, stageSpots[0], stageSpots[1], stageSpots[2], stageSpots[3]);
     }
 
-    public void ClientMessage(String string){
-        try{
-        client.send(new OSCMessage("/" + string, new Object[]{new Integer(0)}));
-        } catch (IOException /* | InterruptedException */ e11) {
-            e11.printStackTrace();
-        }
-    }
 }
