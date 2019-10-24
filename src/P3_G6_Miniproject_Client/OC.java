@@ -21,7 +21,6 @@ public class OC {
     }
 
     OC(){
-        client = null;
         try {
             client = OSCClient.newUsing(OSCClient.UDP);    // create UDP client with any free port number
             client.setTarget(new InetSocketAddress("localhost", 8000));  // talk to scsynth on the same machine
@@ -34,6 +33,7 @@ public class OC {
         // register a listener for incoming osc messages
         client.addOSCListener(new OSCListener() {
             public void messageReceived(OSCMessage message, SocketAddress address, long time) {
+                System.out.println("MESSAGE:" + message + " RECEIVED FROM: "+ address);
             }
         });
         try {
