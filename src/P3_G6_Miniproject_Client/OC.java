@@ -64,7 +64,7 @@ public class OC {
                     int InstrumentId = (int)message.getArg(1);
                     //String operation = (String)message.getArg(2);
                     if (message.getArg(2).equals("take")){
-                        SPreference.displayBandplayer(spotId, InstrumentId);
+                        SPreference[spotId].displayBandPlayer(spotId, InstrumentId);
                     }
                 }
             }
