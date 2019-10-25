@@ -57,6 +57,7 @@ public class Instrument {
         rootUI.setOnKeyPressed(e -> {
             for (Map.Entry<String, Media> entry : map.entrySet()) {
                 if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable && noteOn == false) {
+                    OC.sendMessage(this.type + "/" + entry.getKey());
                     this.playSound(entry.getValue());
                 }
             }

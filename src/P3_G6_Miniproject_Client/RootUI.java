@@ -9,7 +9,7 @@ import javafx.scene.layout.Pane;
 
 public class RootUI extends Pane {
 
-    OC oc;
+    public OC oc;
     StageSpot[] stageSpots = new StageSpot[4];
     InstrumentPickerWindow instrumentPickerWindow;
     Button leaveStageSpotButton;

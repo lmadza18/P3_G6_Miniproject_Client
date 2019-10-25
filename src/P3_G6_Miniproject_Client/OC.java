@@ -11,13 +11,10 @@ import java.net.SocketAddress;
 public class OC {
     static OSCClient client;
     StageSpot[] SPreference;
-    OC(StageSpot[] spr){
-        SPreference = spr;
-        System.out.println(spr[0].taken);
-    }
 
-    static public void sendMessage(String string){
-        try{
+
+    static public void sendMessage(String string) {
+        try {
             System.out.println("Client sending: " + string);
             client.send(new OSCMessage("/" + string, new Object[]{new Integer(0)}));
         } catch (IOException /* | InterruptedException */ e11) {
@@ -25,10 +22,13 @@ public class OC {
         }
     }
 
-    OC(){
+    OC(StageSpot[] spr) {
+        SPreference = spr;
+        System.out.println(spr[0].taken);
+
         try {
             client = OSCClient.newUsing(OSCClient.UDP);    // create UDP client with any free port number
-            client.setTarget(new InetSocketAddress("192.168.43.35", 8000));  // talk to scsynth on the same machine
+            client.setTarget(new InetSocketAddress("localhost", 8000));  // talk to scsynth on the same machine
             client.start();  // open channel and (in the case of TCP) connect, then start listening for replies
         } catch (IOException e1) {
             e1.printStackTrace();
@@ -38,9 +38,11 @@ public class OC {
         // register a listener for incoming osc messages
         client.addOSCListener(new OSCListener() {
             public void messageReceived(OSCMessage message, SocketAddress address, long time) {
-                System.out.println("MESSAGE:" + message.getName() + " RECEIVED FROM: "+ address);
+                System.out.println("MESSAGE:" + message.getName() + " RECEIVED FROM: " + address);
                 if (message.getName().contains("/server/setPlayerId")) {
-                    System.out.println("GOT SERVER ID : " + message.getArg(0));
+                    int sID = (int) message.getArg(0);
+                    SPreference[sID].playerID =  sID;
+                    System.out.println("SPreference[id].playerID" +  SPreference[sID].playerID);
                 }
             }
         });
