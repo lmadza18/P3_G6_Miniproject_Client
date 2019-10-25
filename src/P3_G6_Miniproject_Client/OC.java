@@ -60,11 +60,12 @@ public class OC {
                     System.out.println("SPreference[id].playerID" +  SPreference[sID].playerID);
                 }
                 if (message.getName().contains("/GUImessage")) {
+                    System.out.println(message.getArgCount());
                     int spotId = (int)message.getArg(0);
                     int InstrumentId = (int)message.getArg(1);
                     //String operation = (String)message.getArg(2);
                     if (message.getArg(2).equals("take")){
-                        SPreference[spotId].displayBandPlayer(spotId, InstrumentId);
+                        SPreference[spotId].displayBandPlayer(InstrumentId);
                     }
                 }
             }
