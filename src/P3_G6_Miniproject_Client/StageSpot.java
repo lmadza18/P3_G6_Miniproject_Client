@@ -15,9 +15,11 @@ public class StageSpot extends StackPane {
     double xInit;
     double yInit;
 
+    private int instrumentId;
     private int spotId;
 
-    public StageSpot(double x, double y) {
+    public StageSpot(int id, double x, double y) {
+        this.spotId = id;
         this.x = x;
         this.y = y;
         this.xInit = x;
@@ -58,15 +60,16 @@ public class StageSpot extends StackPane {
     public void instrumentPickerWindowChooseButtonListener() {
         Main.root.instrumentPickerWindow.chooseButton.setOnAction(actionEvent -> {
 
-            this.spotId = Main.root.instrumentPickerWindow.switchIndex;
+            this.instrumentId = Main.root.instrumentPickerWindow.switchIndex;
             Main.root.getChildren().remove(Main.root.instrumentPickerWindow);
             Main.root.getChildren().add(Main.root.leaveStageSpotButton);
 
-            bandPlayer = new BandPlayer(spotId);
+            bandPlayer = new BandPlayer(instrumentId);
             bandPlayer.setFitWidth(Main.root.getWidth() / 5);
             bandPlayer.setFitHeight(Main.root.getWidth() / 5);
             movePos(-bandPlayer.getFitWidth() / 2, -this.getHeight() * 1.5);
 
+            OC.sendMessage("GUImessage", this.spotId, this.instrumentId, "take");
             takeIt();
 
             leaveStageSpotButtonListener();
@@ -75,7 +78,7 @@ public class StageSpot extends StackPane {
     }
 
     public void leaveIt() {
-        Main.root.bandPlayersTaken[spotId] = false;
+        Main.root.bandPlayersTaken[instrumentId] = false;
         this.taken = false;
         this.getChildren().remove(bandPlayer);
         for (int i = 0; i < 4; i++)
@@ -83,7 +86,7 @@ public class StageSpot extends StackPane {
     }
 
     public void takeIt() {
-        Main.root.bandPlayersTaken[spotId] = true;
+        Main.root.bandPlayersTaken[instrumentId] = true;
         taken = true;
 
         bandPlayer.pickUpInstrument();

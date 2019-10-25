@@ -22,6 +22,21 @@ public class OC {
         }
     }
 
+    static public void sendMessage(String string, int spotId, int instrumentId, String operation){
+        Object args[] = new Object[3];
+        args[0] = spotId;
+        args[1] = instrumentId;
+        args[2] = operation;
+
+        try {
+            System.out.println("sending message");
+            client.send(new OSCMessage("/" + string, args));
+            System.out.println("sent message");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     OC(StageSpot[] spr) {
         SPreference = spr;
         System.out.println(spr[0].taken);

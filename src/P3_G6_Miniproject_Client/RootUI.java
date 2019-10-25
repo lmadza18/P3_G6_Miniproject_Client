@@ -36,10 +36,10 @@ public class RootUI extends Pane {
         bgImg.setFitWidth(this.getWidth());
         bgImg.setFitHeight(this.getHeight());
 
-        stageSpots[0] = new StageSpot(this.getWidth() / 8, this.getHeight() / 8 * 6);
-        stageSpots[1] = new StageSpot(this.getWidth() / 8 * 3, this.getHeight() / 8 * 5.5);
-        stageSpots[2] = new StageSpot(this.getWidth() / 8 * 5, this.getHeight() / 8 * 5.5);
-        stageSpots[3] = new StageSpot(this.getWidth() / 8 * 7, this.getHeight() / 8 * 6);
+        stageSpots[0] = new StageSpot(0,this.getWidth() / 8, this.getHeight() / 8 * 6);
+        stageSpots[1] = new StageSpot(1,this.getWidth() / 8 * 3, this.getHeight() / 8 * 5.5);
+        stageSpots[2] = new StageSpot(2,this.getWidth() / 8 * 5, this.getHeight() / 8 * 5.5);
+        stageSpots[3] = new StageSpot(3,this.getWidth() / 8 * 7, this.getHeight() / 8 * 6);
 
         instrumentPickerWindow = new InstrumentPickerWindow();
 
