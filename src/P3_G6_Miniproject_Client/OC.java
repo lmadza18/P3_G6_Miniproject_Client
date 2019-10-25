@@ -43,7 +43,7 @@ public class OC {
 
         try {
             client = OSCClient.newUsing(OSCClient.UDP);    // create UDP client with any free port number
-            client.setTarget(new InetSocketAddress("localhost", 8000));  // talk to scsynth on the same machine
+            client.setTarget(new InetSocketAddress("192.168.43.97", 8000));  // talk to scsynth on the same machine
             client.start();  // open channel and (in the case of TCP) connect, then start listening for replies
         } catch (IOException e1) {
             e1.printStackTrace();
@@ -58,6 +58,14 @@ public class OC {
                     int sID = (int) message.getArg(0);
                     SPreference[sID].playerID =  sID;
                     System.out.println("SPreference[id].playerID" +  SPreference[sID].playerID);
+                }
+                if (message.getName().contains("/GUImessage")) {
+                    int spotId = (int)message.getArg(0);
+                    int InstrumentId = (int)message.getArg(1);
+                    //String operation = (String)message.getArg(2);
+                    if (message.getArg(2).equals("take")){
+                        SPreference.displayBandplayer(spotId, InstrumentId);
+                    }
                 }
             }
         });
