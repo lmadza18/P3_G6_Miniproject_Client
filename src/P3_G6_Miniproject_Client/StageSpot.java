@@ -9,7 +9,7 @@ public class StageSpot extends StackPane {
     BandPlayer bandPlayer;
 
     boolean taken = false;
-
+    int serverID;
     double x;
     double y;
     double xInit;

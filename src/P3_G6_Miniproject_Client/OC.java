@@ -10,7 +10,11 @@ import java.net.SocketAddress;
 
 public class OC {
     static OSCClient client;
-
+    StageSpot[] SPreference;
+    OC(StageSpot[] spr){
+        SPreference = spr;
+        System.out.println(spr[0].taken);
+    }
 
     static public void sendMessage(String string){
         try{
@@ -35,6 +39,9 @@ public class OC {
         client.addOSCListener(new OSCListener() {
             public void messageReceived(OSCMessage message, SocketAddress address, long time) {
                 System.out.println("MESSAGE:" + message.getName() + " RECEIVED FROM: "+ address);
+                if (message.getName().contains("/server/setPlayerId")) {
+                    System.out.println("GOT SERVER ID : " + message.getArg(0));
+                }
             }
         });
         try {
