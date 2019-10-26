@@ -22,7 +22,7 @@ public class OC {
         }
     }
 
-    static public void sendMessage(String string, int spotId, int instrumentId, String operation){
+    static public void sendMessage(String string, int spotId, int instrumentId, String operation) {
         Object args[] = new Object[3];
         args[0] = spotId;
         args[1] = instrumentId;
@@ -43,7 +43,7 @@ public class OC {
 
         try {
             client = OSCClient.newUsing(OSCClient.UDP);    // create UDP client with any free port number
-            client.setTarget(new InetSocketAddress("192.168.43.97", 8000));  // talk to scsynth on the same machine
+            client.setTarget(new InetSocketAddress("192.168.8.103", 8000));  // talk to scsynth on the same machine
             client.start();  // open channel and (in the case of TCP) connect, then start listening for replies
         } catch (IOException e1) {
             e1.printStackTrace();
@@ -56,16 +56,20 @@ public class OC {
                 System.out.println("MESSAGE:" + message.getName() + " RECEIVED FROM: " + address);
                 if (message.getName().contains("/server/setPlayerId")) {
                     int sID = (int) message.getArg(0);
-                    SPreference[sID].playerID =  sID;
-                    System.out.println("SPreference[id].playerID" +  SPreference[sID].playerID);
+                    SPreference[sID].playerID = sID;
+                    System.out.println("SPreference[id].playerID" + SPreference[sID].playerID);
                 }
+                // Receiving GUI messages
                 if (message.getName().contains("/GUImessage")) {
                     System.out.println(message.getArgCount());
-                    int spotId = (int)message.getArg(0);
-                    int InstrumentId = (int)message.getArg(1);
+                    int spotId = (int) message.getArg(0);
+                    int InstrumentId = (int) message.getArg(1);
                     //String operation = (String)message.getArg(2);
-                    if (message.getArg(2).equals("take")){
+                    if (message.getArg(2).equals("take")) {
                         SPreference[spotId].displayBandPlayer(InstrumentId);
+                    }
+                    if (message.getArg(2).equals("leave")) {
+                        SPreference[spotId].removeBandPlayer();
                     }
                 }
             }

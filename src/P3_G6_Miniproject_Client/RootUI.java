@@ -13,8 +13,7 @@ public class RootUI extends Pane {
     StageSpot[] stageSpots = new StageSpot[4];
     InstrumentPickerWindow instrumentPickerWindow;
     Button leaveStageSpotButton;
-
-    boolean[] bandPlayersTaken = {false, false, false, false};
+    boolean playing;
 
     Image[] images = {
             new Image("images/guitarist.png"),

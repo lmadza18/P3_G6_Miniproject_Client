@@ -21,7 +21,7 @@ public class InstrumentPickerWindow extends Pane {
     Button leftButton;
     Button rightButton;
 
-    int switchIndex;
+    int switchIndex = 0;
 
     // Add all character images to an array
     ImageView[] imageViews = new ImageView[4];
@@ -48,14 +48,6 @@ public class InstrumentPickerWindow extends Pane {
         for (ImageView img : imageViews) {
             img.setFitWidth(width / 2);
             img.setFitHeight(width / 2);
-        }
-
-        // set starting switchIndex value
-        for (int i = 0; i < Main.root.bandPlayersTaken.length; i++) {
-            if (!Main.root.bandPlayersTaken[i]) {
-                switchIndex = i;
-                break;
-            }
         }
 
 
@@ -110,30 +102,18 @@ public class InstrumentPickerWindow extends Pane {
 
 
     void switchRight() {
-        if (switchIndex+1 < imageViews.length) {
-            if (!Main.root.bandPlayersTaken[switchIndex+1]) {
-                switchIndex++;
-                window.setCenter(imageViews[switchIndex]);
-            } else {
-                switchRight();
-            }
-        } else {
+        switchIndex++;
+        if (switchIndex >= imageViews.length) {
             switchIndex = 0;
-            switchRight();
         }
+        window.setCenter(imageViews[switchIndex]);
     }
 
     void switchLeft() {
-        if (switchIndex-1 >= 0) {
-            if (!Main.root.bandPlayersTaken[switchIndex-1]) {
-                switchIndex--;
-                window.setCenter(imageViews[switchIndex]);
-            } else {
-                switchLeft();
-            }
-        } else {
+        switchIndex--;
+        if (switchIndex < 0) {
             switchIndex = imageViews.length-1;
-            switchLeft();
         }
+        window.setCenter(imageViews[switchIndex]);
     }
 }
