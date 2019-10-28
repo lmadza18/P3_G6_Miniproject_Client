@@ -8,7 +8,6 @@ import java.util.Map;
 
 public class Instrument {
     public String type;
-    private Media[] media = {};
     private Note[] notes = {};
     public boolean isPlayable = false;
     private boolean isRhythmic = false;
@@ -69,14 +68,14 @@ public class Instrument {
         }
     }
 
-
     public void playSound(Media media) {
         this.noteOn = true;
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setAutoPlay(true);
+
         Main.root.setOnKeyReleased(e -> {
             for (Map.Entry<String, Note> entry : map.entrySet()) {
-                if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable && entry.getValue().noteOn == true) {
+                if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable && entry.getValue().noteOn) {
                     System.out.println("RELEASING: " + entry.getKey());
                     if (!this.isRhythmic) {
                         System.out.println("SETTING VOLUME OF " + media.getSource());
@@ -87,4 +86,6 @@ public class Instrument {
             this.noteOn = false;
         });
     }
+
+
 }

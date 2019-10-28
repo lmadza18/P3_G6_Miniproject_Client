@@ -19,17 +19,11 @@ public class Note {
 
 
 
-    /*/////
-    public void playNote() {
-        this.mediaPlayer.stop();
-        this.mediaPlayer = new MediaPlayer(media);
-        this.mediaPlayer.play();
-    }
-     *//////
-
     public Media getMedia() {
         return this.media;
     }
+
+
 }
 
 
