@@ -23,10 +23,10 @@ public class RootUI extends Pane {
     };
 
     Instrument[] OtherPlayers = {
-            new Instrument(0, Main.root),
-            new Instrument(1, Main.root),
-            new Instrument(2, Main.root),
-            new Instrument(3, Main.root)
+            new Instrument(0, Main.root, false),
+            new Instrument(1, Main.root, false),
+            new Instrument(2, Main.root, false),
+            new Instrument(3, Main.root, false)
     };
 
     RootUI() {

@@ -22,7 +22,7 @@ public class BandPlayer extends ImageView {
         this.setFitHeight(-50);
         this.setFitWidth(-50);
 
-        this.instrument = new Instrument(this.id, Main.root);
+        this.instrument = new Instrument(this.id, Main.root, true);
 
     }
 
