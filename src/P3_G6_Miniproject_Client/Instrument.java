@@ -54,7 +54,7 @@ public class Instrument {
                 "J", notes[6],
                 "K", notes[7]
         );
-        if (me) {
+        //if (me) {
             rootUI.setOnKeyPressed(e -> {
                 for (Map.Entry<String, Note> entry : map.entrySet()) {
                     if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable && noteOn == false) {
@@ -64,7 +64,7 @@ public class Instrument {
                     }
                 }
             });
-        }
+        //}
     }
 
     public void playSound(Media media) {
