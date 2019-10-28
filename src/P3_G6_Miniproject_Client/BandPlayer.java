@@ -7,22 +7,25 @@ import javafx.scene.image.ImageView;
 public class BandPlayer extends ImageView {
 
     int id;
-    //boolean taken = false;
+    int spotId;
+    boolean me;
     double x;
     double y;
     Instrument instrument;
 
 
 
-    BandPlayer(int id) {
+    BandPlayer(int spotId, int id, boolean me) {
         this.id = id;
+        this.spotId = spotId;
+        this.me = me;
 
         this.setImage(Main.root.images[id]);
 
         this.setFitHeight(-50);
         this.setFitWidth(-50);
 
-        this.instrument = new Instrument(this.id, Main.root, true);
+        instrument = new Instrument(this.id, spotId, Main.root, me);
 
     }
 
@@ -35,11 +38,11 @@ public class BandPlayer extends ImageView {
     }
 
     public void pickUpInstrument() {
-        this.instrument.isPlayable = true;
+        instrument.isPlayable = true;
     }
 
     public void putDownInstrument() {
-        this.instrument.isPlayable = false;
+        instrument.isPlayable = false;
     }
 
 

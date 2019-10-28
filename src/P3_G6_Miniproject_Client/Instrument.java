@@ -14,7 +14,7 @@ public class Instrument {
     private boolean noteOn = false;
     public Map<String, Note> map;
 
-    public Instrument(int id, RootUI rootUI, boolean me) {
+    public Instrument(int id, int spotId, RootUI rootUI, boolean me) {
 
         switch (id) {
             case 0:
@@ -54,16 +54,18 @@ public class Instrument {
                 "K", notes[7]
         );
 
-        rootUI.setOnKeyPressed(e -> {
-            for (Map.Entry<String, Note> entry : map.entrySet()) {
-                if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable && noteOn == false) {
+        if (me) {
+            rootUI.setOnKeyPressed(e -> {
 
-                    OC.sendMessage("Sound/" + this.type + "/" + entry.getKey());
-                    this.playSound(entry.getValue().getMedia());
+                for (Map.Entry<String, Note> entry : map.entrySet()) {
+
+                    if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable && noteOn == false) {
+                        OC.sendMessage("Sound/" + this.type + "/" + entry.getKey(), spotId, id, "null");
+                        this.playSound(entry.getValue().getMedia());
+                    }
                 }
-            }
-        });
-
+            });
+        }
     }
 
     public void playSound(Media media) {
