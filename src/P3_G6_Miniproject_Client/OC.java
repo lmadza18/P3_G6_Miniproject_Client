@@ -4,19 +4,32 @@ import de.sciss.net.OSCClient;
 import de.sciss.net.OSCListener;
 import de.sciss.net.OSCMessage;
 
+import javax.print.attribute.standard.Media;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
+import java.net.StandardSocketOptions;
 
 public class OC {
     static OSCClient client;
     StageSpot[] SPreference;
+    Instrument instrument;
 
 
     static public void sendMessage(String string) {
         try {
             System.out.println("Client sending: " + string);
             client.send(new OSCMessage("/" + string, new Object[]{new Integer(0)}));
+        } catch (IOException /* | InterruptedException */ e11) {
+            e11.printStackTrace();
+        }
+    }
+    static public void sendMessage(String string, Media media) {
+        Object[] arg = new Object[1];
+        arg[0] = media;
+        try {
+            System.out.println("Client sending: " + string + " and a media object");
+            client.send(new OSCMessage("/" + string, arg));
         } catch (IOException /* | InterruptedException */ e11) {
             e11.printStackTrace();
         }
@@ -71,6 +84,20 @@ public class OC {
                     if (message.getArg(2).equals("leave")) {
                         SPreference[spotId].removeBandPlayer();
                     }
+                }
+                if (message.getName().contains("/Sound")) {
+                    try{
+                        String[] parts = message.getName().split("/");
+                        String type = parts[1];
+                        String key = parts[2];
+                        String value = parts[3];
+                        
+
+                    }
+                    catch (IllegalArgumentException e){
+                        System.out.println(e);
+                    }
+
                 }
             }
         });
