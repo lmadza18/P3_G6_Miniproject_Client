@@ -14,18 +14,7 @@ import java.net.StandardSocketOptions;
 public class OC {
     static OSCClient client;
     StageSpot[] SPreference;
-    Instrument[] IPreference;
 
-
-
-    static public void sendMessage(String string) {
-        try {
-            System.out.println("Client sending: " + string);
-            client.send(new OSCMessage("/" + string, new Object[]{new Integer(0)}));
-        } catch (IOException /* | InterruptedException */ e11) {
-            e11.printStackTrace();
-        }
-    }
 
     static public void sendMessage(String string, int spotId, int instrumentId, String operation) {
         Object args[] = new Object[3];
@@ -34,22 +23,19 @@ public class OC {
         args[2] = operation;
 
         try {
-            System.out.println("sending message");
             client.send(new OSCMessage("/" + string, args));
-            System.out.println("sent message");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    OC(StageSpot[] spr, Instrument[] ipr) {
+    OC(StageSpot[] spr) {
         SPreference = spr;
-        IPreference = ipr;
         System.out.println(spr[0].taken);
 
         try {
             client = OSCClient.newUsing(OSCClient.UDP);    // create UDP client with any free port number
-            client.setTarget(new InetSocketAddress("192.168.43.207", 8000));  // talk to scsynth on the same machine
+            client.setTarget(new InetSocketAddress("localhost", 8000));  // talk to scsynth on the same machine
             //client.setTarget(new InetSocketAddress("localhost", 8000));  // talk to scsynth on the same machine
             client.start();  // open channel and (in the case of TCP) connect, then start listening for replies
         } catch (IOException e1) {
@@ -61,6 +47,10 @@ public class OC {
         client.addOSCListener(new OSCListener() {
             public void messageReceived(OSCMessage message, SocketAddress address, long time) {
                 System.out.println("MESSAGE:" + message.getName() + " RECEIVED FROM: " + address);
+
+                int spotId = (int) message.getArg(0);
+                int InstrumentId = (int) message.getArg(1);
+
                 if (message.getName().contains("/server/setPlayerId")) {
                     int sID = (int) message.getArg(0);
                     SPreference[sID].playerID = sID;
@@ -68,31 +58,29 @@ public class OC {
                 }
                 // Receiving GUI messages
                 if (message.getName().contains("/GUImessage")) {
-                    System.out.println(message.getArgCount());
-                    int spotId = (int) message.getArg(0);
-                    int InstrumentId = (int) message.getArg(1);
+
                     //String operation = (String)message.getArg(2);
                     if (message.getArg(2).equals("take")) {
-                        SPreference[spotId].displayBandPlayer(InstrumentId);
+                        SPreference[spotId].displayBandPlayer(InstrumentId, false);
                     }
                     if (message.getArg(2).equals("leave")) {
                         SPreference[spotId].removeBandPlayer();
                     }
                 }
                 if (message.getName().contains("/Sound")) {
-                    try{
+                    try {
                         String[] parts = message.getName().split("/");
                         String type = parts[3]; //The type of instrument which is being used by other clients
                         String key = parts[4]; //The key pressed by other clients
                         System.out.println("Key: " + key);
-                        for(int i = 0; i < IPreference.length; i++){
-                            //System.out.println("Map key is " + IPreference[i].map.get(key));
-                            if (type.equals(IPreference[i].type)){
-                                IPreference[i].playSound(IPreference[i].map.get(key).getMedia());
-                            }
+
+                        Instrument instrument = SPreference[spotId].bandPlayer.instrument;
+                        //System.out.println("Map key is " + IPreference[i].map.get(key));
+                        if (type.equals(instrument.type)) {
+                            instrument.playSound(instrument.map.get(key).getMedia());
                         }
-                    }
-                    catch (IllegalArgumentException e){
+
+                    } catch (IllegalArgumentException e) {
                         System.out.println(e);
                     }
 
