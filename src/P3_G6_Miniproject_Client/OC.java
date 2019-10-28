@@ -88,7 +88,7 @@ public class OC {
                         for(int i = 0; i < IPreference.length; i++){
                             //System.out.println("Map key is " + IPreference[i].map.get(key));
                             if (type.equals(IPreference[i].type)){
-                                IPreference[i].playSound(IPreference[i].map.get(key));
+                                IPreference[i].playSound(IPreference[i].map.get(key).getMedia());
                             }
                         }
                     }
