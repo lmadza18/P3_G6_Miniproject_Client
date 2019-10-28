@@ -22,6 +22,13 @@ public class RootUI extends Pane {
             new Image("images/sprite.png")
     };
 
+    Instrument[] OtherPlayers = {
+            new Instrument(0, Main.root),
+            new Instrument(1, Main.root),
+            new Instrument(2, Main.root),
+            new Instrument(3, Main.root)
+    };
+
     RootUI() {
 
 
@@ -45,7 +52,7 @@ public class RootUI extends Pane {
         leaveStageSpotButton = new Button("get my ass outta here!");
 
         this.getChildren().addAll(bgImg, stageSpots[0], stageSpots[1], stageSpots[2], stageSpots[3]);
-        oc = new OC(stageSpots);
+        oc = new OC(stageSpots, OtherPlayers);
     }
 
 }

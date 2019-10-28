@@ -7,12 +7,12 @@ import java.io.File;
 import java.util.Map;
 
 public class Instrument {
-    private String type;
+    public String type;
     private Media[] media = {};
     public boolean isPlayable = false;
     private boolean isRhythmic = false;
     private boolean noteOn = false;
-    private Map<String, Media> map;
+    public Map<String, Media> map;
 
     public Instrument(int id, RootUI rootUI) {
 
@@ -31,6 +31,7 @@ public class Instrument {
                 this.type = "Piano";
                 break;
         }
+
 
         this.media = new Media[]{
                 new Media(new File("src/audio_files/" + type + "/0C" + type + ".wav").toURI().toString()),
@@ -64,7 +65,7 @@ public class Instrument {
         });
     }
 
-    private void playSound(Media media) {
+    public void playSound(Media media) {
         this.noteOn = true;
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setAutoPlay(true);

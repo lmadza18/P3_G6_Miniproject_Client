@@ -5,6 +5,7 @@ import de.sciss.net.OSCListener;
 import de.sciss.net.OSCMessage;
 
 import javax.print.attribute.standard.Media;
+import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
@@ -13,23 +14,14 @@ import java.net.StandardSocketOptions;
 public class OC {
     static OSCClient client;
     StageSpot[] SPreference;
-    Instrument instrument;
+    Instrument[] IPreference;
+
 
 
     static public void sendMessage(String string) {
         try {
             System.out.println("Client sending: " + string);
             client.send(new OSCMessage("/" + string, new Object[]{new Integer(0)}));
-        } catch (IOException /* | InterruptedException */ e11) {
-            e11.printStackTrace();
-        }
-    }
-    static public void sendMessage(String string, Media media) {
-        Object[] arg = new Object[1];
-        arg[0] = media;
-        try {
-            System.out.println("Client sending: " + string + " and a media object");
-            client.send(new OSCMessage("/" + string, arg));
         } catch (IOException /* | InterruptedException */ e11) {
             e11.printStackTrace();
         }
@@ -50,8 +42,9 @@ public class OC {
         }
     }
 
-    OC(StageSpot[] spr) {
+    OC(StageSpot[] spr, Instrument[] ipr) {
         SPreference = spr;
+        IPreference = ipr;
         System.out.println(spr[0].taken);
 
         try {
@@ -91,8 +84,11 @@ public class OC {
                         String type = parts[1];
                         String key = parts[2];
                         String value = parts[3];
-                        
-
+                        for(int i = 0; i <= IPreference.length; i++){
+                            if (type.equals(IPreference[i].type)){
+                                IPreference[i].playSound(IPreference[i].map.get(key));
+                            }
+                        }
                     }
                     catch (IllegalArgumentException e){
                         System.out.println(e);
