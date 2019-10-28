@@ -81,10 +81,12 @@ public class OC {
                 if (message.getName().contains("/Sound")) {
                     try{
                         String[] parts = message.getName().split("/");
-                        String type = parts[1];
-                        String key = parts[2];
-                        String value = parts[3];
-                        for(int i = 0; i <= IPreference.length; i++){
+                        String type = parts[5];
+                        String key = parts[6];
+                        String value = parts[7];
+                        System.out.println("Key: " + key);
+                        for(int i = 0; i < IPreference.length; i++){
+                            //System.out.println("Map key is " + IPreference[i].map.get(key));
                             if (type.equals(IPreference[i].type)){
                                 IPreference[i].playSound(IPreference[i].map.get(key));
                             }
