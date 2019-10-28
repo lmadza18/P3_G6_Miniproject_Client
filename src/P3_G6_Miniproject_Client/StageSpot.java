@@ -25,8 +25,7 @@ public class StageSpot extends StackPane {
         this.y = y;
         this.xInit = x;
         this.yInit = y;
-//
-        //bandPlayer = new BandPlayer();
+
         stageSpotButton = new StageSpotButton();
         this.getChildren().add(stageSpotButton);
 
@@ -54,7 +53,6 @@ public class StageSpot extends StackPane {
             instrumentPickerWindowExitListener();
             instrumentPickerWindowChooseButtonListener();
 
-//            playThatBassNote("out/production/P3_G6_Miniproject_Client/audio_files/Bass/0CBass.wav");
         });
     }
 

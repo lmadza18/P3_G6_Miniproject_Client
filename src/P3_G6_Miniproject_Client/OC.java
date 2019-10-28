@@ -48,6 +48,7 @@ public class OC {
             public void messageReceived(OSCMessage message, SocketAddress address, long time) {
                 System.out.println("MESSAGE:" + message.getName() + " RECEIVED FROM: " + address);
 
+                // store Id's from message
                 int spotId = (int) message.getArg(0);
                 int InstrumentId = (int) message.getArg(1);
 
@@ -67,6 +68,7 @@ public class OC {
                         SPreference[spotId].removeBandPlayer();
                     }
                 }
+                // Receiving sound messages
                 if (message.getName().contains("/Sound")) {
                     try {
                         String[] parts = message.getName().split("/");
@@ -74,8 +76,8 @@ public class OC {
                         String key = parts[4]; //The key pressed by other clients
                         System.out.println("Key: " + key);
 
+                        // local reference to specific instruments from which the message is received
                         Instrument instrument = SPreference[spotId].bandPlayer.instrument;
-                        //System.out.println("Map key is " + IPreference[i].map.get(key));
                         if (type.equals(instrument.type)) {
                             instrument.playSound(instrument.map.get(key).getMedia());
                         }
