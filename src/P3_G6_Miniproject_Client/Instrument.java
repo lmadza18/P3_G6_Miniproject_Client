@@ -59,7 +59,7 @@ public class Instrument {
                 for (Map.Entry<String, Note> entry : map.entrySet()) {
                     if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable && noteOn == false) {
                         ;
-                        OC.sendMessage("/Sound/" + this.type + "/" + entry.getKey() + "/" + entry.getValue());
+                        OC.sendMessage("Sound/" + this.type + "/" + entry.getKey());
                         this.playSound(entry.getValue().getMedia());
                     }
                 }

@@ -50,6 +50,7 @@ public class OC {
         try {
             client = OSCClient.newUsing(OSCClient.UDP);    // create UDP client with any free port number
             client.setTarget(new InetSocketAddress("192.168.43.207", 8000));  // talk to scsynth on the same machine
+            //client.setTarget(new InetSocketAddress("localhost", 8000));  // talk to scsynth on the same machine
             client.start();  // open channel and (in the case of TCP) connect, then start listening for replies
         } catch (IOException e1) {
             e1.printStackTrace();
@@ -81,9 +82,8 @@ public class OC {
                 if (message.getName().contains("/Sound")) {
                     try{
                         String[] parts = message.getName().split("/");
-                        String type = parts[5];
-                        String key = parts[6];
-                        String value = parts[7];
+                        String type = parts[3]; //The type of instrument which is being used by other clients
+                        String key = parts[4]; //The key pressed by other clients
                         System.out.println("Key: " + key);
                         for(int i = 0; i < IPreference.length; i++){
                             //System.out.println("Map key is " + IPreference[i].map.get(key));
