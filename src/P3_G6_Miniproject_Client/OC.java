@@ -86,7 +86,7 @@ public class OC {
                         String value = parts[3];
                         for(int i = 0; i <= IPreference.length; i++){
                             if (type.equals(IPreference[i].type)){
-                                IPreference[i].playSound(IPreference[i].map.get(key));
+                                IPreference[i].playSound(IPreference[i].map.get(key).getMedia());
                             }
                         }
                     }

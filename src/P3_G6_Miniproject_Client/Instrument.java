@@ -9,10 +9,11 @@ import java.util.Map;
 public class Instrument {
     public String type;
     private Media[] media = {};
+    private Note[] notes = {};
     public boolean isPlayable = false;
     private boolean isRhythmic = false;
     private boolean noteOn = false;
-    public Map<String, Media> map;
+    public Map<String, Note> map;
 
     public Instrument(int id, RootUI rootUI, boolean me) {
 
@@ -32,35 +33,34 @@ public class Instrument {
                 break;
         }
 
-
-        this.media = new Media[]{
-                new Media(new File("src/audio_files/" + type + "/0C" + type + ".wav").toURI().toString()),
-                new Media(new File("src/audio_files/" + type + "/0D" + type + ".wav").toURI().toString()),
-                new Media(new File("src/audio_files/" + type + "/0E" + type + ".wav").toURI().toString()),
-                new Media(new File("src/audio_files/" + type + "/0F" + type + ".wav").toURI().toString()),
-                new Media(new File("src/audio_files/" + type + "/0G" + type + ".wav").toURI().toString()),
-                new Media(new File("src/audio_files/" + type + "/1A" + type + ".wav").toURI().toString()),
-                new Media(new File("src/audio_files/" + type + "/1B" + type + ".wav").toURI().toString()),
-                new Media(new File("src/audio_files/" + type + "/1C" + type + ".wav").toURI().toString())
+        this.notes = new Note[]{
+                new Note(new File("src/audio_files/" + type + "/0C" + type + ".wav")),
+                new Note(new File("src/audio_files/" + type + "/0D" + type + ".wav")),
+                new Note(new File("src/audio_files/" + type + "/0E" + type + ".wav")),
+                new Note(new File("src/audio_files/" + type + "/0F" + type + ".wav")),
+                new Note(new File("src/audio_files/" + type + "/0G" + type + ".wav")),
+                new Note(new File("src/audio_files/" + type + "/1A" + type + ".wav")),
+                new Note(new File("src/audio_files/" + type + "/1B" + type + ".wav")),
+                new Note(new File("src/audio_files/" + type + "/1C" + type + ".wav"))
         };
 
         map = Map.of(
-                "A", media[0],
-                "S", media[1],
-                "D", media[2],
-                "F", media[3],
-                "G", media[4],
-                "H", media[5],
-                "J", media[6],
-                "K", media[7]
+                "A", notes[0],
+                "S", notes[1],
+                "D", notes[2],
+                "F", notes[3],
+                "G", notes[4],
+                "H", notes[5],
+                "J", notes[6],
+                "K", notes[7]
         );
         if (me) {
             rootUI.setOnKeyPressed(e -> {
-                for (Map.Entry<String, Media> entry : map.entrySet()) {
+                for (Map.Entry<String, Note> entry : map.entrySet()) {
                     if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable && noteOn == false) {
                         ;
                         OC.sendMessage("/Sound/" + this.type + "/" + entry.getKey() + "/" + entry.getValue());
-                        this.playSound(entry.getValue());
+                        this.playSound(entry.getValue().getMedia());
                     }
                 }
             });
@@ -72,9 +72,14 @@ public class Instrument {
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setAutoPlay(true);
         Main.root.setOnKeyReleased(e -> {
-            System.out.println(e.getCode());
-            if(!this.isRhythmic) {
-                mediaPlayer.setVolume(0);
+            for (Map.Entry<String, Note> entry : map.entrySet()) {
+                if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable && entry.getValue().noteOn == true) {
+                    System.out.println("RELEASING: " + entry.getKey());
+                    if(!this.isRhythmic) {
+                        System.out.println("SETTING VOLUME OF " + media.getSource());
+                        mediaPlayer.setVolume(0);
+                    }
+                }
             }
             this.noteOn = false;
         });
