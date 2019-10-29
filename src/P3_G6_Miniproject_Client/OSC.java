@@ -84,7 +84,7 @@ public class OSC {
                         String[] parts = message.getName().split("/");
                         String type = parts[3]; //The type of instrument which is being used by other clients
                         String key = parts[4]; //The key pressed by other clients
-                        System.out.println("Key: " + key);
+                        //System.out.println("Key: " + key);
 
                         // local reference to specific instruments from which the message is received
                         Instrument instrument = SPreference[spotId].bandPlayer.instrument;
