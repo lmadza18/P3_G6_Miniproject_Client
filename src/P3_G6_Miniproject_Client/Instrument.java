@@ -4,6 +4,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -14,7 +15,7 @@ public class Instrument {
     public boolean isPlayable = false;
     private boolean isRhythmic = false;
     //TODO Why a noteOn here and in the Note class
-    public Map<String, Note> map;
+    public Map <String, Note> map = new HashMap<>();
 
     public Instrument(int id, int spotId, RootUI rootUI, boolean me) {
 
@@ -78,36 +79,59 @@ public class Instrument {
     public void setUpListener(RootUI rootUI) {
 
         rootUI.setOnKeyPressed(e -> {
-            notes.
+
 
             for (Map.Entry<String, Note> entry : map.entrySet()) {
-                //Key pressed by user
+                //Key checked
                 String key = entry.getKey();
-                //Key in map
+                //Key pressed by user
                 String mapKey = e.getCode().getName();
                 //System.out.println("entry.getKey()"+entry.getKey().getClass());
-                if (key.equals(mapKey) && this.isPlayable && entry.getValue().noteOn) {
+                if (key.equals(mapKey) && this.isPlayable && !entry.getValue().noteOn) {
                     //OC.sendMessage("Sound/" + this.type + "/" + entry.getKey(), spotId, id, "null");
                     System.out.println("something");
                     entry.getValue().playSound();
 
 
-                    //map[key].playSound(entry.getValue().getMedia());
+                    // Copies what's in the map for the current key
+                    //Note note = entry.getValue();
+                    //note.noteOn=true;
+                    // Replaces what's in the map
+                    //map.put(key,note);a
+
+                    //Goes into the variable,
+                    map.get(key).noteOn=true;
+
                 }
             }
         });
 
         rootUI.setOnKeyReleased(e -> {
 
-            notes[0].noteOn=true;
+
+            //notes[0].noteOn = true;
 
             for (Map.Entry<String, Note> entry : map.entrySet()) {
-                if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable && !entry.getValue().noteOn) {
+
+                String key = entry.getKey();
+
+                if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable && entry.getValue().noteOn) {
                     System.out.println("RELEASING: " + entry.getKey());
+
+                   // Note note = entry.getValue();
+
+                    //note.noteOn=false;
+
+                    //map.put(key,note);
+
+                    map.get(key).noteOn=false;
+
+
                 }
+
             }
 
-            notes[0].noteOn = false;
+
         });
 
     }
@@ -149,7 +173,6 @@ public class Instrument {
 
     }}
 */
-
 
 
 }

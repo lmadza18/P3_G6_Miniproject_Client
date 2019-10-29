@@ -7,6 +7,7 @@ import javafx.util.Duration;
 import java.io.File;
 
 public class Note {
+    //TODO NAMING
 
     //Pitch pitch;
     private Media media;
@@ -18,7 +19,6 @@ public class Note {
 
     Note(File audioFile) {
         mediaPlayer = new MediaPlayer(new Media(audioFile.toURI().toString()));
-        //mediaPlayer.setAutoPlay(true);
 
     }
 
