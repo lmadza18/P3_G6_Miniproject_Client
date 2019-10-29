@@ -58,6 +58,7 @@ public class OSC {
                 }
                 // Receiving GUI messages
                 if (message.getName().contains("/GUImessage")) {
+                    System.out.println("OPERATION: " + message.getArg(2));
 
                     //String operation = (String)message.getArg(2);
                     if (message.getArg(2).equals("take")) {

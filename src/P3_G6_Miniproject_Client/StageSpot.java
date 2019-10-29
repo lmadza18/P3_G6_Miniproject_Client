@@ -79,7 +79,7 @@ public class StageSpot extends StackPane {
         movePos(-bandPlayer.getFitWidth() / 2, -this.getHeight() * 1.5);
         Platform.runLater(() ->
                 this.getChildren().add(bandPlayer));
-        //this.stageSpotButton.setVisible(false);
+        this.stageSpotButton.setVisible(false);
     }
 
     public void removeBandPlayer() {
