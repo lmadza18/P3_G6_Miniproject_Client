@@ -22,12 +22,7 @@ public class RootUI extends Pane {
             new Image("images/sprite.png")
     };
 
-    Instrument[] OtherPlayers = {
-            new Instrument(0, this, false),
-            new Instrument(1, this, false),
-            new Instrument(2, this, false),
-            new Instrument(3, this, false)
-    };
+    Instrument[] OtherPlayers = new Instrument[4];
 
     RootUI() {
 
