@@ -2,6 +2,7 @@ package P3_G6_Miniproject_Client;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 import java.io.File;
 
@@ -11,9 +12,30 @@ public class Note {
     private Media media;
     //MediaPlayer mediaPlayer;
     public boolean noteOn = false;
+    private boolean isRhythmic = false;
+    MediaPlayer mediaPlayer;
+
 
     Note(File audioFile) {
-        this.media = new Media(audioFile.toURI().toString());
+        mediaPlayer = new MediaPlayer(new Media(audioFile.toURI().toString()));
+        //mediaPlayer.setAutoPlay(true);
+
+    }
+
+    public void playSound(){
+
+        mediaPlayer.seek(Duration.ZERO);
+
+        System.out.println("something else");
+        this.mediaPlayer.play();
+
+    }
+
+    public void stopSound(){
+
+        if (!this.isRhythmic) {
+            mediaPlayer.setVolume(0);
+        }
     }
 
 
@@ -26,9 +48,7 @@ public class Note {
 
 }
 
-
-
-
+/*
 
 class Pitch {
     int octave;
@@ -42,4 +62,8 @@ class Pitch {
         System.out.println(s);
         return s;
     }
+
+
 }
+
+ */

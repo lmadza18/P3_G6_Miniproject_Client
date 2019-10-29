@@ -4,14 +4,16 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
+import java.util.Iterator;
 import java.util.Map;
 
 public class Instrument {
     public String type;
     private Note[] notes = {};
+    Note note;
     public boolean isPlayable = false;
     private boolean isRhythmic = false;
-    private boolean noteOn = false;
+    //TODO Why a noteOn here and in the Note class
     public Map<String, Note> map;
 
     public Instrument(int id, int spotId, RootUI rootUI, boolean me) {
@@ -53,39 +55,101 @@ public class Instrument {
                 "J", notes[6],
                 "K", notes[7]
         );
-
+        this.setUpListener(rootUI);
+/*
         if (me) {
             rootUI.setOnKeyPressed(e -> {
 
                 for (Map.Entry<String, Note> entry : map.entrySet()) {
 
-                    if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable && noteOn == false) {
+                    if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable &&  !notes[0].noteOn) {
                         OC.sendMessage("Sound/" + this.type + "/" + entry.getKey(), spotId, id, "null");
-                        this.playSound(entry.getValue().getMedia());
+                        note.playSound(entry.getValue().getMedia());
                     }
                 }
             });
         }
+
+
+ */
     }
 
+
+    public void setUpListener(RootUI rootUI) {
+
+        rootUI.setOnKeyPressed(e -> {
+            notes.
+
+            for (Map.Entry<String, Note> entry : map.entrySet()) {
+                //Key pressed by user
+                String key = entry.getKey();
+                //Key in map
+                String mapKey = e.getCode().getName();
+                //System.out.println("entry.getKey()"+entry.getKey().getClass());
+                if (key.equals(mapKey) && this.isPlayable && entry.getValue().noteOn) {
+                    //OC.sendMessage("Sound/" + this.type + "/" + entry.getKey(), spotId, id, "null");
+                    System.out.println("something");
+                    entry.getValue().playSound();
+
+
+                    //map[key].playSound(entry.getValue().getMedia());
+                }
+            }
+        });
+
+        rootUI.setOnKeyReleased(e -> {
+
+            notes[0].noteOn=true;
+
+            for (Map.Entry<String, Note> entry : map.entrySet()) {
+                if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable && !entry.getValue().noteOn) {
+                    System.out.println("RELEASING: " + entry.getKey());
+                }
+            }
+
+            notes[0].noteOn = false;
+        });
+
+    }
+
+
+
+
+/*
     public void playSound(Media media) {
-        this.noteOn = true;
+        //TODO This is the noteOn in instrument class
+        notes[0].noteOn = true;
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setAutoPlay(true);
 
         Main.root.setOnKeyReleased(e -> {
             for (Map.Entry<String, Note> entry : map.entrySet()) {
-                if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable && entry.getValue().noteOn) {
+                if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable && !entry.getValue().noteOn) {
                     System.out.println("RELEASING: " + entry.getKey());
+
                     if (!this.isRhythmic) {
                         System.out.println("SETTING VOLUME OF " + media.getSource());
                         mediaPlayer.setVolume(0);
                     }
                 }
             }
-            this.noteOn = false;
+            notes[0].noteOn = false;
         });
-    }
+
+
+        Iterator<Map.Entry<String, Note>> entries = map.entrySet().iterator();
+        while (entries.hasNext()) {
+            Map.Entry<String, Note> entry = entries.next();
+            String key = entry.getKey();
+            Note value = entry.getValue();
+
+
+
+
+
+    }}
+*/
+
 
 
 }

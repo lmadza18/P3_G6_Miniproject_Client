@@ -74,11 +74,15 @@ public class OC {
                         String key = parts[4]; //The key pressed by other clients
                         System.out.println("Key: " + key);
 
+                        /*
+
                         Instrument instrument = SPreference[spotId].bandPlayer.instrument;
                         //System.out.println("Map key is " + IPreference[i].map.get(key));
                         if (type.equals(instrument.type)) {
-                            instrument.playSound(instrument.map.get(key).getMedia());
+                            Note.playSound(Note.map.get(key).getMedia());
                         }
+
+                         */
 
                     } catch (IllegalArgumentException e) {
                         System.out.println(e);
