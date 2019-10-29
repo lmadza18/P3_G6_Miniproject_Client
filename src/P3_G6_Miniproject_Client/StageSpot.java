@@ -17,7 +17,7 @@ public class StageSpot extends StackPane {
     double yInit;
 
     private int instrumentId;
-    private int spotId;
+    int spotId;
 
     public StageSpot(int id, double x, double y) {
         this.spotId = id;
@@ -25,8 +25,7 @@ public class StageSpot extends StackPane {
         this.y = y;
         this.xInit = x;
         this.yInit = y;
-//
-        //bandPlayer = new BandPlayer();
+
         stageSpotButton = new StageSpotButton();
         this.getChildren().add(stageSpotButton);
 
@@ -54,7 +53,6 @@ public class StageSpot extends StackPane {
             instrumentPickerWindowExitListener();
             instrumentPickerWindowChooseButtonListener();
 
-//            playThatBassNote("out/production/P3_G6_Miniproject_Client/audio_files/Bass/0CBass.wav");
         });
     }
 
@@ -64,7 +62,7 @@ public class StageSpot extends StackPane {
             Main.root.getChildren().remove(Main.root.instrumentPickerWindow);
             this.instrumentId = Main.root.instrumentPickerWindow.switchIndex;
 
-            displayBandPlayer(this.instrumentId);
+            displayBandPlayer(this.instrumentId, true);
 
             OC.sendMessage("GUImessage", this.spotId, this.instrumentId, "take");
             takeIt();
@@ -72,9 +70,9 @@ public class StageSpot extends StackPane {
         });
     }
 
-    public void displayBandPlayer(int instrumentId) {
+    public void displayBandPlayer(int instrumentId, boolean me) {
         taken = true;
-        bandPlayer = new BandPlayer(instrumentId);
+        bandPlayer = new BandPlayer(spotId, instrumentId, me);
         bandPlayer.setFitWidth(Main.root.getWidth() / 5);
         bandPlayer.setFitHeight(Main.root.getWidth() / 5);
         movePos(-bandPlayer.getFitWidth() / 2, -this.getHeight() * 1.5);
