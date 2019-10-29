@@ -64,15 +64,15 @@ public class StageSpot extends StackPane {
 
             displayBandPlayer(this.instrumentId, true);
 
-            OC.sendMessage("GUImessage", this.spotId, this.instrumentId, "take");
+            OSC.sendMessage("GUImessage", this.spotId, this.instrumentId, "take");
             takeIt();
 
         });
     }
 
-    public void displayBandPlayer(int instrumentId, boolean me) {
+    public void displayBandPlayer(int instrumentId, boolean isMe) {
         taken = true;
-        bandPlayer = new BandPlayer(spotId, instrumentId, me);
+        bandPlayer = new BandPlayer(spotId, instrumentId, isMe);
         bandPlayer.setFitWidth(Main.root.getWidth() / 5);
         bandPlayer.setFitHeight(Main.root.getWidth() / 5);
         movePos(-bandPlayer.getFitWidth() / 2, -this.getHeight() * 1.5);
@@ -123,7 +123,7 @@ public class StageSpot extends StackPane {
         Main.root.leaveStageSpotButton.setOnAction(actionEvent -> {
             leaveIt();
             removeBandPlayer();
-            OC.sendMessage("GUImessage", this.spotId, this.instrumentId, "leave");
+            OSC.sendMessage("GUImessage", this.spotId, this.instrumentId, "leave");
         });
     }
 
