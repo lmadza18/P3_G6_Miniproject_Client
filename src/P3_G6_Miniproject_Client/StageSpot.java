@@ -125,7 +125,7 @@ public class StageSpot extends StackPane {
         Main.root.leaveStageSpotButton.setOnAction(actionEvent -> {
             leaveIt();
             removeBandPlayer();
-            OSC.sendMessage("GUImessage", this.spotId, this.instrumentId, "leave");
+            OSC.sendMessage("GUImessage", this.spotId, this.instrumentId, "release");
         });
     }
 

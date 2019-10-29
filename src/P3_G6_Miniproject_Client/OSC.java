@@ -69,6 +69,9 @@ public class OSC {
                     if (message.getArg(2).equals("reserve")) {
                         SPreference[spotId].stageSpotButton.setVisible(false);
                     }
+                    if (message.getArg(2).equals("release")) {
+                        SPreference[spotId].stageSpotButton.setVisible(true);
+                    }
                 }
                 // Receiving sound messages
                 if (message.getName().contains("/Sound")) {
