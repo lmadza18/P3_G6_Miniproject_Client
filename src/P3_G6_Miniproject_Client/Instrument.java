@@ -14,9 +14,9 @@ public class Instrument {
     private boolean noteOn = false;
     public Map<String, Note> map;
 
-    public Instrument(int id, int spotId, RootUI rootUI, boolean me) {
+    public Instrument(int bandPlayerId, int spotId, RootUI rootUI, boolean isMe) {
 
-        switch (id) {
+        switch (bandPlayerId) {
             case 0:
                 this.type = "Guitar";
                 break;
@@ -54,13 +54,13 @@ public class Instrument {
                 "K", notes[7]
         );
 
-        if (me) {
+        if (isMe) {
             rootUI.setOnKeyPressed(e -> {
 
                 for (Map.Entry<String, Note> entry : map.entrySet()) {
 
                     if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable && !noteOn) {
-                        OC.sendMessage("Sound/" + this.type + "/" + entry.getKey(), spotId, id, "null");
+                        OC.sendMessage("Sound/" + this.type + "/" + entry.getKey(), spotId, bandPlayerId, "null");
                         this.playSound(entry.getValue().getMedia());
                     }
                 }
