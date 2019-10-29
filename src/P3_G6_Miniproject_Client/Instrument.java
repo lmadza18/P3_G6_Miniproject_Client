@@ -58,10 +58,7 @@ public class Instrument {
             rootUI.setOnKeyPressed(e -> {
                 System.out.println("isPlayable: " + isPlayable);
                 for (Map.Entry<String, Note> entry : map.entrySet()) {
-                    System.out.println("noteOn: " + notes[0].noteOn);
-                    System.out.println("name: " + entry.getKey().equals(e.getCode().getName()));
                     if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable && !notes[0].noteOn) {
-                        System.out.println("Sending sound");
                         OSC.sendMessage("Sound/" + this.type + "/" + entry.getKey(), spotId, bandPlayerId, "null");
                         this.playSound(entry.getValue().getMedia());
                     }
