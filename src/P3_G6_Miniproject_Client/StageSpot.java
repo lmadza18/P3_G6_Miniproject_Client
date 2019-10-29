@@ -53,7 +53,7 @@ public class StageSpot extends StackPane {
             instrumentPickerWindowExitListener();
             instrumentPickerWindowChooseButtonListener();
 
-            OSC.sendMessage("GUImessage", this.spotId, this.instrumentId, "take");
+            OSC.sendMessage("GUImessage", this.spotId, this.instrumentId, "reserve");
         });
     }
 
@@ -65,6 +65,7 @@ public class StageSpot extends StackPane {
 
             displayBandPlayer(this.instrumentId, true);
 
+            OSC.sendMessage("GUImessage", this.spotId, this.instrumentId, "take");
             takeIt();
 
         });

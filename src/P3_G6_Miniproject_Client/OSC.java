@@ -66,6 +66,9 @@ public class OSC {
                     if (message.getArg(2).equals("leave")) {
                         SPreference[spotId].removeBandPlayer();
                     }
+                    if (message.getArg(2).equals("reserve")) {
+                        SPreference[spotId].stageSpotButton.setVisible(false);
+                    }
                 }
                 // Receiving sound messages
                 if (message.getName().contains("/Sound")) {
