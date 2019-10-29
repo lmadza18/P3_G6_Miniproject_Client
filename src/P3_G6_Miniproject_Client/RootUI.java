@@ -9,7 +9,7 @@ import javafx.scene.layout.Pane;
 
 public class RootUI extends Pane {
 
-    public OC oc;
+    public OSC OSC;
     StageSpot[] stageSpots = new StageSpot[4];
     InstrumentPickerWindow instrumentPickerWindow;
     Button leaveStageSpotButton;
@@ -47,7 +47,7 @@ public class RootUI extends Pane {
         leaveStageSpotButton = new Button("get my ass outta here!");
 
         this.getChildren().addAll(bgImg, stageSpots[0], stageSpots[1], stageSpots[2], stageSpots[3]);
-        oc = new OC(stageSpots);
+        OSC = new OSC(stageSpots);
     }
 
 }

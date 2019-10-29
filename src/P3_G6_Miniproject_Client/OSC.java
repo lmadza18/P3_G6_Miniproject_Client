@@ -11,7 +11,7 @@ import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.net.StandardSocketOptions;
 
-public class OC {
+public class OSC {
     static OSCClient client;
     StageSpot[] SPreference;
 
@@ -29,7 +29,7 @@ public class OC {
         }
     }
 
-    OC(StageSpot[] spr) {
+    OSC(StageSpot[] spr) {
         SPreference = spr;
         System.out.println(spr[0].taken);
 
