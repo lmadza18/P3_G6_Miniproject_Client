@@ -68,9 +68,13 @@ public class OSC {
                     }
                     if (message.getArg(2).equals("reserve")) {
                         SPreference[spotId].stageSpotButton.setVisible(false);
+                        SPreference[spotId].taken = true;
                     }
                     if (message.getArg(2).equals("release")) {
-                        SPreference[spotId].stageSpotButton.setVisible(true);
+                        if (!Main.root.playing) {
+                            SPreference[spotId].stageSpotButton.setVisible(true);
+                        }
+                        SPreference[spotId].taken = false;
                     }
                 }
                 // Receiving sound messages
