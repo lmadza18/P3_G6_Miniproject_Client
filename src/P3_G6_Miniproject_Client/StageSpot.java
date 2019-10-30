@@ -32,11 +32,10 @@ public class StageSpot extends StackPane {
 
         this.movePos(-stageSpotButton.imageSize / 2, -stageSpotButton.imageSize / 2);
 
-
         stageSpotButtonListener();
-
     }
 
+    //method for moving stage spot
     private void movePos(double x, double y) {
         this.x = this.xInit + (x);
         this.y = this.yInit + (y);
@@ -44,6 +43,7 @@ public class StageSpot extends StackPane {
         this.setTranslateY(this.y);
     }
 
+    //Method for action when stageSpotButton is pressed
     public void stageSpotButtonListener() {
         stageSpotButton.button.setOnAction(actionEvent -> {
 
@@ -57,6 +57,7 @@ public class StageSpot extends StackPane {
         });
     }
 
+    //Method for action when chooseButton in instrumentPickerWindow is pressed
     public void instrumentPickerWindowChooseButtonListener() {
         Main.root.instrumentPickerWindow.chooseButton.setOnAction(actionEvent -> {
 
@@ -71,6 +72,8 @@ public class StageSpot extends StackPane {
         });
     }
 
+
+    //Method for diplaying a band player
     public void displayBandPlayer(int instrumentId, boolean isMe) {
         taken = true;
         bandPlayer = new BandPlayer(spotId, instrumentId, isMe);
@@ -82,6 +85,7 @@ public class StageSpot extends StackPane {
         this.stageSpotButton.setVisible(false);
     }
 
+    //Method for removing a band player
     public void removeBandPlayer() {
         this.taken = false;
         this.movePos(-stageSpotButton.imageSize / 2, -stageSpotButton.imageSize / 2);
@@ -92,6 +96,7 @@ public class StageSpot extends StackPane {
         }
     }
 
+    //Method for leaving a spot
     public void leaveIt() {
         Main.root.playing = false;
         Main.root.getChildren().remove(Main.root.leaveStageSpotButton);
@@ -103,6 +108,7 @@ public class StageSpot extends StackPane {
         }
     }
 
+    //Method for taking a spot
     public void takeIt() {
         Main.root.playing = true;
         Main.root.getChildren().add(Main.root.leaveStageSpotButton);
@@ -113,6 +119,7 @@ public class StageSpot extends StackPane {
         leaveStageSpotButtonListener();
     }
 
+    //Method for action when exitButton in instrumentPickerWindow is pressed
     void instrumentPickerWindowExitListener() {
         Main.root.instrumentPickerWindow.closeButton.setOnAction(actionEvent -> {
             Main.root.getChildren().remove(Main.root.instrumentPickerWindow);

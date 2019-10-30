@@ -33,9 +33,12 @@ public class RootUI extends Pane {
 
     }
     public void start() {
+        //set background image
         ImageView bgImg = new ImageView("images/stage.jpg");
         bgImg.setFitWidth(this.getWidth());
         bgImg.setFitHeight(this.getHeight());
+
+        //Set and pace stage spots
 
         stageSpots[0] = new StageSpot(0,this.getWidth() / 8, this.getHeight() / 8 * 6);
         stageSpots[1] = new StageSpot(1,this.getWidth() / 8 * 3, this.getHeight() / 8 * 5.5);
