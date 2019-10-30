@@ -1,6 +1,7 @@
 package P3_G6_Miniproject_Client;
 
 import javafx.application.Platform;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 
 
@@ -57,18 +58,26 @@ public class StageSpot extends StackPane {
         });
     }
 
+
     public void instrumentPickerWindowChooseButtonListener() {
         Main.root.instrumentPickerWindow.chooseButton.setOnAction(actionEvent -> {
-
-            Main.root.getChildren().remove(Main.root.instrumentPickerWindow);
-            this.instrumentId = Main.root.instrumentPickerWindow.switchIndex;
-
-            displayBandPlayer(this.instrumentId, true);
-
-            OSC.sendMessage("GUImessage", this.spotId, this.instrumentId, "take");
-            takeIt();
-
+            chooseBandPlayer();
         });
+        Main.root.setOnKeyPressed(e -> {
+            if (e.getCode().equals(KeyCode.ENTER)) {
+                chooseBandPlayer();
+            }
+        });
+    }
+
+    public void chooseBandPlayer(){
+        Main.root.getChildren().remove(Main.root.instrumentPickerWindow);
+        this.instrumentId = Main.root.instrumentPickerWindow.switchIndex;
+
+        displayBandPlayer(this.instrumentId, true);
+
+        OSC.sendMessage("GUImessage", this.spotId, this.instrumentId, "take");
+        takeIt();
     }
 
     public void displayBandPlayer(int instrumentId, boolean isMe) {
@@ -128,6 +137,5 @@ public class StageSpot extends StackPane {
             OSC.sendMessage("GUImessage", this.spotId, this.instrumentId, "leave");
         });
     }
-
 
 }
