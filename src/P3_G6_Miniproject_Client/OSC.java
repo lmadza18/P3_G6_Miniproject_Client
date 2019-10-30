@@ -16,6 +16,7 @@ public class OSC {
     StageSpot[] SPreference;
 
 
+
     static public void sendMessage(String string, int spotId, int instrumentId, String operation) {
         Object args[] = new Object[3];
         args[0] = spotId;
@@ -35,8 +36,8 @@ public class OSC {
 
         try {
             client = OSCClient.newUsing(OSCClient.UDP);    // create UDP client with any free port number
-            client.setTarget(new InetSocketAddress("192.168.43.10", 8000));  // talk to scsynth on the same machine
-            //client.setTarget(new InetSocketAddress("localhost", 8000));  // talk to scsynth on the same machine
+            client.setTarget(new InetSocketAddress("192.168.43.207", 8000));  // talk to scsynth on the same machine
+            //client.setTarget(new InetSocketAddress("localhost", 8000));  // talk to scasynth on the same machine
             client.start();  // open channel and (in the case of TCP) connect, then start listening for replies
         } catch (IOException e1) {
             e1.printStackTrace();
@@ -88,9 +89,11 @@ public class OSC {
 
                         // local reference to specific instruments from which the message is received
                         Instrument instrument = SPreference[spotId].bandPlayer.instrument;
+
                         if (type.equals(instrument.type)) {
+                            instrument.map.get(key).playSound();
                             //Note.playSound(Note.map.get(key).getMedia());
-                            instrument.playSound(instrument.map.get(key).getMedia());
+                            //instrument.playSound(instrument.map.get(key).getMedia());
                         }
 
                     } catch (IllegalArgumentException e) {

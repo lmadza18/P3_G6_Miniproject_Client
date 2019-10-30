@@ -15,8 +15,14 @@ public class Instrument {
     public boolean isPlayable = false;
     private boolean isRhythmic = false;
     public Map<String, Note> map;
+    private int bandPlayerId;
+    private int spotId;
+    private boolean isMe;
 
     public Instrument(int bandPlayerId, int spotId, RootUI rootUI, boolean isMe) {
+        this.bandPlayerId = bandPlayerId;
+        this.spotId = spotId;
+        this.isMe = isMe;
 
         switch (bandPlayerId) {
             case 0:
@@ -84,7 +90,7 @@ public class Instrument {
                 //Key pressed by user
                 String mapKey = e.getCode().getName();
                 if (key.equals(mapKey) && this.isPlayable && !entry.getValue().noteOn) {
-                    //OC.sendMessage("Sound/" + this.type + "/" + entry.getKey(), spotId, id, "null");
+                    OSC.sendMessage("Sound/" + this.type + "/" + entry.getKey(), spotId, bandPlayerId, "null");
                     System.out.println("something");
                     entry.getValue().playSound();
 
