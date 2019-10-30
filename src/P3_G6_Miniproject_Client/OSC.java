@@ -3,8 +3,8 @@ package P3_G6_Miniproject_Client;
 import de.sciss.net.OSCClient;
 import de.sciss.net.OSCListener;
 import de.sciss.net.OSCMessage;
-import javafx.scene.media.Media;
 
+import javax.print.attribute.standard.Media;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -14,6 +14,7 @@ import java.net.StandardSocketOptions;
 public class OSC {
     static OSCClient client; // This is the client
     StageSpot[] SPreference; // This is a reference to all the stagespots
+    static int sID;
 
 
     // We send messages to the server
@@ -28,6 +29,15 @@ public class OSC {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+    }
+
+    static public void sendStatus(){
+        try {
+            client.send(new OSCMessage("/status", new Object[]{sID}));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     OSC(StageSpot[] spr) {
@@ -36,7 +46,7 @@ public class OSC {
 
         try {
             client = OSCClient.newUsing(OSCClient.UDP);    // create UDP client with any free port number
-            client.setTarget(new InetSocketAddress("192.168.43.207", 8000));  // Find server host
+            client.setTarget(new InetSocketAddress("localhost", 8000));  // Find server host
             client.start();  // open channel and (in the case of TCP) connect, then start listening for replies
         } catch (IOException e1) {
             e1.printStackTrace();
@@ -54,7 +64,7 @@ public class OSC {
 
                 // Set player ID
                 if (message.getName().contains("/server/setPlayerId")) {
-                    int sID = (int) message.getArg(0);
+                    sID = (int) message.getArg(0);
                     System.out.println("You are player " + sID);
                 }
                 // Receiving GUI messages

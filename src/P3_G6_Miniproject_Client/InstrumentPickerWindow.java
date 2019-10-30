@@ -7,6 +7,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
+import java.awt.event.KeyEvent;
+
 
 public class InstrumentPickerWindow extends Pane {
     Pane background = new Pane(); //Pane for making background unclickable
@@ -100,6 +102,7 @@ public class InstrumentPickerWindow extends Pane {
         leftButton.setOnAction(actionEvent -> {
             switchLeftListener();
         });
+
     }
 
     //Listeners for switching right and left

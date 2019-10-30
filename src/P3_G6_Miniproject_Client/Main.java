@@ -59,7 +59,6 @@ public class Main extends Application {
             }
         });
 
-
         // ------------------------------------------- OSC TEST
 
 
@@ -69,6 +68,19 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
         root.start();
+
+
+        // sending status to server
+        new Thread(() -> {
+            while (primaryStage.isShowing()) {
+                try {
+                    OSC.sendStatus();
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
 
 
     }
