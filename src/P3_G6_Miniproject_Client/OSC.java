@@ -3,8 +3,8 @@ package P3_G6_Miniproject_Client;
 import de.sciss.net.OSCClient;
 import de.sciss.net.OSCListener;
 import de.sciss.net.OSCMessage;
+import javafx.scene.media.Media;
 
-import javax.print.attribute.standard.Media;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -12,12 +12,12 @@ import java.net.SocketAddress;
 import java.net.StandardSocketOptions;
 
 public class OSC {
-    static OSCClient client;
-    StageSpot[] SPreference;
+    static OSCClient client; // This is the client
+    StageSpot[] SPreference; // This is a reference to all the stagespots
 
 
-
-    static public void sendMessage(String string, int spotId, int instrumentId, String operation) {
+    // We send messages to the server
+    static void sendMessage(String string, int spotId, int instrumentId, String operation) {
         Object args[] = new Object[3];
         args[0] = spotId;
         args[1] = instrumentId;
@@ -36,8 +36,7 @@ public class OSC {
 
         try {
             client = OSCClient.newUsing(OSCClient.UDP);    // create UDP client with any free port number
-            client.setTarget(new InetSocketAddress("192.168.43.207", 8000));  // talk to scsynth on the same machine
-            //client.setTarget(new InetSocketAddress("localhost", 8000));  // talk to scasynth on the same machine
+            client.setTarget(new InetSocketAddress("192.168.43.207", 8000));  // Find server host
             client.start();  // open channel and (in the case of TCP) connect, then start listening for replies
         } catch (IOException e1) {
             e1.printStackTrace();
@@ -53,6 +52,7 @@ public class OSC {
                 int spotId = (int) message.getArg(0);
                 int InstrumentId = (int) message.getArg(1);
 
+                // Set player ID
                 if (message.getName().contains("/server/setPlayerId")) {
                     int sID = (int) message.getArg(0);
                     System.out.println("You are player " + sID);
@@ -61,17 +61,24 @@ public class OSC {
                 if (message.getName().contains("/GUImessage")) {
                     System.out.println("OPERATION: " + message.getArg(2));
 
-                    //String operation = (String)message.getArg(2);
+                    // If the operation received in the message is "take"
+                    // display a bandplayer on that spotID included in the message
                     if (message.getArg(2).equals("take")) {
                         SPreference[spotId].displayBandPlayer(InstrumentId, false);
                     }
+                    // If the operation received in the message is "leave"
+                    // remove a bandplayer on that spotID included in the message
                     if (message.getArg(2).equals("leave")) {
                         SPreference[spotId].removeBandPlayer();
                     }
+                    // If the operation received in the message is "reserve"
+                    // remove a stagespot button on that spotID included in the message
                     if (message.getArg(2).equals("reserve")) {
                         SPreference[spotId].stageSpotButton.setVisible(false);
                         SPreference[spotId].taken = true;
                     }
+                    // If the operation received in the message is "release"
+                    // display a stagespot button on that spotID included in the message again
                     if (message.getArg(2).equals("release")) {
                         if (!Main.root.playing) {
                             SPreference[spotId].stageSpotButton.setVisible(true);
@@ -82,14 +89,15 @@ public class OSC {
                 // Receiving sound messages
                 if (message.getName().contains("/Sound")) {
                     try {
+                        //Split the message into an array of strings
                         String[] parts = message.getName().split("/");
                         String type = parts[3]; //The type of instrument which is being used by other clients
                         String key = parts[4]; //The key pressed by other clients
-                        //System.out.println("Key: " + key);
 
                         // local reference to specific instruments from which the message is received
                         Instrument instrument = SPreference[spotId].bandPlayer.instrument;
 
+                        // Make sure you play the right instrument and then play the sound
                         if (type.equals(instrument.type)) {
                             instrument.map.get(key).playSound();
                             //Note.playSound(Note.map.get(key).getMedia());
@@ -104,12 +112,10 @@ public class OSC {
             }
         });
         try {
-            // ok, unsubscribe getting info messages
+            // Letting the server know, you are here
             client.send(new OSCMessage("/hello", new Object[]{new Integer(0)}));
 
-            // ok, stop the client
-            // ; this isn't really necessary as we call dispose soon
-        } catch (IOException /* | InterruptedException */ e11) {
+        } catch (IOException e11) {
             e11.printStackTrace();
         }
 
