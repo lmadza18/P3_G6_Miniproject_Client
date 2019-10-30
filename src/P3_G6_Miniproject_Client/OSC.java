@@ -100,6 +100,7 @@ public class OSC {
                         // Make sure you play the right instrument and then play the sound
                         if (type.equals(instrument.type)) {
                             instrument.map.get(key).playSound();
+
                             //Note.playSound(Note.map.get(key).getMedia());
                             //instrument.playSound(instrument.map.get(key).getMedia());
                         }

@@ -2961,7 +2961,7 @@
 													"top": 658,
 													"width": 255,
 													"height": 13,
-													"text": "~switchRight(): void",
+													"text": "~switchRightListener(): void",
 													"horizontalAlignment": 0
 												},
 												{
@@ -2978,7 +2978,7 @@
 													"top": 673,
 													"width": 255,
 													"height": 13,
-													"text": "~switchLeft(): void",
+													"text": "~switchLeftListener(): void",
 													"horizontalAlignment": 0
 												}
 											],
@@ -3893,7 +3893,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFt+lxtctfmzh8="
 							},
-							"name": "switchRight",
+							"name": "switchRightListener",
 							"visibility": "package",
 							"parameters": [
 								{
@@ -3913,7 +3913,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFt+lxtctfmzh8="
 							},
-							"name": "switchLeft",
+							"name": "switchLeftListener",
 							"visibility": "package",
 							"parameters": [
 								{
