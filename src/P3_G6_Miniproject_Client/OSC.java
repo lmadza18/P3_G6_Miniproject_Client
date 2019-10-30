@@ -11,7 +11,7 @@ import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.net.StandardSocketOptions;
 
-public class OC {
+public class OSC {
     static OSCClient client;
     StageSpot[] SPreference;
 
@@ -29,13 +29,13 @@ public class OC {
         }
     }
 
-    OC(StageSpot[] spr) {
+    OSC(StageSpot[] spr) {
         SPreference = spr;
         System.out.println(spr[0].taken);
 
         try {
             client = OSCClient.newUsing(OSCClient.UDP);    // create UDP client with any free port number
-            client.setTarget(new InetSocketAddress("localhost", 8000));  // talk to scsynth on the same machine
+            client.setTarget(new InetSocketAddress("192.168.43.10", 8000));  // talk to scsynth on the same machine
             //client.setTarget(new InetSocketAddress("localhost", 8000));  // talk to scsynth on the same machine
             client.start();  // open channel and (in the case of TCP) connect, then start listening for replies
         } catch (IOException e1) {
@@ -48,16 +48,17 @@ public class OC {
             public void messageReceived(OSCMessage message, SocketAddress address, long time) {
                 System.out.println("MESSAGE:" + message.getName() + " RECEIVED FROM: " + address);
 
+                // store Id's from message
                 int spotId = (int) message.getArg(0);
                 int InstrumentId = (int) message.getArg(1);
 
                 if (message.getName().contains("/server/setPlayerId")) {
                     int sID = (int) message.getArg(0);
-                    SPreference[sID].playerID = sID;
-                    System.out.println("SPreference[id].playerID" + SPreference[sID].playerID);
+                    System.out.println("You are player " + sID);
                 }
                 // Receiving GUI messages
                 if (message.getName().contains("/GUImessage")) {
+                    System.out.println("OPERATION: " + message.getArg(2));
 
                     //String operation = (String)message.getArg(2);
                     if (message.getArg(2).equals("take")) {
@@ -66,23 +67,31 @@ public class OC {
                     if (message.getArg(2).equals("leave")) {
                         SPreference[spotId].removeBandPlayer();
                     }
+                    if (message.getArg(2).equals("reserve")) {
+                        SPreference[spotId].stageSpotButton.setVisible(false);
+                        SPreference[spotId].taken = true;
+                    }
+                    if (message.getArg(2).equals("release")) {
+                        if (!Main.root.playing) {
+                            SPreference[spotId].stageSpotButton.setVisible(true);
+                        }
+                        SPreference[spotId].taken = false;
+                    }
                 }
+                // Receiving sound messages
                 if (message.getName().contains("/Sound")) {
                     try {
                         String[] parts = message.getName().split("/");
                         String type = parts[3]; //The type of instrument which is being used by other clients
                         String key = parts[4]; //The key pressed by other clients
-                        System.out.println("Key: " + key);
+                        //System.out.println("Key: " + key);
 
-                        /*
-
+                        // local reference to specific instruments from which the message is received
                         Instrument instrument = SPreference[spotId].bandPlayer.instrument;
-                        //System.out.println("Map key is " + IPreference[i].map.get(key));
                         if (type.equals(instrument.type)) {
-                            Note.playSound(Note.map.get(key).getMedia());
+                            //Note.playSound(Note.map.get(key).getMedia());
+                            instrument.playSound(instrument.map.get(key).getMedia());
                         }
-
-                         */
 
                     } catch (IllegalArgumentException e) {
                         System.out.println(e);
