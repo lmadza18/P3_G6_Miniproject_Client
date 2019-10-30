@@ -82,30 +82,32 @@ public class Instrument {
 
     public void setUpListener(RootUI rootUI) {
 
-        rootUI.setOnKeyPressed(e -> {
+        if (isMe) {
+            rootUI.setOnKeyPressed(e -> {
 
-            for (Map.Entry<String, Note> entry : map.entrySet()) {
-                //Key checked
-                String key = entry.getKey();
-                //Key pressed by user
-                String mapKey = e.getCode().getName();
-                if (key.equals(mapKey) && this.isPlayable && !entry.getValue().noteOn) {
-                    OSC.sendMessage("Sound/" + this.type + "/" + entry.getKey(), spotId, bandPlayerId, "null");
-                    System.out.println("something");
-                    entry.getValue().playSound();
+                for (Map.Entry<String, Note> entry : map.entrySet()) {
+                    //Key checked
+                    String key = entry.getKey();
+                    //Key pressed by user
+                    String mapKey = e.getCode().getName();
+                    if (key.equals(mapKey) && this.isPlayable && !entry.getValue().noteOn) {
+                        OSC.sendMessage("Sound/" + this.type + "/" + entry.getKey(), spotId, bandPlayerId, "null");
+                        System.out.println("something");
+                        entry.getValue().playSound();
 
-                    // Copies what's in the map for the current key
-                    //Note note = entry.getValue();
-                    //note.noteOn=true;
-                    // Replaces what's in the map
-                    //map.put(key,note);a
+                        // Copies what's in the map for the current key
+                        //Note note = entry.getValue();
+                        //note.noteOn=true;
+                        // Replaces what's in the map
+                        //map.put(key,note);a
 
-                    //Goes into the variable,
-                    map.get(key).noteOn = true;
+                        //Goes into the variable,
+                        map.get(key).noteOn = true;
 
+                    }
                 }
-            }
-        });
+            });
+        }
 
         rootUI.setOnKeyReleased(e -> {
 
@@ -123,6 +125,7 @@ public class Instrument {
             }
         });
     }
+
 
 
 }
