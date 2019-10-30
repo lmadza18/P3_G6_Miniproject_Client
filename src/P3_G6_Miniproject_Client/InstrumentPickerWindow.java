@@ -9,9 +9,10 @@ import javafx.scene.layout.Pane;
 
 
 public class InstrumentPickerWindow extends Pane {
-    Pane background = new Pane();
+    Pane background = new Pane(); //Pane for making background unclickable
     BorderPane window = new BorderPane();
 
+    //Setup width and pos for instrumentPickerWindow
     double width = Main.root.getWidth() / 8 * 4;
     double height = Main.root.getHeight() / 8 * 4;
     double x = Main.root.getWidth() / 2 - width / 2;
@@ -21,23 +22,25 @@ public class InstrumentPickerWindow extends Pane {
     Button leftButton;
     Button rightButton;
 
-    int switchIndex = 0;
+    int switchIndex = 0; // Index for switching characters
 
     // Add all character images to an array
     ImageView[] imageViews = new ImageView[4];
 
     public InstrumentPickerWindow() {
 
+        //Set pos and size for background
         background.setMinSize(Main.root.getWidth(), Main.root.getHeight());
         background.setStyle("-fx-background-color: #111111; -fx-opacity: 0.7;");
 
-        this.getChildren().addAll(background, window);
 
+        //Set pos and size and color for instrumentPickerWindow
         window.setTranslateX(x);
         window.setTranslateY(y);
         window.setMinSize(width, height);
-
         window.setStyle("-fx-background-color: #4a4a4a;");
+
+        this.getChildren().addAll(background, window);
 
         // Add images to the Imageviews
         for (int i = 0; i < Main.root.images.length; i++) {
@@ -71,11 +74,11 @@ public class InstrumentPickerWindow extends Pane {
         closeButton = new Button();
         leftButton = new Button();
         rightButton = new Button();
+
         // Add graphics to UI buttons
         closeButton.setGraphic(closeImg);
         leftButton.setGraphic(leftImg);
         rightButton.setGraphic(rightImg);
-
         closeButton.setStyle("-fx-background-color: transparent");
         leftButton.setStyle("-fx-background-color: transparent");
         rightButton.setStyle("-fx-background-color: transparent");
@@ -89,19 +92,18 @@ public class InstrumentPickerWindow extends Pane {
         BorderPane.setAlignment(leftButton, Pos.CENTER);
         BorderPane.setAlignment(rightButton, Pos.CENTER);
         BorderPane.setAlignment(chooseButton, Pos.BOTTOM_RIGHT);
-        //chooseSpot();
-        switchRight();
-        switchLeft();
+
+
         rightButton.setOnAction(actionEvent -> {
-            switchRight();
+            switchRightListener();
         });
         leftButton.setOnAction(actionEvent -> {
-            switchLeft();
+            switchLeftListener();
         });
     }
 
-
-    void switchRight() {
+    //Listeners for switching right and left
+    void switchRightListener() {
         switchIndex++;
         if (switchIndex >= imageViews.length) {
             switchIndex = 0;
@@ -109,7 +111,7 @@ public class InstrumentPickerWindow extends Pane {
         window.setCenter(imageViews[switchIndex]);
     }
 
-    void switchLeft() {
+    void switchLeftListener() {
         switchIndex--;
         if (switchIndex < 0) {
             switchIndex = imageViews.length-1;
