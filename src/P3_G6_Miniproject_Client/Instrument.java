@@ -5,6 +5,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -51,7 +52,7 @@ public class Instrument {
                 new Note(new File("src/audio_files/" + type + "/1C" + type + ".wav"))
         };
 
-        map = Map.of(
+        map = Collections.synchronizedMap( Map.of(
                 "A", notes[0],
                 "S", notes[1],
                 "D", notes[2],
@@ -60,7 +61,7 @@ public class Instrument {
                 "H", notes[5],
                 "J", notes[6],
                 "K", notes[7]
-        );
+        ));
         this.setUpListener(rootUI);
         //TODO OC MESSAGE
         //OC.sendMessage("Sound/" + this.type + "/" + entry.getKey(), spotId, id, "null");
@@ -118,7 +119,7 @@ public class Instrument {
                 if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable && entry.getValue().noteOn) {
                     System.out.println("RELEASING: " + entry.getKey());
 
-                    //map.get(key).stopSound();
+                    map.get(key).stopSound();
                     map.get(key).noteOn = false;
 
                 }

@@ -23,6 +23,8 @@ public class Note {
     }
 
     public void playSound(){
+        mediaPlayer.setVolume(100);
+
 
         mediaPlayer.seek(Duration.ZERO);
 
@@ -34,12 +36,13 @@ public class Note {
     public void stopSound(){
 
         //mediaPlayer.seek(Duration.ZERO);
+        mediaPlayer.setVolume(0);
+
 
         if (!this.isRhythmic) {
             mediaPlayer.setVolume(0);
         }
     }
-
 
 
 

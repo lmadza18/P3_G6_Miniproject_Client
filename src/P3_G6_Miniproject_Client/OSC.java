@@ -92,6 +92,7 @@ public class OSC {
 
                         if (type.equals(instrument.type)) {
                             instrument.map.get(key).playSound();
+
                             //Note.playSound(Note.map.get(key).getMedia());
                             //instrument.playSound(instrument.map.get(key).getMedia());
                         }
