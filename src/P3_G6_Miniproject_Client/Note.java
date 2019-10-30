@@ -33,6 +33,8 @@ public class Note {
 
     public void stopSound(){
 
+        //mediaPlayer.seek(Duration.ZERO);
+
         if (!this.isRhythmic) {
             mediaPlayer.setVolume(0);
         }
