@@ -54,7 +54,7 @@ public class Instrument {
                 new Note(new File("src/audio_files/" + type + "/1C" + type + ".wav"))
         };
 
-        map = Collections.synchronizedMap( Map.of(
+        map = Collections.synchronizedMap(Map.of(
                 "A", notes[0],
                 "S", notes[1],
                 "D", notes[2],
@@ -89,7 +89,7 @@ public class Instrument {
             rootUI.setOnKeyPressed(e -> {
 
                 // ------------------------- When pressing 'p' you toggle pedal on/off
-                if (e.getCode().equals(KeyCode.P)){
+                if (e.getCode().equals(KeyCode.P)) {
                     pedal = !pedal;
                 }
                 // -------------------------
@@ -102,12 +102,7 @@ public class Instrument {
 
 
                     if (key.equals(mapKey) && this.isPlayable && !entry.getValue().noteOn) {
-                        String operation = "pedal";
-                        if (!pedal){
-                            operation = "none";
-                        }
-                        OSC.sendMessage("Sound/" + this.type + "/" + entry.getKey(), spotId, bandPlayerId, operation);
-                        System.out.println("something");
+                        OSC.sendMessage("Sound/" + this.type + "/" + entry.getKey(), spotId, bandPlayerId, "play");
                         entry.getValue().playSound();
 
                         // Copies what's in the map for the current key
@@ -135,6 +130,7 @@ public class Instrument {
 
                         //  Only stop the note if pedal is off
                         if (!pedal) {
+                            OSC.sendMessage("Sound/" + this.type + "/" + entry.getKey(), spotId, bandPlayerId, "stop");
                             map.get(key).stopSound();
                         }
                         map.get(key).noteOn = false;
@@ -144,7 +140,6 @@ public class Instrument {
             });
         }
     }
-
 
 
 }

@@ -72,7 +72,6 @@ public class OSC {
                 }
                 // Receiving sound messages
                 if (message.getName().contains("/Sound")) {
-                    System.out.println(message.getArg(2));
                     try {
                         //Split the message into an array of strings
                         String[] parts = message.getName().split("/");
@@ -84,11 +83,12 @@ public class OSC {
 
                         // Make sure you play the right instrument and then play the sound
                         if (type.equals(instrument.type)) {
-                            instrument.pedal = message.getArg(2).equals("pedal");
-                            instrument.map.get(key).playSound();
-
-                            //Note.playSound(Note.map.get(key).getMedia());
-                            //instrument.playSound(instrument.map.get(key).getMedia());
+                            if (message.getArg(2).equals("play")) {
+                                instrument.map.get(key).playSound();
+                            }
+                            if (message.getArg(2).equals("stop")){
+                                instrument.map.get(key).stopSound();
+                            }
                         }
 
                     } catch (IllegalArgumentException e) {
