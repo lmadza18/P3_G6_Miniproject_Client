@@ -66,9 +66,9 @@ public class IPWindow extends StackPane {
     }
 
     private void setAndRun() {
-        ipAddress = textField.getText();
-        Main.root.getChildren().remove(this);
+        OSC.hostName = textField.getText();
         Main.root.OSC.runOSC();
+        Main.root.getChildren().remove(this);
     }
 
 

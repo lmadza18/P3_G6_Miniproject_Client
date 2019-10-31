@@ -13,7 +13,7 @@ public class OSC {
     static OSCClient client; // This is the client
     StageSpot[] SPreference; // This is a reference to all the stageSpots
     static int sID;
-    String hostName;
+    static String hostName;
     static boolean connected;
 
 
