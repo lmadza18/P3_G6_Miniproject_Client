@@ -6,12 +6,11 @@ One Paragraph of project description goes here
 [Release version 1.0](somelink)
 
 ## Instructions
-When the client side of the program is running, the following interactions is necessary: 
-* The client have to input an IP-address. This is the IP-address which host the server (hostname).
+When the client side of the program is running, the client have to input an IP-address. 
+This is the IP-address which host the server (hostname).
 
 The client can then choose a stagespot and a bandplayer, using the mouse to select and confirm their choice. 
-
-When the client has chosen a stagespot and a bandplayer, they can play notes using the following keys.
+Depending on the chosen bandplayer the client can play notes using the following keys:
 * A
 * S
 * D
