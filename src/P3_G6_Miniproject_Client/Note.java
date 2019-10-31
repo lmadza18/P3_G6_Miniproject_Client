@@ -41,7 +41,7 @@ public class Note {
     private MediaPlayer mediaPlayer;
 
     /**
-     *The constructor takes an File load from the Instrument class @see Instrument
+     *The constructor takes a File load from the Instrument class @see Instrument
      * @param audioFile the sample file for this specific note of an instrument
      */
 
@@ -62,7 +62,6 @@ public class Note {
         mediaPlayer.setVolume(100);
 
         mediaPlayer.seek(Duration.ZERO);
-        System.out.println("something else");
         this.mediaPlayer.play();
     }
     /**

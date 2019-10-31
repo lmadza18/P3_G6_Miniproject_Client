@@ -22,15 +22,9 @@ public class RootUI extends Pane {
             new Image("images/sprite.png")
     };
 
-
-
     RootUI() {
-
     }
 
-    void setMess(OSCMessage mess) {
-
-    }
     public void start() {
 
         //set background image

@@ -11,7 +11,6 @@ public class StageSpot extends StackPane {
     BandPlayer bandPlayer;
 
     boolean taken = false;
-    int playerID;
     double x;
     double y;
     double xInit;
@@ -83,10 +82,10 @@ public class StageSpot extends StackPane {
     }
 
 
-    //Method for diplaying a band player
-    public void displayBandPlayer(int instrumentId, boolean isMe) {
+    //Method for displaying a band player
+    public void displayBandPlayer(int instrumentId, boolean localPlayer) {
         taken = true;
-        bandPlayer = new BandPlayer(spotId, instrumentId, isMe);
+        bandPlayer = new BandPlayer(spotId, instrumentId, localPlayer);
         bandPlayer.setFitWidth(Main.root.getWidth() / 5);
         bandPlayer.setFitHeight(Main.root.getWidth() / 5);
         movePos(-bandPlayer.getFitWidth() / 2, -this.getHeight() * 1.5);
@@ -133,7 +132,6 @@ public class StageSpot extends StackPane {
     void instrumentPickerWindowExitListener() {
         Main.root.instrumentPickerWindow.closeButton.setOnAction(actionEvent -> {
             Main.root.getChildren().remove(Main.root.instrumentPickerWindow);
-            //leaveIt();
             OSC.sendMessage("GUImessage", this.spotId, this.instrumentId, "release");
         });
     }
