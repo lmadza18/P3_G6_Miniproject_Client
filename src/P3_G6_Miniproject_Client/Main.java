@@ -27,7 +27,7 @@ public class Main extends Application {
         // sending status to server
         new Thread(() -> {
             while (primaryStage.isShowing()) {
-                if (Main.root.ipWindow.getIpAddress() != null && !Main.root.ipWindow.getIpAddress().equals("")) {
+                if (OSC.connected) {
                     try {
                         OSC.sendStatus();
                         Thread.sleep(2000);

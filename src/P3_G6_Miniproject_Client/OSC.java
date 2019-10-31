@@ -7,12 +7,14 @@ import de.sciss.net.OSCMessage;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
+import java.nio.channels.UnresolvedAddressException;
 
 public class OSC {
     static OSCClient client; // This is the client
     StageSpot[] SPreference; // This is a reference to all the stageSpots
     static int sID;
     String hostName;
+    static boolean connected;
 
 
     OSC(StageSpot[] spr) {
@@ -46,8 +48,6 @@ public class OSC {
 
     protected void runOSC() {
         this.hostName = Main.root.ipWindow.getIpAddress();
-        System.out.println(this.hostName);
-
 
         try {
             client = OSCClient.newUsing(OSCClient.UDP);    // create UDP client with any free port number
@@ -69,6 +69,7 @@ public class OSC {
 
                 // Set player ID
                 if (message.getName().contains("/server/setPlayerId")) {
+                    connected = true;
                     sID = (int) message.getArg(0);
                     System.out.println("You are player " + sID);
                 }
@@ -135,6 +136,8 @@ public class OSC {
 
         } catch (IOException e11) {
             e11.printStackTrace();
+        } catch (UnresolvedAddressException e){
+            System.out.println("Server not found");
         }
     }
 }

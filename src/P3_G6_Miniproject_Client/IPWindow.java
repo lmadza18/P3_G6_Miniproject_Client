@@ -50,9 +50,7 @@ public class IPWindow extends StackPane {
     }
 
     private void setAndRun() {
-        System.out.println(textField.getText());
         ipAddress = textField.getText();
-        System.out.println(ipAddress);
         Main.root.getChildren().remove(this);
         Main.root.OSC.runOSC();
     }
