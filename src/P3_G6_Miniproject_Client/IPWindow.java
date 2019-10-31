@@ -2,6 +2,7 @@ package P3_G6_Miniproject_Client;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -14,6 +15,7 @@ public class IPWindow extends StackPane {
     TextField textField = new TextField();
     Button button = new Button("Click to get text");
     String ipAddress;
+    boolean connected;
 
     IPWindow() {
 
@@ -32,16 +34,27 @@ public class IPWindow extends StackPane {
         this.getChildren().addAll(background, ipWindow);
 
         button.setOnAction(action -> {
-            System.out.println(textField.getText());
-            ipAddress = textField.getText();
-            System.out.println(ipAddress);
-            Main.root.getChildren().remove(this);
-            Main.root.OSC.runOSC();
+            setAndRun();
+
+        });
+
+        Main.root.setOnKeyPressed(e -> {
+            if (e.getCode().equals(KeyCode.ENTER)) {
+                setAndRun();
+            }
         });
     }
 
     public String getIpAddress() {
         return ipAddress;
+    }
+
+    private void setAndRun() {
+        System.out.println(textField.getText());
+        ipAddress = textField.getText();
+        System.out.println(ipAddress);
+        Main.root.getChildren().remove(this);
+        Main.root.OSC.runOSC();
     }
 
 
