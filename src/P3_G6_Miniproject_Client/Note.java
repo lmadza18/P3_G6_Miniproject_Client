@@ -18,6 +18,11 @@ import java.io.File;
 //IntelliJ is smart, so it helps u quite a bit. write / * * and enter, and it makes a javadoc block for you.
 //**********************************************************************
 
+
+/**
+ *
+ */
+
 /**
  * This class is used for playing a single sample. Each instrument has an array of Note objects.
  * @see         Instrument
