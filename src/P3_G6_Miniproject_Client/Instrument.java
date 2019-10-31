@@ -19,13 +19,13 @@ public class Instrument {
     public Map<String, Note> map;
     private int bandPlayerId;
     private int spotId;
-    private boolean isMe;
+    private boolean localPlayer;
     public boolean pedal = true;
 
-    public Instrument(int bandPlayerId, int spotId, RootUI rootUI, boolean isMe) {
+    public Instrument(int bandPlayerId, int spotId, RootUI rootUI, boolean localPlayer) {
         this.bandPlayerId = bandPlayerId;
         this.spotId = spotId;
-        this.isMe = isMe;
+        this.localPlayer = localPlayer;
 
         // Depending on the bandPlayerId a String named type is stored
         switch (bandPlayerId) {
@@ -80,8 +80,7 @@ public class Instrument {
     //And checks if the user pressed or releases any buttons (within the map)
     public void setUpListener(RootUI rootUI) {
 
-
-        if (isMe) {
+        if (localPlayer) {
             //Sets on a keyPressed to the rootUi element
             rootUI.setOnKeyPressed(e -> {
 
@@ -104,6 +103,7 @@ public class Instrument {
                     if (mapKey.equals(key) && this.isPlayable && !entry.getValue().noteOn) {
                         //A message is send to the server
                         OSC.sendMessage("Sound/" + this.type + "/" + entry.getKey(), spotId, bandPlayerId, "play");
+                        // Play sound
                         entry.getValue().playSound();
                         //Set noteOn to true
                         map.get(mapKey).noteOn = true;
@@ -126,7 +126,9 @@ public class Instrument {
 
                         //  Only stop the note if pedal is off
                         if (!pedal) {
+                            // Send message for stopping a sound
                             OSC.sendMessage("Sound/" + this.type + "/" + entry.getKey(), spotId, bandPlayerId, "stop");
+                            // Stop sound
                             map.get(key).stopSound();
                         }
                         //Sets noteOn to false again

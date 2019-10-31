@@ -10,17 +10,48 @@ import java.net.SocketAddress;
 
 public class OSC {
     static OSCClient client; // This is the client
-    StageSpot[] SPreference; // This is a reference to all the stagespots
+    StageSpot[] SPreference; // This is a reference to all the stageSpots
     static int sID;
+    String hostName;
 
 
     OSC(StageSpot[] spr) {
         SPreference = spr;
         System.out.println(spr[0].taken);
 
+    }
+
+    static public void sendStatus() {
+        try {
+            client.send(new OSCMessage("/status", new Object[]{sID}));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // We send messages to the server
+    static void sendMessage(String string, int spotId, int instrumentId, String operation) {
+        Object[] args = new Object[3];
+        args[0] = spotId;
+        args[1] = instrumentId;
+        args[2] = operation;
+
+        try {
+            client.send(new OSCMessage("/" + string, args));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    protected void runOSC() {
+        this.hostName = Main.root.ipWindow.getIpAddress();
+        System.out.println(this.hostName);
+
+
         try {
             client = OSCClient.newUsing(OSCClient.UDP);    // create UDP client with any free port number
-            client.setTarget(new InetSocketAddress("192.168.43.10", 8000));  // Find server host
+            client.setTarget(new InetSocketAddress(this.hostName, 8000));  // Find server host
             client.start();  // open channel and (in the case of TCP) connect, then start listening for replies
         } catch (IOException e1) {
             e1.printStackTrace();
@@ -46,23 +77,23 @@ public class OSC {
                     System.out.println("OPERATION: " + message.getArg(2));
 
                     // If the operation received in the message is "take"
-                    // display a bandplayer on that spotID included in the message
+                    // display a bandPlayer on that spotID included in the message
                     if (message.getArg(2).equals("take")) {
                         SPreference[spotId].displayBandPlayer(InstrumentId, false);
                     }
                     // If the operation received in the message is "leave"
-                    // remove a bandplayer on that spotID included in the message
+                    // remove a bandPlayer on that spotID included in the message
                     if (message.getArg(2).equals("leave")) {
                         SPreference[spotId].removeBandPlayer();
                     }
                     // If the operation received in the message is "reserve"
-                    // remove a stagespot button on that spotID included in the message
+                    // remove a stageSpot button on that spotID included in the message
                     if (message.getArg(2).equals("reserve")) {
                         SPreference[spotId].stageSpotButton.setVisible(false);
                         SPreference[spotId].taken = true;
                     }
                     // If the operation received in the message is "release"
-                    // display a stagespot button on that spotID included in the message again
+                    // display a stageSpot button on that spotID included in the message again
                     if (message.getArg(2).equals("release")) {
                         if (!Main.root.playing) {
                             SPreference[spotId].stageSpotButton.setVisible(true);
@@ -86,7 +117,7 @@ public class OSC {
                             if (message.getArg(2).equals("play")) {
                                 instrument.map.get(key).playSound();
                             }
-                            if (message.getArg(2).equals("stop")){
+                            if (message.getArg(2).equals("stop")) {
                                 instrument.map.get(key).stopSound();
                             }
                         }
@@ -100,34 +131,10 @@ public class OSC {
         });
         try {
             // Letting the server know, you are here
-            client.send(new OSCMessage("/hello", new Object[]{new Integer(0)}));
+            client.send(new OSCMessage("/hello", new Object[]{0}));
 
         } catch (IOException e11) {
             e11.printStackTrace();
         }
-
-    }
-
-    static public void sendStatus() {
-        try {
-            client.send(new OSCMessage("/status", new Object[]{sID}));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    // We send messages to the server
-    static void sendMessage(String string, int spotId, int instrumentId, String operation) {
-        Object[] args = new Object[3];
-        args[0] = spotId;
-        args[1] = instrumentId;
-        args[2] = operation;
-
-        try {
-            client.send(new OSCMessage("/" + string, args));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
 }
