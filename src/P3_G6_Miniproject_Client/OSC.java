@@ -12,15 +12,46 @@ public class OSC {
     static OSCClient client; // This is the client
     StageSpot[] SPreference; // This is a reference to all the stagespots
     static int sID;
+    String hostName;
 
 
     OSC(StageSpot[] spr) {
         SPreference = spr;
         System.out.println(spr[0].taken);
 
+    }
+
+    static public void sendStatus() {
+        try {
+            client.send(new OSCMessage("/status", new Object[]{sID}));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // We send messages to the server
+    static void sendMessage(String string, int spotId, int instrumentId, String operation) {
+        Object[] args = new Object[3];
+        args[0] = spotId;
+        args[1] = instrumentId;
+        args[2] = operation;
+
+        try {
+            client.send(new OSCMessage("/" + string, args));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    protected void runOSC() {
+        this.hostName = Main.root.ipWindow.getIpAddress();
+        System.out.println(this.hostName);
+
+
         try {
             client = OSCClient.newUsing(OSCClient.UDP);    // create UDP client with any free port number
-            client.setTarget(new InetSocketAddress("192.168.43.10", 8000));  // Find server host
+            client.setTarget(new InetSocketAddress(this.hostName, 8000));  // Find server host
             client.start();  // open channel and (in the case of TCP) connect, then start listening for replies
         } catch (IOException e1) {
             e1.printStackTrace();
@@ -86,7 +117,7 @@ public class OSC {
                             if (message.getArg(2).equals("play")) {
                                 instrument.map.get(key).playSound();
                             }
-                            if (message.getArg(2).equals("stop")){
+                            if (message.getArg(2).equals("stop")) {
                                 instrument.map.get(key).stopSound();
                             }
                         }
@@ -105,29 +136,5 @@ public class OSC {
         } catch (IOException e11) {
             e11.printStackTrace();
         }
-
-    }
-
-    static public void sendStatus() {
-        try {
-            client.send(new OSCMessage("/status", new Object[]{sID}));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    // We send messages to the server
-    static void sendMessage(String string, int spotId, int instrumentId, String operation) {
-        Object[] args = new Object[3];
-        args[0] = spotId;
-        args[1] = instrumentId;
-        args[2] = operation;
-
-        try {
-            client.send(new OSCMessage("/" + string, args));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
 }
