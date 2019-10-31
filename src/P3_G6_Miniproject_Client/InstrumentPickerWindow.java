@@ -7,7 +7,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
-
+/**
+ * This class a window  where the the player is able to pick a band avatar.
+ **/
 
 public class InstrumentPickerWindow extends Pane {
     Pane background = new Pane(); //Pane for making background unclickable

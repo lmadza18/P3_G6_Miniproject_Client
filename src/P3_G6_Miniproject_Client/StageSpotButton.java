@@ -4,6 +4,10 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 
+/**
+ * This class handling the construction and graphical properties of the stagespot button
+ **/
+
 public class StageSpotButton extends StackPane {
 
     Button button;
@@ -16,9 +20,9 @@ public class StageSpotButton extends StackPane {
     double x;
     double y;
 
-    //Put button in here
     StageSpotButton() {
 
+        //setting for the graphical settings of the button
         imageSize = (int) Math.round(Main.root.getWidth() / 10);
         buttonSize = Math.round(imageSize / 6 * 4);
         int buttonTransform = Math.round(imageSize / 6);
@@ -38,9 +42,10 @@ public class StageSpotButton extends StackPane {
 
         getChildren().addAll(buttonImg, buttonHoverImg, button);
 
-        //button.setPickOnBounds(true);
+
         buttonHoverImg.setVisible(false);
 
+        //makes fire appear when ever the button is hovered
         button.setOnMouseEntered(t -> {
             buttonImg.setVisible(false);
             buttonHoverImg.setVisible(true);

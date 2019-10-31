@@ -14,22 +14,25 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
+/**
+ * This class the first screen in the program where your need to enter the IP address you want to join.
+ **/
+
 public class IPWindow extends StackPane {
-    StackPane background = new StackPane(); //Pane for making background unclickable
+    //StackPane background = new StackPane(); /
     VBox ipWindow = new VBox();
     Text text = new Text();
     TextField textField = new TextField();
     Button button = new Button("Connect");
-    String ipAddress;
+
     IPWindow() {
 
+        //settings for GUI
         ipWindow.setAlignment(Pos.CENTER);
-        //ipWindow.setSpacing(Main.root.getHeight()/120);
         int margin = (int) (Main.root.getHeight() / 60);
         VBox.setMargin(text, new Insets(margin / 2, margin, margin / 2, margin));
         VBox.setMargin(textField, new Insets(margin / 2, margin, margin / 2, margin));
         VBox.setMargin(button, new Insets(margin / 2, margin, margin / 2, margin));
-
 
         String text = "Insert the IP address you want to connect with";
         this.text.setText(text);
@@ -41,19 +44,17 @@ public class IPWindow extends StackPane {
         ipWindow.setStyle("-fx-background-color: #AAAAAA; -fx-border-color: #444444;");
 
 
-
-        background.setMinSize(Main.root.getWidth(), Main.root.getHeight());
-        background.setStyle("-fx-background-color: #111111; -fx-opacity: 0.7;");
-        ImageView bgImg = new ImageView("images/rockband.jpg");
+        ImageView bgImg = new ImageView("images/rockband.jpg"); //the background image
         bgImg.setFitWidth(Main.root.getWidth());
         bgImg.setFitHeight(Main.root.getHeight());
         this.getChildren().addAll(bgImg, ipWindow);
 
+        //listener for when the button is clicked
         button.setOnAction(action -> {
             setAndRun();
-
         });
 
+        //listener for when the enter is pressed
         Main.root.setOnKeyPressed(e -> {
             if (e.getCode().equals(KeyCode.ENTER)) {
                 setAndRun();
@@ -61,15 +62,11 @@ public class IPWindow extends StackPane {
         });
     }
 
-    public String getIpAddress() {
-        return ipAddress;
-    }
-
+    //method for starting server when ip address have been written
     private void setAndRun() {
         OSC.hostName = textField.getText();
         Main.root.OSC.runOSC();
         Main.root.getChildren().remove(this);
     }
-
 
 }

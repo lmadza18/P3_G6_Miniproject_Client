@@ -4,6 +4,10 @@ import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 
+/**
+ * The stagespot class makes object for each spot on the stage and handles everything that is included in the stagespot
+ * This includes the button and the bandplayer and all interactions the those objects
+ **/
 
 public class StageSpot extends StackPane {
 
@@ -29,10 +33,7 @@ public class StageSpot extends StackPane {
         stageSpotButton = new StageSpotButton();
         this.getChildren().add(stageSpotButton);
 
-
         this.movePos(-stageSpotButton.imageSize / 2, -stageSpotButton.imageSize / 2);
-
-
         stageSpotButtonListener();
 
     }
@@ -71,6 +72,7 @@ public class StageSpot extends StackPane {
         });
     }
 
+    //Method for choosing a band player
     public void chooseBandPlayer(){
         Main.root.getChildren().remove(Main.root.instrumentPickerWindow);
         this.instrumentId = Main.root.instrumentPickerWindow.switchIndex;
@@ -136,6 +138,7 @@ public class StageSpot extends StackPane {
         });
     }
 
+    //Method for action when the "get my ass out of here" button is clicked
     void leaveStageSpotButtonListener() {
         Main.root.leaveStageSpotButton.setOnAction(actionEvent -> {
             removeBandPlayer();
