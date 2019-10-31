@@ -15,6 +15,7 @@ public class IPWindow extends StackPane {
     TextField textField = new TextField();
     Button button = new Button("Click to get text");
     String ipAddress;
+    boolean connected;
 
     IPWindow() {
 
