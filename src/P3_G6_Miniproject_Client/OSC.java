@@ -4,41 +4,15 @@ import de.sciss.net.OSCClient;
 import de.sciss.net.OSCListener;
 import de.sciss.net.OSCMessage;
 
-import javax.print.attribute.standard.Media;
-import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
-import java.net.StandardSocketOptions;
 
 public class OSC {
     static OSCClient client; // This is the client
     StageSpot[] SPreference; // This is a reference to all the stagespots
     static int sID;
 
-
-    // We send messages to the server
-    static void sendMessage(String string, int spotId, int instrumentId, String operation) {
-        Object args[] = new Object[3];
-        args[0] = spotId;
-        args[1] = instrumentId;
-        args[2] = operation;
-
-        try {
-            client.send(new OSCMessage("/" + string, args));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    static public void sendStatus(){
-        try {
-            client.send(new OSCMessage("/status", new Object[]{sID}));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     OSC(StageSpot[] spr) {
         SPreference = spr;
@@ -128,6 +102,29 @@ public class OSC {
 
         } catch (IOException e11) {
             e11.printStackTrace();
+        }
+
+    }
+
+    static public void sendStatus() {
+        try {
+            client.send(new OSCMessage("/status", new Object[]{sID}));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // We send messages to the server
+    static void sendMessage(String string, int spotId, int instrumentId, String operation) {
+        Object[] args = new Object[3];
+        args[0] = spotId;
+        args[1] = instrumentId;
+        args[2] = operation;
+
+        try {
+            client.send(new OSCMessage("/" + string, args));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }
