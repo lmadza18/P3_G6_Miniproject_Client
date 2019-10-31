@@ -10,7 +10,7 @@ import java.net.SocketAddress;
 
 public class OSC {
     static OSCClient client; // This is the client
-    StageSpot[] SPreference; // This is a reference to all the stagespots
+    StageSpot[] SPreference; // This is a reference to all the stageSpots
     static int sID;
     String hostName;
 
@@ -77,23 +77,23 @@ public class OSC {
                     System.out.println("OPERATION: " + message.getArg(2));
 
                     // If the operation received in the message is "take"
-                    // display a bandplayer on that spotID included in the message
+                    // display a bandPlayer on that spotID included in the message
                     if (message.getArg(2).equals("take")) {
                         SPreference[spotId].displayBandPlayer(InstrumentId, false);
                     }
                     // If the operation received in the message is "leave"
-                    // remove a bandplayer on that spotID included in the message
+                    // remove a bandPlayer on that spotID included in the message
                     if (message.getArg(2).equals("leave")) {
                         SPreference[spotId].removeBandPlayer();
                     }
                     // If the operation received in the message is "reserve"
-                    // remove a stagespot button on that spotID included in the message
+                    // remove a stageSpot button on that spotID included in the message
                     if (message.getArg(2).equals("reserve")) {
                         SPreference[spotId].stageSpotButton.setVisible(false);
                         SPreference[spotId].taken = true;
                     }
                     // If the operation received in the message is "release"
-                    // display a stagespot button on that spotID included in the message again
+                    // display a stageSpot button on that spotID included in the message again
                     if (message.getArg(2).equals("release")) {
                         if (!Main.root.playing) {
                             SPreference[spotId].stageSpotButton.setVisible(true);
@@ -131,7 +131,7 @@ public class OSC {
         });
         try {
             // Letting the server know, you are here
-            client.send(new OSCMessage("/hello", new Object[]{new Integer(0)}));
+            client.send(new OSCMessage("/hello", new Object[]{0}));
 
         } catch (IOException e11) {
             e11.printStackTrace();

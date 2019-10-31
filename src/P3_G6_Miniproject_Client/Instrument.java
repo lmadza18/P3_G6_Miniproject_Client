@@ -1,14 +1,9 @@
 package P3_G6_Miniproject_Client;
 
 import javafx.scene.input.KeyCode;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.util.Duration;
 
 import java.io.File;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public class Instrument {
@@ -19,13 +14,13 @@ public class Instrument {
     public Map<String, Note> map;
     private int bandPlayerId;
     private int spotId;
-    private boolean isMe;
+    private boolean localPlayer;
     public boolean pedal = true;
 
-    public Instrument(int bandPlayerId, int spotId, RootUI rootUI, boolean isMe) {
+    public Instrument(int bandPlayerId, int spotId, RootUI rootUI, boolean localPlayer) {
         this.bandPlayerId = bandPlayerId;
         this.spotId = spotId;
-        this.isMe = isMe;
+        this.localPlayer = localPlayer;
 
         switch (bandPlayerId) {
             case 0:
@@ -68,7 +63,7 @@ public class Instrument {
         //TODO OC MESSAGE
         //OC.sendMessage("Sound/" + this.type + "/" + entry.getKey(), spotId, id, "null");
 /*
-        if (isMe) {
+        if (localPlayer) {
             rootUI.setOnKeyPressed(e -> {
                 for (Map.Entry<String, Note> entry : map.entrySet()) {
                     if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable && !notes[0].noteOn) {
@@ -85,7 +80,7 @@ public class Instrument {
 
     public void setUpListener(RootUI rootUI) {
 
-        if (isMe) {
+        if (localPlayer) {
             rootUI.setOnKeyPressed(e -> {
 
                 // ------------------------- When pressing 'p' you toggle pedal on/off
@@ -102,14 +97,10 @@ public class Instrument {
 
 
                     if (key.equals(mapKey) && this.isPlayable && !entry.getValue().noteOn) {
+                        // Send message for playing a sound
                         OSC.sendMessage("Sound/" + this.type + "/" + entry.getKey(), spotId, bandPlayerId, "play");
+                        // Play sound
                         entry.getValue().playSound();
-
-                        // Copies what's in the map for the current key
-                        //Note note = entry.getValue();
-                        //note.noteOn=true;
-                        // Replaces what's in the map
-                        //map.put(key,note);a
 
                         //Goes into the variable,
                         map.get(key).noteOn = true;
@@ -126,11 +117,11 @@ public class Instrument {
                     String key = entry.getKey();
 
                     if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable && entry.getValue().noteOn) {
-                        System.out.println("RELEASING: " + entry.getKey());
-
                         //  Only stop the note if pedal is off
                         if (!pedal) {
+                            // Send message for stopping a sound
                             OSC.sendMessage("Sound/" + this.type + "/" + entry.getKey(), spotId, bandPlayerId, "stop");
+                            // Stop sound
                             map.get(key).stopSound();
                         }
                         map.get(key).noteOn = false;
