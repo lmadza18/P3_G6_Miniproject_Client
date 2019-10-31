@@ -74,7 +74,6 @@ public class OSC {
                 }
                 // Receiving GUI messages
                 if (message.getName().contains("/GUImessage")) {
-                    System.out.println("OPERATION: " + message.getArg(2));
 
                     // If the operation received in the message is "take"
                     // display a bandPlayer on that spotID included in the message
