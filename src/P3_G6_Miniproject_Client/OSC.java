@@ -46,7 +46,7 @@ public class OSC {
 
         try {
             client = OSCClient.newUsing(OSCClient.UDP);    // create UDP client with any free port number
-            client.setTarget(new InetSocketAddress("localhost", 8000));  // Find server host
+            client.setTarget(new InetSocketAddress("192.168.43.10", 8000));  // Find server host
             client.start();  // open channel and (in the case of TCP) connect, then start listening for replies
         } catch (IOException e1) {
             e1.printStackTrace();
