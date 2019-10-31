@@ -9,6 +9,14 @@ import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.nio.channels.UnresolvedAddressException;
 
+
+/**
+ * This class is for handling client-server communication. It sets up a OSC Listener which detects incoming
+ * messages and calls a specific method depending on the content of the message.
+ * Furthermore, it is used to send message to the server.
+ */
+
+
 public class OSC {
     static OSCClient client; // This is the client
     StageSpot[] SPreference; // This is a reference to all the stageSpots
