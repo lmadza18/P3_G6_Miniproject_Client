@@ -27,11 +27,13 @@ public class Main extends Application {
         // sending status to server
         new Thread(() -> {
             while (primaryStage.isShowing()) {
-                try {
-                    OSC.sendStatus();
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                if (Main.root.ipWindow.getIpAddress() != null && !Main.root.ipWindow.getIpAddress().equals("")) {
+                    try {
+                        OSC.sendStatus();
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }).start();
