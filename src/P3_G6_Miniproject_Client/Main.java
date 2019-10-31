@@ -27,6 +27,7 @@ public class Main extends Application {
         // sending status to server
         new Thread(() -> {
             while (primaryStage.isShowing()) {
+                System.out.print("");
                 if (OSC.connected) {
                     try {
                         OSC.sendStatus();
