@@ -10,7 +10,6 @@ public class Note {
     //TODO NAMING
 
     //Pitch pitch;
-    private Media media;
     //MediaPlayer mediaPlayer;
     public boolean noteOn = false;
     private boolean isRhythmic = false;
@@ -22,7 +21,9 @@ public class Note {
 
     }
 
-    public void playSound(){
+    public void playSound() {
+        mediaPlayer.setVolume(100);
+
 
         mediaPlayer.seek(Duration.ZERO);
 
@@ -31,9 +32,11 @@ public class Note {
 
     }
 
-    public void stopSound(){
+    public void stopSound() {
 
         //mediaPlayer.seek(Duration.ZERO);
+        mediaPlayer.setVolume(0);
+
 
         if (!this.isRhythmic) {
             mediaPlayer.setVolume(0);
@@ -42,13 +45,6 @@ public class Note {
 
 
 
-
-    public Media getMedia() {
-        return this.media;
-    }
-
-
-}
 
 /*
 
@@ -69,3 +65,4 @@ class Pitch {
 }
 
  */
+}

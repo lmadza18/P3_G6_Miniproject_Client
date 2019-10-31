@@ -1,6 +1,7 @@
 package P3_G6_Miniproject_Client;
 
 import javafx.application.Platform;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 
 
@@ -32,7 +33,9 @@ public class StageSpot extends StackPane {
 
         this.movePos(-stageSpotButton.imageSize / 2, -stageSpotButton.imageSize / 2);
 
+
         stageSpotButtonListener();
+
     }
 
     //method for moving stage spot
@@ -60,16 +63,23 @@ public class StageSpot extends StackPane {
     //Method for action when chooseButton in instrumentPickerWindow is pressed
     public void instrumentPickerWindowChooseButtonListener() {
         Main.root.instrumentPickerWindow.chooseButton.setOnAction(actionEvent -> {
-
-            Main.root.getChildren().remove(Main.root.instrumentPickerWindow);
-            this.instrumentId = Main.root.instrumentPickerWindow.switchIndex;
-
-            displayBandPlayer(this.instrumentId, true);
-
-            OSC.sendMessage("GUImessage", this.spotId, this.instrumentId, "take");
-            takeIt();
-
+            chooseBandPlayer();
         });
+        Main.root.setOnKeyPressed(e -> {
+            if (e.getCode().equals(KeyCode.ENTER)) {
+                chooseBandPlayer();
+            }
+        });
+    }
+
+    public void chooseBandPlayer(){
+        Main.root.getChildren().remove(Main.root.instrumentPickerWindow);
+        this.instrumentId = Main.root.instrumentPickerWindow.switchIndex;
+
+        displayBandPlayer(this.instrumentId, true);
+
+        OSC.sendMessage("GUImessage", this.spotId, this.instrumentId, "take");
+        takeIt();
     }
 
 
@@ -135,6 +145,5 @@ public class StageSpot extends StackPane {
             OSC.sendMessage("GUImessage", this.spotId, this.instrumentId, "leave");
         });
     }
-
 
 }

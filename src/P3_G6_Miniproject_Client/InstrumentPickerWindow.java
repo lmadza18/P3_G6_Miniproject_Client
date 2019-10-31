@@ -114,7 +114,7 @@ public class InstrumentPickerWindow extends Pane {
     void switchLeftListener() {
         switchIndex--;
         if (switchIndex < 0) {
-            switchIndex = imageViews.length-1;
+            switchIndex = imageViews.length - 1;
         }
         window.setCenter(imageViews[switchIndex]);
     }

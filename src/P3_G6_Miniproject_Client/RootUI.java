@@ -8,7 +8,6 @@ import javafx.scene.layout.Pane;
 
 
 public class RootUI extends Pane {
-
     public OSC OSC;
     StageSpot[] stageSpots = new StageSpot[4];
     InstrumentPickerWindow instrumentPickerWindow;
@@ -51,6 +50,11 @@ public class RootUI extends Pane {
 
         this.getChildren().addAll(bgImg, stageSpots[0], stageSpots[1], stageSpots[2], stageSpots[3]);
         OSC = new OSC(stageSpots);
+
+
+
     }
+
+
 
 }

@@ -1,10 +1,12 @@
 package P3_G6_Miniproject_Client;
 
+import javafx.scene.input.KeyCode;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -18,6 +20,7 @@ public class Instrument {
     private int bandPlayerId;
     private int spotId;
     private boolean isMe;
+    private boolean pedal = true;
 
     public Instrument(int bandPlayerId, int spotId, RootUI rootUI, boolean isMe) {
         this.bandPlayerId = bandPlayerId;
@@ -51,7 +54,7 @@ public class Instrument {
                 new Note(new File("src/audio_files/" + type + "/1C" + type + ".wav"))
         };
 
-        map = Map.of(
+        map = Collections.synchronizedMap( Map.of(
                 "A", notes[0],
                 "S", notes[1],
                 "D", notes[2],
@@ -60,7 +63,7 @@ public class Instrument {
                 "H", notes[5],
                 "J", notes[6],
                 "K", notes[7]
-        );
+        ));
         this.setUpListener(rootUI);
         //TODO OC MESSAGE
         //OC.sendMessage("Sound/" + this.type + "/" + entry.getKey(), spotId, id, "null");
@@ -85,11 +88,19 @@ public class Instrument {
         if (isMe) {
             rootUI.setOnKeyPressed(e -> {
 
+                // ------------------------- When pressing 'p' you toggle pedal on/off
+                if (e.getCode().equals(KeyCode.P)){
+                    pedal = !pedal;
+                }
+                // -------------------------
+
                 for (Map.Entry<String, Note> entry : map.entrySet()) {
                     //Key checked
                     String key = entry.getKey();
                     //Key pressed by user
                     String mapKey = e.getCode().getName();
+
+
                     if (key.equals(mapKey) && this.isPlayable && !entry.getValue().noteOn) {
                         OSC.sendMessage("Sound/" + this.type + "/" + entry.getKey(), spotId, bandPlayerId, "null");
                         System.out.println("something");
@@ -107,23 +118,27 @@ public class Instrument {
                     }
                 }
             });
-        }
 
-        rootUI.setOnKeyReleased(e -> {
 
-            for (Map.Entry<String, Note> entry : map.entrySet()) {
+            rootUI.setOnKeyReleased(e -> {
 
-                String key = entry.getKey();
+                for (Map.Entry<String, Note> entry : map.entrySet()) {
 
-                if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable && entry.getValue().noteOn) {
-                    System.out.println("RELEASING: " + entry.getKey());
+                    String key = entry.getKey();
 
-                    //map.get(key).stopSound();
-                    map.get(key).noteOn = false;
+                    if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable && entry.getValue().noteOn) {
+                        System.out.println("RELEASING: " + entry.getKey());
 
+                        //  Only stop the note if pedal is off
+                        if (!pedal) {
+                            map.get(key).stopSound();
+                        }
+                        map.get(key).noteOn = false;
+
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
 
