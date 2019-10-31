@@ -8,6 +8,7 @@ import javafx.scene.layout.Pane;
 
 
 public class RootUI extends Pane {
+    IPWindow ipWindow;
     public OSC OSC;
     StageSpot[] stageSpots = new StageSpot[4];
     InstrumentPickerWindow instrumentPickerWindow;
@@ -25,13 +26,13 @@ public class RootUI extends Pane {
 
     RootUI() {
 
-
     }
 
     void setMess(OSCMessage mess) {
 
     }
     public void start() {
+
         //set background image
         ImageView bgImg = new ImageView("images/stage.jpg");
         bgImg.setFitWidth(this.getWidth());
@@ -49,11 +50,17 @@ public class RootUI extends Pane {
         leaveStageSpotButton = new Button("get my ass outta here!");
 
         this.getChildren().addAll(bgImg, stageSpots[0], stageSpots[1], stageSpots[2], stageSpots[3]);
+
+        ipWindow = new IPWindow();
+        this.getChildren().addAll(ipWindow);
         OSC = new OSC(stageSpots);
 
-
-
     }
+
+    public void runIpWindow() {
+        this.getChildren().addAll(ipWindow);
+    }
+
 
 
 
