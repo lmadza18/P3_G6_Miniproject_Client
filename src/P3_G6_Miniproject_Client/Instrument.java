@@ -1,19 +1,19 @@
 package P3_G6_Miniproject_Client;
 
 import javafx.scene.input.KeyCode;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.util.Duration;
 
 import java.io.File;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
+
+/**
+ * This class is used for choosing instrument and based on this loading different Strings into a map of type Note.
+ * Furthermore, this class is detecting key operations by the user; keyPressed and keyReleased.
+ */
 
 public class Instrument {
     public String type;
-    private Note[] notes = {};
+    private Note[] notes;
     public boolean isPlayable = false;
     private boolean isRhythmic = false;
     public Map<String, Note> map;
@@ -27,6 +27,7 @@ public class Instrument {
         this.spotId = spotId;
         this.isMe = isMe;
 
+        // Depending on the bandPlayerId a String named type is stored
         switch (bandPlayerId) {
             case 0:
                 this.type = "Guitar";
@@ -43,6 +44,7 @@ public class Instrument {
                 break;
         }
 
+        //An Array of type Note is initialized depending on the variable type different audiofiles are stored
         this.notes = new Note[]{
                 new Note(new File("src/audio_files/" + type + "/0C" + type + ".wav")),
                 new Note(new File("src/audio_files/" + type + "/0D" + type + ".wav")),
@@ -54,6 +56,10 @@ public class Instrument {
                 new Note(new File("src/audio_files/" + type + "/1C" + type + ".wav"))
         };
 
+
+        //A map is initialized with the array Notes
+        //The map is synchronized to prevent a crash, when multiple clients
+        //press the same button at once.
         map = Collections.synchronizedMap(Map.of(
                 "A", notes[0],
                 "S", notes[1],
@@ -64,28 +70,19 @@ public class Instrument {
                 "J", notes[6],
                 "K", notes[7]
         ));
-        this.setUpListener(rootUI);
-        //TODO OC MESSAGE
-        //OC.sendMessage("Sound/" + this.type + "/" + entry.getKey(), spotId, id, "null");
-/*
-        if (isMe) {
-            rootUI.setOnKeyPressed(e -> {
-                for (Map.Entry<String, Note> entry : map.entrySet()) {
-                    if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable && !notes[0].noteOn) {
-                        OSC.sendMessage("Sound/" + this.type + "/" + entry.getKey(), spotId, bandPlayerId, "null");
-                        this.playSound(entry.getValue().getMedia());
-                    }
-                }
-            });
-        }
 
- */
+        //Sets up a listener for the rootUI
+        this.setUpListener(rootUI);
+
     }
 
-
+    //This functions is handling keyEvents by the user
+    //And checks if the user pressed or releases any buttons (within the map)
     public void setUpListener(RootUI rootUI) {
 
+
         if (isMe) {
+            //Sets on a keyPressed to the rootUi element
             rootUI.setOnKeyPressed(e -> {
 
                 // ------------------------- When pressing 'p' you toggle pedal on/off
@@ -94,38 +91,37 @@ public class Instrument {
                 }
                 // -------------------------
 
+                //Loops over the map and gets the entrySet
                 for (Map.Entry<String, Note> entry : map.entrySet()) {
                     //Key checked
-                    String key = entry.getKey();
+                    String mapKey = entry.getKey();
                     //Key pressed by user
-                    String mapKey = e.getCode().getName();
+                    String key = e.getCode().getName();
 
-
-                    if (key.equals(mapKey) && this.isPlayable && !entry.getValue().noteOn) {
+                    //Compares the key pressed by the user to the map
+                    //And finds the mapKey equal to the key (both are of type String)
+                    //Checks the two booleans; isPlayable and noteOn
+                    if (mapKey.equals(key) && this.isPlayable && !entry.getValue().noteOn) {
+                        //A message is send to the server
                         OSC.sendMessage("Sound/" + this.type + "/" + entry.getKey(), spotId, bandPlayerId, "play");
                         entry.getValue().playSound();
-
-                        // Copies what's in the map for the current key
-                        //Note note = entry.getValue();
-                        //note.noteOn=true;
-                        // Replaces what's in the map
-                        //map.put(key,note);a
-
-                        //Goes into the variable,
-                        map.get(key).noteOn = true;
-
+                        //Set noteOn to true
+                        map.get(mapKey).noteOn = true;
                     }
                 }
             });
 
-
+            //Sets a on onKeyReleased to rootUI
             rootUI.setOnKeyReleased(e -> {
 
                 for (Map.Entry<String, Note> entry : map.entrySet()) {
+                    //Key checked
+                    String mapKey = entry.getKey();
+                    //Key pressed by user
+                    String key = e.getCode().getName();
 
-                    String key = entry.getKey();
-
-                    if (entry.getKey().equals(e.getCode().getName()) && this.isPlayable && entry.getValue().noteOn) {
+                    //Checks if noteOn is true
+                    if (mapKey.equals(key) && this.isPlayable && entry.getValue().noteOn) {
                         System.out.println("RELEASING: " + entry.getKey());
 
                         //  Only stop the note if pedal is off
@@ -133,7 +129,8 @@ public class Instrument {
                             OSC.sendMessage("Sound/" + this.type + "/" + entry.getKey(), spotId, bandPlayerId, "stop");
                             map.get(key).stopSound();
                         }
-                        map.get(key).noteOn = false;
+                        //Sets noteOn to false again
+                        map.get(mapKey).noteOn = false;
 
                     }
                 }
