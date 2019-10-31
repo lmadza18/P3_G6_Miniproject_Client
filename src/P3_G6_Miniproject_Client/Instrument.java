@@ -20,7 +20,7 @@ public class Instrument {
     private int bandPlayerId;
     private int spotId;
     private boolean isMe;
-    private boolean pedal = true;
+    public boolean pedal = true;
 
     public Instrument(int bandPlayerId, int spotId, RootUI rootUI, boolean isMe) {
         this.bandPlayerId = bandPlayerId;
@@ -102,7 +102,11 @@ public class Instrument {
 
 
                     if (key.equals(mapKey) && this.isPlayable && !entry.getValue().noteOn) {
-                        OSC.sendMessage("Sound/" + this.type + "/" + entry.getKey(), spotId, bandPlayerId, "null");
+                        String operation = "pedal";
+                        if (!pedal){
+                            operation = "none";
+                        }
+                        OSC.sendMessage("Sound/" + this.type + "/" + entry.getKey(), spotId, bandPlayerId, operation);
                         System.out.println("something");
                         entry.getValue().playSound();
 

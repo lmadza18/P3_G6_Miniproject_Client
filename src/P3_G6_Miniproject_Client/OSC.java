@@ -46,7 +46,7 @@ public class OSC {
 
         try {
             client = OSCClient.newUsing(OSCClient.UDP);    // create UDP client with any free port number
-            client.setTarget(new InetSocketAddress("localhost", 8000));  // Find server host
+            client.setTarget(new InetSocketAddress("192.168.43.10", 8000));  // Find server host
             client.start();  // open channel and (in the case of TCP) connect, then start listening for replies
         } catch (IOException e1) {
             e1.printStackTrace();
@@ -98,6 +98,7 @@ public class OSC {
                 }
                 // Receiving sound messages
                 if (message.getName().contains("/Sound")) {
+                    System.out.println(message.getArg(2));
                     try {
                         //Split the message into an array of strings
                         String[] parts = message.getName().split("/");
@@ -109,6 +110,7 @@ public class OSC {
 
                         // Make sure you play the right instrument and then play the sound
                         if (type.equals(instrument.type)) {
+                            instrument.pedal = message.getArg(2).equals("pedal");
                             instrument.map.get(key).playSound();
 
                             //Note.playSound(Note.map.get(key).getMedia());

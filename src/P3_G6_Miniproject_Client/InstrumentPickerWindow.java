@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 
+
 public class InstrumentPickerWindow extends Pane {
     Pane background = new Pane(); //Pane for making background unclickable
     BorderPane window = new BorderPane();
