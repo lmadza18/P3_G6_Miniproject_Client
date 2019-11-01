@@ -40,18 +40,29 @@ An [OpenSoundControl](http://opensoundcontrol.org/introduction-osc) (OSC) commun
 
 This repository is the client side of the application. The server side can be found [here](https://github.com/malteerasmussen/P3_G6_Miniproject_Server).
 Running the server is needed in order for multiple players to play together. The server runs the NetUtil() . 
-We use a UDP server, which runs on port 8000. We import several OSC libraries (e.g. OSCCLient, OSCListener and OSCMessage), 
+We use a UDP server, which runs on port 8000. We import several OSC libraries (e.g. OSCClient, OSCListener and OSCMessage), 
 which are used to set up, listen for, receive and send OSC messages between the client and server. 
 
+All OSC messages are divided into 4 categories. The OSC receiver distinguish between the four types, 
+through the String put in the message.getName() entry. The 4 categories are:
+* Establish communication ("hello")
+* Status ("status")
+* GUI Messages ("GUImessage")
+* Sounds ("Sound")
 
-
-```
-Give examples
-```
+The Establish communication is sent as soon as the client finds the server 
+and are used to notify the server that a player has joined.
+The Status is continuously sent to the server to confirm that the client is still active.
+The GUI Messages contains all GUI chances (e.g. when choosing a bandplayer).
+The Sounds contains all information necessary for the system to play the correct notes.
 
 ## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Casper Skaarup Ovesen**
+* **Kristinn Bragi Garðarsson**
+* **Malte Elkær Rasmussen** 
+* **Mikkel Kappel Persson**
+* **Niels Erik Raursø**
+* **Tor Arnth Petersen**
 
 See also the list of [contributors](https://github.com/lmadza18/P3_G6_Miniproject_Client/contributors) who participated in this project.
 
