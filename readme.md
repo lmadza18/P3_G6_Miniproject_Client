@@ -39,23 +39,15 @@ An [OpenSoundControl](http://opensoundcontrol.org/introduction-osc) (OSC) commun
 ## Communication
 
 This repository is the client side of the application. The server side can be found [here](https://github.com/malteerasmussen/P3_G6_Miniproject_Server).
-Running the server is needed in order for multiple players to play together. The server runs the NetUtil() 
+Running the server is needed in order for multiple players to play together. The server runs the NetUtil() . 
+We use a UDP server, which runs on port 8000. We import several OSC libraries (e.g. OSCCLient, OSCListener and OSCMessage), 
+which are used to set up, listen for, receive and send OSC messages between the client and server. 
+
+
 
 ```
 Give examples
 ```
-
-## UML Diagrams & Documentation
-```
-Class diagram
-```
-```
-Use Case diagram
-```
-```
-Sequence diagram
-```
-
 
 ## Authors
 
@@ -67,5 +59,5 @@ See also the list of [contributors](https://github.com/your/project/contributors
 ## Acknowledgments
 
 * Thanks to [Molly and Joy-Joy](https://www.goatslive.com/)
-* Inspiration
+* Thanks to Stackoverflow.com because... well we all know why...
 * etc

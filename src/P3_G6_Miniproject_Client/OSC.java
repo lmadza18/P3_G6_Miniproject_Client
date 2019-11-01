@@ -58,8 +58,8 @@ public class OSC {
     protected void runOSC() {
 
         try {
-            client = OSCClient.newUsing(OSCClient.UDP);    // create UDP client with any free port number
-            client.setTarget(new InetSocketAddress(hostName, 8000));  // Find server host
+            client = OSCClient.newUsing(OSCClient.UDP);    // create UDP client
+            client.setTarget(new InetSocketAddress(hostName, 8000));  // Find server host and specify port
             client.start();  // open channel and (in the case of TCP) connect, then start listening for replies
             client.send(new OSCMessage("/",new Object[]{}));
         } catch (IOException e1) {
