@@ -1,11 +1,9 @@
 package P3_G6_Miniproject_Client;
 
-import de.sciss.net.OSCMessage;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-
 
 public class RootUI extends Pane {
     IPWindow ipWindow;
@@ -26,7 +24,6 @@ public class RootUI extends Pane {
     }
 
     public void start() {
-
         //set background image
         ImageView bgImg = new ImageView("images/stage.jpg");
         bgImg.setFitWidth(this.getWidth());
@@ -50,12 +47,6 @@ public class RootUI extends Pane {
         OSC = new OSC(stageSpots);
 
     }
-
-    public void runIpWindow() {
-        this.getChildren().addAll(ipWindow);
-    }
-
-
 
 
 }

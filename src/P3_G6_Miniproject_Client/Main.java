@@ -30,6 +30,7 @@ public class Main extends Application {
                 System.out.print("");
                 if (OSC.connected) {
                     try {
+
                         OSC.sendStatus();
                         Thread.sleep(2000);
                     } catch (InterruptedException e) {

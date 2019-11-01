@@ -20,7 +20,7 @@ Depending on the chosen bandplayer the client can play notes using the following
 * J
 * K
 
-The client can also chance the duration of the notes, by turning the pedal on or off using the 
+The client can also change the duration of the notes, by turning the pedal on or off using the 
 P key.
 
 It's possible for the client to change their chosen stagespot and bandplayer at any time,
@@ -33,11 +33,11 @@ It's possible for the client to change their chosen stagespot and bandplayer at 
 The project is built in Java 11 using the JavaFX platform for GUI-elements.
  
 ### [NetUtil](https://github.com/Sciss/NetUtil)
-An [OpenSoundControl](http://opensoundcontrol.org/introduction-osc) (OSC) communication library for Java. Documentation for it found here [here](https://www.sciss.de/netutil/doc/api/index.html). The JAR-file is in the intellij project
+An [OpenSoundControl](http://opensoundcontrol.org/introduction-osc) (OSC) communication library for Java. Documentation for it can be found [here](https://www.sciss.de/netutil/doc/api/index.html). The JAR-file is in the intellij project
 
 ## Communication
 
-This repository is the client side of the application. The server side can be found [here](https://github.com/malteerasmussen/P3_G6_Miniproject_Server)
+This repository is the client side of the application. The server side can be found [here](https://github.com/malteerasmussen/P3_G6_Miniproject_Server).
 Running the server is needed in order for multiple players to play together. The server runs the NetUtil() 
 
 ```
