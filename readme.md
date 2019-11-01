@@ -5,7 +5,6 @@ Join the infamous rock band Megahay on their World Tour.
 Choose your favourite instrument and jam with all your friends in front of a live audience.
 
 
-One Paragraph of project description goes here
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
 
 ## Releases 
@@ -69,11 +68,11 @@ The Sounds contains all information necessary for the system to play the correct
 * **Niels Erik Raursø**
 * **Tor Arnth Petersen**
 
-See also the list of [contributors](https://github.com/lmadza18/P3_G6_Miniproject_Client/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/lmadza18/P3_G6_Miniproject_Client/contributors) 
+who participated in this project.
 
 
 ## Acknowledgments
 
 * Thanks to [Molly and Joy-Joy](https://www.goatslive.com/)
-* Thanks to Stackoverflow.com because... well we all know why...
 * etc
