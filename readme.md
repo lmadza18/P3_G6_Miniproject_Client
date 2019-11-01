@@ -2,6 +2,7 @@
 
 One Paragraph of project description goes here
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+
 ## Releases 
 [Release version 1.0](somelink)
 
