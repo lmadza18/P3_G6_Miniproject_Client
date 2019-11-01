@@ -6,11 +6,11 @@ import javafx.stage.Stage;
 
 // DOCUMENTATION: https://www.sciss.de/netutil/doc/api/index.html
 
-
+/**
+ * This is the Main class, the launch method starts the overridden start-method which sets up the GUI
+ */
 public class Main extends Application {
     public static RootUI root = new RootUI();
-
-
 
 
     @Override
@@ -30,6 +30,7 @@ public class Main extends Application {
                 System.out.print("");
                 if (OSC.connected) {
                     try {
+
                         OSC.sendStatus();
                         Thread.sleep(2000);
                     } catch (InterruptedException e) {

@@ -35,10 +35,6 @@ public class BandPlayer extends ImageView {
 
     }
 
-    ImageView getImg(){
-        return this;
-    }
-
     public int getPlayerId() {
         return this.id;
     }
