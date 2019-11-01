@@ -53,7 +53,7 @@ Give examples
 
 * **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/lmadza18/P3_G6_Miniproject_Client/contributors) who participated in this project.
 
 
 ## Acknowledgments
