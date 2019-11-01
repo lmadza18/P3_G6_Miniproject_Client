@@ -1,4 +1,9 @@
-# Project Title
+# Megahay
+
+Have you ever dreamt about being a rock star? Now's your chance! 
+Join the infamous rock band Megahay on their World Tour. 
+Choose your favourite instrument and jam with all your friends in front of a live audience.
+
 
 One Paragraph of project description goes here
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
