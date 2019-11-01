@@ -49,12 +49,12 @@ which are used to set up, listen for, receive and send OSC messages between the 
 
 All OSC messages are divided into 4 categories. The OSC receiver distinguish between the four types, 
 through the String put in the message.getName() entry. The 4 categories are:
-* Establish communication ("hello")
-* Status ("status")
-* GUI Messages ("GUImessage")
-* Sounds ("Sound")
+* Establish communication ("/hello")
+* Status ("/status")
+* GUI Messages ("/GUImessage")
+* Sounds ("/Sound")
 
-The Establish communication is sent as soon as the client finds the server 
+The Establish communication (/hello) is sent as soon as the client finds the server 
 and are used to notify the server that a player has joined.
 The Status is continuously sent to the server to confirm that the client is still active.
 The GUI Messages contains all GUI chances (e.g. when choosing a bandplayer).
@@ -75,4 +75,3 @@ who participated in this project.
 ## Acknowledgments
 
 * Thanks to [Molly and Joy-Joy](https://www.goatslive.com/)
-* etc
