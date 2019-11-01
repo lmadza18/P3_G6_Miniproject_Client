@@ -4,10 +4,19 @@ import de.sciss.net.OSCClient;
 import de.sciss.net.OSCListener;
 import de.sciss.net.OSCMessage;
 
+import javax.management.Notification;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.nio.channels.UnresolvedAddressException;
+
+
+/**
+ * This class is for handling client-server communication. It sets up a OSC Listener which detects incoming
+ * messages and calls a specific method depending on the content of the message.
+ * Furthermore, it is used to send message to the server.
+ */
+
 
 public class OSC {
     static OSCClient client; // This is the client
@@ -52,9 +61,13 @@ public class OSC {
             client = OSCClient.newUsing(OSCClient.UDP);    // create UDP client with any free port number
             client.setTarget(new InetSocketAddress(hostName, 8000));  // Find server host
             client.start();  // open channel and (in the case of TCP) connect, then start listening for replies
+            client.send(new OSCMessage("/",new Object[]{}));
         } catch (IOException e1) {
             e1.printStackTrace();
             return;
+        } catch (UnresolvedAddressException e2){
+            System.out.println("Server not found. Playing locally.");
+            client.setTarget(new InetSocketAddress("localhost", 8000));
         }
 
         // register a listener for incoming osc messages
@@ -74,7 +87,6 @@ public class OSC {
                 }
                 // Receiving GUI messages
                 if (message.getName().contains("/GUImessage")) {
-                    System.out.println("OPERATION: " + message.getArg(2));
 
                     // If the operation received in the message is "take"
                     // display a bandPlayer on that spotID included in the message
@@ -133,10 +145,8 @@ public class OSC {
             // Letting the server know, you are here
             client.send(new OSCMessage("/hello", new Object[]{0}));
 
-        } catch (IOException e11) {
+        } catch (IOException | UnresolvedAddressException e11) {
             e11.printStackTrace();
-        } catch (UnresolvedAddressException e){
-            System.out.println("Server not found");
         }
     }
 }

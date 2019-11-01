@@ -122,8 +122,6 @@ public class Instrument {
 
                     //Checks if noteOn is true
                     if (mapKey.equals(key) && this.isPlayable && entry.getValue().noteOn) {
-                        System.out.println("RELEASING: " + entry.getKey());
-
                         //  Only stop the note if pedal is off
                         if (!pedal) {
                             // Send message for stopping a sound

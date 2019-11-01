@@ -3,6 +3,13 @@ package P3_G6_Miniproject_Client;
 import javafx.scene.image.ImageView;
 
 
+/**
+ * This class is used to keep track which stagespots are taken,
+ * and what instrument are the client chose.
+ * Furthermore, if the bandplayer were created locally or by another client.
+ */
+
+
 public class BandPlayer extends ImageView {
 
     int id;
@@ -26,10 +33,6 @@ public class BandPlayer extends ImageView {
 
         instrument = new Instrument(this.id, spotId, Main.root, localPlayer);
 
-    }
-
-    ImageView getImg(){
-        return this;
     }
 
     public int getPlayerId() {
