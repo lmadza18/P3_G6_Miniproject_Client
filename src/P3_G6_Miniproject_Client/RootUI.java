@@ -17,7 +17,7 @@ public class RootUI extends Pane {
             new Image("images/guitarist.png"),
             new Image("images/drummer1.png"),
             new Image("images/bassist.png"),
-            new Image("images/sprite.png")
+            new Image("images/pianoGoat.png")
     };
 
     RootUI() {
@@ -25,16 +25,16 @@ public class RootUI extends Pane {
 
     public void start() {
         //set background image
-        ImageView bgImg = new ImageView("images/stage.jpg");
+        ImageView bgImg = new ImageView("images/stage4.png");
         bgImg.setFitWidth(this.getWidth());
         bgImg.setFitHeight(this.getHeight());
 
         //Set and pace stage spots
 
-        stageSpots[0] = new StageSpot(0,this.getWidth() / 8, this.getHeight() / 8 * 6);
-        stageSpots[1] = new StageSpot(1,this.getWidth() / 8 * 3, this.getHeight() / 8 * 5.5);
-        stageSpots[2] = new StageSpot(2,this.getWidth() / 8 * 5, this.getHeight() / 8 * 5.5);
-        stageSpots[3] = new StageSpot(3,this.getWidth() / 8 * 7, this.getHeight() / 8 * 6);
+        stageSpots[0] = new StageSpot(0,this.getWidth() / 8, this.getHeight() / 8 * 7);
+        stageSpots[1] = new StageSpot(1,this.getWidth() / 8 * 3, this.getHeight() / 8 * 6.5);
+        stageSpots[2] = new StageSpot(2,this.getWidth() / 8 * 5, this.getHeight() / 8 * 6.5);
+        stageSpots[3] = new StageSpot(3,this.getWidth() / 8 * 7, this.getHeight() / 8 * 7);
 
         instrumentPickerWindow = new InstrumentPickerWindow();
 

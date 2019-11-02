@@ -44,7 +44,7 @@ public class IPWindow extends StackPane {
         ipWindow.setStyle("-fx-background-color: #AAAAAA; -fx-border-color: #444444;");
 
 
-        ImageView bgImg = new ImageView("images/rockband.jpg"); //the background image
+        ImageView bgImg = new ImageView("images/stage4.png"); //the background image
         bgImg.setFitWidth(Main.root.getWidth());
         bgImg.setFitHeight(Main.root.getHeight());
         this.getChildren().addAll(bgImg, ipWindow);
