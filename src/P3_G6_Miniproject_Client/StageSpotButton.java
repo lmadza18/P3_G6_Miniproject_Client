@@ -26,8 +26,8 @@ public class StageSpotButton extends StackPane {
         imageSize = (int) Math.round(Main.root.getWidth() / 10);
         buttonSize = Math.round(imageSize / 6 * 4);
         int buttonTransform = Math.round(imageSize / 6);
-        buttonImg = new ImageView("Takespot_button.png");
-        buttonHoverImg = new ImageView("Takespot_button_hover.png");
+        buttonImg = new ImageView("images/Takespot_button.png");
+        buttonHoverImg = new ImageView("images/Takespot_button_hover.png");
 
         buttonImg.setFitWidth(imageSize);
         buttonImg.setFitHeight(imageSize);

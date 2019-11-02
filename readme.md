@@ -73,10 +73,11 @@ who participated in this project.
 
 ## How to set up
 (Using IntelliJ)
-* Install JavaFX. Go to project structure, in "SDKs", add JavaFX lib path to Classpath.
+* Install JavaFX. Go to project structure, in "Global Libraries" add JavaFx lib path.
 * Go to project structure, in "Project". Set Project SDK to Java 11 (11.0.3). 
 * In "Project" set project language level to SDK Default.
 * Copy the project path and set it in Project compiler output field and add "\out" at the end.
+* In project structure, go to "Modules" and choose the folders "images" and "audio_files" and mark as Resources.
 * Press OK
 
 ## Acknowledgments
