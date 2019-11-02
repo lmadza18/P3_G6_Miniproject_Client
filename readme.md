@@ -73,6 +73,7 @@ who participated in this project.
 
 ## How to set up
 (Using IntelliJ)
+* Install JavaFX. Go to project structure, in "SDKs", add JavaFX lib path to Classpath.
 * Go to project structure, in "Project". Set Project SDK to Java 11 (11.0.3). 
 * In "Project" set project language level to SDK Default.
 * Copy the project path and set it in Project compiler output field and add "\out" at the end.
