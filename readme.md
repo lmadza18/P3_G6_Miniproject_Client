@@ -71,7 +71,7 @@ The Sounds contains all information necessary for the system to play the correct
 See also the list of [contributors](https://github.com/lmadza18/P3_G6_Miniproject_Client/contributors) 
 who participated in this project.
 
-##How to set up
+## How to set up
 (Using IntelliJ)
 * Go to project structure, in "Project". Set Project SDK to Java 11 (11.0.3). 
 * In "Project" set project language level to SDK Default.
