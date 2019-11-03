@@ -72,6 +72,11 @@ See also the list of [contributors](https://github.com/lmadza18/P3_G6_Miniprojec
 who participated in this project.
 
 ## How to set up
+(Using Maven)
+* On mac: in terminal - go to the client folder and run command: "./mvnw javafx:run"
+* On windows: in command prompt - go to the client folder and run command: "./mvnw.cmd javafx:run"
+
+
 (Using IntelliJ)
 * Install JavaFX. Go to project structure, in "Global Libraries" add JavaFx lib path.
 * Go to project structure, in "Project". Set Project SDK to Java 11 (11.0.3). 
