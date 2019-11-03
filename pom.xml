@@ -6,7 +6,7 @@
     <artifactId>client</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>client</name>
-    <description>Demo project for Spring Boot</description>
+    <description>client</description>
 
     <properties>
         <java.version>11</java.version>
